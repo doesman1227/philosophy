@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>意識とは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="脳は電気信号の集まりなのに、なぜ「痛い」「美しい」という経験が生まれるのか。意識の難問・脳科学・主要な理論と立場を、確かなことと未決定のことに分けてたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* consciousness page */
+  .gap{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin:34px 0 10px}
+  .gap > div{padding:20px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-align:center}
+  .gap small{display:block;font-size:.66rem;font-weight:700;letter-spacing:.22em;color:var(--muted);margin-bottom:6px}
+  .gap .side{font-family:"Noto Serif JP",serif;font-size:1.02rem;line-height:1.8}
+  .gap .mid{border:0;background:none;padding:0;font-family:"Noto Serif JP",serif;color:var(--open);font-size:1.6rem}
+  .gap .mid span{display:block;font-family:"Noto Sans JP",sans-serif;font-size:.66rem;letter-spacing:.14em;color:var(--muted)}
+  .gap .exp{border-color:var(--accent)}
+  @media (max-width:560px){ .gap{grid-template-columns:1fr} }
+  .theory-panel .meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+  .theory-panel .meta div{padding:12px 14px;border-radius:3px;font-size:.88rem;color:var(--sub)}
+  .theory-panel .meta .plus{background:var(--sure-soft)}
+  .theory-panel .meta .minus{background:var(--open-soft)}
+  .theory-panel .meta b{display:block;font-size:.66rem;letter-spacing:.2em;font-weight:700;margin-bottom:2px}
+  .theory-panel .meta .plus b{color:var(--sure)} .theory-panel .meta .minus b{color:var(--open)}
+  .theory-panel .who-by{font-size:.78rem;color:var(--muted);margin-top:4px}
+  @media (max-width:560px){ .theory-panel .meta{grid-template-columns:1fr} }
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted)}
+  .series a{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 02</p>
+    <h1><span>脳は電気信号の</span><span>集まりなのに、</span><br><span>なぜ「感じる」のか</span></h1>
+    <p class="lead">前回、「生きる意味」を遡っていった先で、最後に残ったのは「意味を感じている意識そのものは何なのか」という問いだった。今回はそこから始める。神経細胞の発火をどれだけ詳しく調べても、「痛い」「赤い」「美しい」という感じそのものはどこにも見当たらない。それでも私たちは、確かに何かを経験している。</p>
+    <p class="note">これは研究のまとめではなく、意識という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「理論・仮説」「未決定のこと」を区別して書いています。</p>
+  </div>
+
+  <p class="series">前回の記事：<a href="meaning-of-life.html">01 生きる意味を問う</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#gap"><b>02</b>説明のギャップ</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#views"><b>04</b>意識をめぐる立場</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「意識とは何か」を分解する</h2>
+    <p class="intro">「意識とは何か」は一つの問いに見えて、実はいくつもの問いが重なっている。ほどいていくと、科学で答えられそうな問いと、科学の方法そのものが届きにくい問いが見えてきた。</p>
+    <ol class="descent">
+      <li><span class="q">「意識」という言葉は何を指しているのか</span><span class="d">目が覚めていること？ それとも、何かを感じていること？</span></li>
+      <li><span class="q">脳のどんな働きが意識と対応しているのか</span><span class="d">意識の神経相関（NCC）を探す科学</span></li>
+      <li><span class="q">意識なしに、脳はどこまで働けるのか</span><span class="d">無意識の処理と、「決める」の正体</span></li>
+      <li><span class="q">意識はどんな仕組みで生まれるのか</span><span class="d">グローバルワークスペース、統合情報、予測する脳</span></li>
+      <li><span class="q">他者・動物・AIに意識はあるのか</span><span class="d">外からは確かめられない、という壁</span></li>
+      <li><span class="q">なぜ物理現象に「感じ」がともなうのか</span><span class="d">意識の難問（ハードプロブレム）</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="gap">
+    <span class="h2-en">02 · EXPLANATORY GAP</span>
+    <h2>どれだけ脳を調べても、<br>埋まらない溝がある</h2>
+    <p class="intro">脳科学は、「どの脳活動のとき、人はどう感じると報告するか」をかなり詳しく明らかにしてきた。けれども、その対応がなぜ成り立つのか——なぜその活動に「感じ」がともなうのか——は、説明のどこにも書かれていない。</p>
+    <div class="gap">
+      <div><small>THIRD PERSON · 外から</small><div class="side">神経細胞の発火<br>電気信号・化学物質<br>情報処理</div></div>
+      <div class="mid">？<span>説明のギャップ</span></div>
+      <div class="exp"><small>FIRST PERSON · 内から</small><div class="side">赤の「赤さ」<br>痛みの「痛さ」<br>音楽の美しさ</div></div>
+    </div>
+    <p class="note">哲学者ジョセフ・レヴァインは、この溝を「説明のギャップ」と呼んだ。主観的な感じの質は「クオリア」とも呼ばれる。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">11の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>言葉をほどく</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">「意識」には少なくとも二つの意味がある</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「意識を失う」というときの意識は、目が覚めていて外界に反応できる状態のこと。一方、「赤いリンゴを見ている意識」というときは、何かを主観的に経験していることを指している。</p>
+          <div class="compare">
+            <div><small>状態としての意識</small>覚醒している、反応できる、注意を向けられる</div>
+            <div><small>経験としての意識</small>「〜であるとはどのようなことか」という感じがある</div>
+          </div>
+          <p>前者はかなり科学的に測ることができる。本当に謎なのは後者のほうだ。</p>
+          <div class="insight">問題の核心は「起きているかどうか」ではなく、「何かを感じているとはどういうことか」にある。</div>
+          <p class="aside"><b>関連する考え方：</b>哲学者トマス・ネーゲルは論文「コウモリであるとはどのようなことか」（1974）で、ある存在に意識があるとは、その存在で<em>あること</em>が「どのようなことか」がある、ということだと論じた。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">「易しい問題」と「難しい問題」</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>脳が刺激を見分け、情報を統合し、注意を向け、言葉で報告する——こうした<b>機能</b>の仕組みは、原理的には神経科学で説明できるはずだ。実際にはとても難しいが、どう解けばいいかの方向は見えている。</p>
+          <p>ところが、それらの機能がすべて説明できたとしても、「なぜその処理に主観的な経験がともなうのか」という問いは残る。機能を説明することと、経験があることを説明することは別の課題に見える。</p>
+          <div class="compare">
+            <div><small>易しい問題</small>脳はどうやって見分け、統合し、報告するのか（機能の説明）</div>
+            <div><small>難しい問題</small>なぜその処理に「感じ」がともなうのか（経験の説明）</div>
+          </div>
+          <p class="aside"><b>関連する考え方：</b>この区別はデイヴィッド・チャーマーズが1990年代半ばに提示した。ただし、「難しい問題」はそもそも問題の立て方が誤っている、と考える哲学者もいる（後述の錯覚主義など）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">二つの思考実験：マリーの部屋と哲学的ゾンビ</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p><b>マリーの部屋。</b>白黒の部屋で育ち、色覚に関する物理的な知識をすべて学んだ科学者マリーが、初めて部屋を出て赤いトマトを見る。そのとき彼女は、何か新しいことを知るだろうか。もし知るなら、物理的な知識だけでは経験のすべては尽くせないことになる。</p>
+          <p><b>哲学的ゾンビ。</b>外から見ても脳を調べても人間とまったく同じに振る舞うが、内側には何の経験もない存在。そういう存在を矛盾なく<em>想像できる</em>なら、経験は物理的な機能に付け加わる「何か」なのではないか。</p>
+          <div class="insight">どちらも、「物理的な事実をすべて知っても、経験の事実は取りこぼされるのではないか」という直観をあぶり出す装置になっている。</div>
+          <p class="aside"><b>注意：</b>これらは決定的な証明ではない。「想像できること」と「実際に可能であること」は違う、マリーは新しい事実ではなく新しい能力を得ただけだ、などの反論も多くある。マリーの部屋はフランク・ジャクソン（1982）による。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>脳から見る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">意識と対応する脳活動を探す</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「なぜ」は難しくても、「どこで・いつ」は調べられる。同じ刺激が意識にのぼるときとのぼらないときで、脳活動の何が違うのかを比べる研究が積み重ねられてきた。これを「意識の神経相関（NCC）」の探索という。</p>
+          <div class="tags"><span>両眼視野闘争</span><span>閾値ぎりぎりの刺激</span><span>麻酔・睡眠</span><span>盲視</span></div>
+          <p>たとえば左右の目に別々の画像を見せると、見えている像が数秒ごとに入れ替わる。網膜への入力は同じなのに、経験だけが変わる。この「入れ替わり」に対応する脳活動を調べることができる。</p>
+          <div class="insight">意識は脳活動と密接に対応している。これはかなり確かだ。ただし「相関」は「説明」ではない。</div>
+          <p class="aside"><b>関連する考え方：</b>DNAの二重らせんで知られるフランシス・クリックは、晩年にクリストフ・コッホとともに意識の神経相関の研究を推し進めた。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">意識は、脳の仕事のごく一部なのかもしれない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>視覚野の一部を損傷して「見えない」と言う人が、それでも目の前の物の位置をかなり正確に当てられることがある（盲視）。意識にのぼらないまま、脳は多くの情報を処理している。</p>
+          <p>歩く、話す、言葉を選ぶ。その大部分は意識されずに進んでいる。意識は、脳の活動全体を照らすサーチライトではなく、ごく一部が浮かび上がった姿なのかもしれない。</p>
+          <p>さらに、ベンジャミン・リベットの実験（1980年代）では、「動かそう」と意識的に決めたと感じる時点より前に、脳の準備電位が立ち上がり始めていることが報告された。</p>
+          <div class="insight">「私が決めた」という感覚は、決定のプロセスそのものではなく、その一部の報告なのかもしれない。——これは前回の「メタ認知する私」の問いと、次の「自由意志」の問いに直結する。</div>
+          <p class="aside"><b>注意：</b>リベットの実験の解釈には大きな論争があり、「自由意志は存在しないことが証明された」とまでは言えない。準備電位は特定の決定ではなく、脳のゆらぎの蓄積を反映しているだけだとする研究もある。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">脳は世界を「予測」している</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>私たちは世界をそのまま見ているのではないらしい。脳はつねに「次に何が来るか」を予測し、感覚からの入力でその予測を修正し続けている——という考え方（予測処理）が有力になっている。</p>
+          <div class="flow"><span>予測</span><i>→</i><span>感覚入力</span><i>→</i><span>予測誤差</span><i>→</i><span>予測の更新</span><i>→</i><span>知覚</span></div>
+          <p>この見方では、見えている世界は脳が組み立てた「最善の推測」だということになる。錯視は、その推測が外れた瞬間だといえる。</p>
+          <div class="insight">経験している世界は、世界そのものではなく、脳がつくるモデルなのかもしれない。前回の「私は自己モデルかもしれない」という仮説と、同じ形をしている。</div>
+          <p class="aside"><b>関連する考え方：</b>神経科学者アニル・セスは、知覚を「制御された幻覚」と表現し、自己の感覚もまた身体内部の状態についての予測から生まれると論じている。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>仕組みの理論</h3></div>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">意識を説明しようとする科学理論たち</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>意識の科学には、いくつかの有力な理論が並び立っている。それぞれ「何があれば意識が生じるのか」についての答えが違う。</p>
+          <div class="compare">
+            <div><small>グローバルワークスペース理論</small>情報が脳全体に「放送」され、多くの処理に共有されたとき意識にのぼる</div>
+            <div><small>統合情報理論（IIT）</small>システムが情報をどれだけ統合しているか（Φ）が意識の量を表す</div>
+            <div><small>高次理論</small>ある心の状態について「それを持っている」という高次の表象があるとき意識的になる</div>
+            <div><small>予測処理・身体性</small>生き延びるために身体を予測・制御する働きの中から経験が生まれる</div>
+          </div>
+          <p>近年は、対立する理論どうしが事前に予測を出し合い、共同で実験して検証する試みも行われている。グローバルワークスペース理論と統合情報理論を比べた大規模な共同研究では、どちらの予測も一部は支持され、一部は外れるという結果になった。</p>
+          <div class="insight">意識の科学は、まだ「定説」がない段階にある。どの理論も、少なくとも当面は「難しい問題」を直接解くというより、どんな条件で意識が生じるかを特定しようとしている。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>外から確かめられない、という壁</h3></div>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">他者に意識があると、どうして分かるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>私が直接知ることのできる経験は、私自身の経験だけだ。他の人に意識があると思うのは、振る舞いや身体のつくりが自分と似ているからであって、その経験を覗き込んで確かめたわけではない。これは哲学で「他我問題」と呼ばれてきた。</p>
+          <p>この壁は、動物やAIを考えるとさらに切実になる。</p>
+          <div class="compare">
+            <div><small>動物</small>哺乳類や鳥類には意識があるとする強い科学的根拠があり、さらに多くの動物にも「現実的な可能性」がある、とする研究者の宣言も出ている（2024年、ニューヨーク宣言）</div>
+            <div><small>AI</small>人間のように話すことは、経験があることを意味しない。逆に、経験がないとも断定できない。何を基準に判断すればよいかが、まだ合意されていない</div>
+          </div>
+          <div class="insight">意識は、それを持っている当人にとってはもっとも確かなものなのに、外からはもっとも確かめにくい。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">もしかして、意識は「錯覚」なのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>まったく逆の発想もある。「説明しがたい内なる感じ」があるように思えること自体が、脳が自分の状態を単純化して表現した結果ではないか。だとすれば、説明すべきなのは「クオリアそのもの」ではなく、「なぜ私たちはクオリアがあると確信してしまうのか」になる。</p>
+          <p>これは「錯覚主義」と呼ばれる立場で、ダニエル・デネットやキース・フランキッシュらが論じてきた。</p>
+          <div class="insight">ここで引っかかったのは、「錯覚だ」と言うときも、その錯覚を「経験している」誰かがいるように思えてしまうこと。この反論にどう答えるかが、錯覚主義の大きな課題になっている。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>前回の問いへ戻る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">意識と「私」の関係</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>前回、「私」は脳がつくる自己モデルなのかもしれない、と考えた。今回、知覚もまた脳のモデルかもしれないと分かってきた。だとすれば、こう整理できそうだ。</p>
+          <div class="flow"><span>経験があること</span><i>→</i><span>世界のモデル</span><i>→</i><span>自己のモデル</span><i>→</i><span>「私が経験している」という感じ</span></div>
+          <p>「私」が経験の<em>持ち主</em>として先にいるのではなく、経験の中に「私」というモデルが現れているのかもしれない。深い眠りや麻酔のとき、経験と一緒に「私」も消える。</p>
+          <div class="insight">意識の問題と自己の問題は、別々のようでいて同じ根を持っているのかもしれない。</div>
+          <p class="aside"><b>仏教との接点：</b>仏教は人間を五つの集まり（五蘊：色・受・想・行・識）として分析し、そのどこにも固定した「我」は見つからないと説く。「識」は意識の働きに近い概念だが、現代の意識研究とそのまま同じものではない。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">意識と「意味」の関係</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>前回の結論は「意味は、意識を持つ存在と世界との関係の中で生まれる」だった。今回考えてみて、その「意識」こそが、意味の成り立つ場所なのだと改めて感じた。</p>
+          <p>経験する主体がまったく存在しない宇宙を想像してみる。そこでは星が生まれ、銀河が回っていても、それが「美しい」とも「意味がある」とも、誰にとってもならない。</p>
+          <div class="insight">意識がなければ「誰にとっての意味か」の「誰」がいない。意味の問いは、意識の問いの上に立っている。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="views">
+    <span class="h2-en">04 · POSITIONS</span>
+    <h2>意識をめぐる五つの立場</h2>
+    <p class="intro">「意識と物質の関係」について、哲学にはいくつかの基本的な立場がある。どれも強みと弱みを抱えていて、決着はついていない。切り替えて比べてみてください。</p>
+
+    <div class="who-tabs theory-tabs" role="tablist" aria-label="意識をめぐる立場"></div>
+    <div class="who-panel theory-panel" role="tabpanel" aria-live="polite">
+      <div class="label"></div>
+      <div class="ans"></div>
+      <p class="desc-p"></p>
+      <p class="who-by"></p>
+      <div class="meta">
+        <div class="plus"><b>強み</b><span class="pl"></span></div>
+        <div class="minus"><b>難しいところ</b><span class="mi"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>意識の状態や内容は、脳活動と密接に対応している（麻酔・損傷・刺激で変わる）。</li>
+          <li>脳は、意識にのぼらない膨大な情報処理を行っている。</li>
+          <li>知覚は感覚入力をそのまま映したものではなく、脳による能動的な構成をともなう。</li>
+          <li>私たちには少なくとも、「何かを経験している」と感じられている。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>理論・仮説</h4>
+        <ul>
+          <li>意識は、情報が脳全体で共有されること（グローバルワークスペース）と関係しているのかもしれない。</li>
+          <li>意識は、情報の統合の度合いと関係しているのかもしれない。</li>
+          <li>知覚も自己も、脳がつくる予測モデルなのかもしれない。</li>
+          <li>「私」は経験の持ち主ではなく、経験の中に現れるモデルなのかもしれない。</li>
+          <li>主観的な「感じ」があるという確信そのものが、脳のつくる表現なのかもしれない（錯覚主義）。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>なぜ物理的な処理に主観的な経験がともなうのか。</li>
+          <li>意識は物理的な説明に完全に還元できるのか。</li>
+          <li>どの動物に、どの程度の意識があるのか。</li>
+          <li>AIのような人工物が意識を持つことはありうるのか。</li>
+          <li>意識に何か機能（進化上の役割）はあるのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">意識が脳活動と深く結びついていることは、まず疑えない。けれども、「なぜ経験があるのか」についての説明はまだどこにもない。いまの自分の立場は、どちらか一方に急いで寄せないことだ。</p>
+
+    <div class="formula">
+      <div class="no">「意識はただの脳の物理現象だ」／「意識は脳と無関係な魂だ」</div>
+      <div class="yes"><span>脳活動</span><i>⇄</i><span>経験</span></div>
+      <div class="cap">両者は深く対応している。その「対応」がなぜ成り立つのかが、まだ分からない</div>
+    </div>
+
+    <blockquote class="big">世界のすべてを疑うことはできても、「いま、何かが経験されている」ということだけは疑えない。もっとも確かなものが、もっとも説明できないものでもある——その不思議さを、不思議なまま持っておく。</blockquote>
+    <p class="note">「疑っている私がいることは疑えない」というデカルトの議論に近いが、ここで疑えないとしているのは「経験がある」ことまでで、それが確固とした「私」の存在まで保証するかは保留している。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>「意識」には、覚醒という意味と、主観的な経験という意味がある。謎なのは後者。</li>
+      <li>機能の説明（易しい問題）と、経験の説明（難しい問題）は別の課題に見える。</li>
+      <li>意識と脳活動の対応はかなり確か。ただし相関は説明ではない。</li>
+      <li>脳の処理の大半は意識されない。「私が決めた」という感覚もその一部かもしれない。</li>
+      <li>知覚も自己も、脳がつくる予測モデルとして捉えられる可能性がある。</li>
+      <li>意識の科学理論は複数並び立っており、決着はついていない。</li>
+      <li>意識がなければ「誰にとっての意味か」の「誰」がいない。意味の問いは意識の問いの上にある。</li>
+    </ol>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>なぜ物理的な脳活動に、主観的な経験がともなうのか？</li>
+      <li>「難しい問題」は本当に存在するのか、それとも問いの立て方の誤りなのか？</li>
+      <li>意識には、進化上の機能があるのか？</li>
+      <li>意識はオン／オフなのか、それとも程度の問題なのか？</li>
+      <li>他者に意識があることを、どうすれば確かめられるのか？</li>
+      <li>動物の意識は、人間の意識とどれくらい似ているのか？</li>
+      <li>AIは意識を持ちうるのか。持ったとして、どうやって分かるのか？</li>
+      <li>深い眠りのとき、「私」はどこにいるのか？</li>
+      <li>意識が錯覚だとしたら、その錯覚を経験しているのは誰なのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>「私」とは何か</b><p>経験の中に現れる自己モデルと、仏教の無我。眠り・記憶・身体から「私」を考える。</p></div>
+      <div><b>自由意志とは何か</b><p>意識される前に脳が動き出しているなら、「私が選ぶ」とはどういうことか。</p></div>
+      <div><b>AIと意識</b><p>話すこと・理解すること・経験することは、どう違うのか。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>意識を外から説明しようとすると、<br>いちばん肝心な「感じ」が手のひらからこぼれ落ちる。<br>けれど、こぼれ落ちるその感じを確かめているのも、また意識だ。</p>
+    <p class="last">分からないものを、<br>分からないまま正確に見つめること。<br>それも一つの理解なのかもしれない。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="meaning-of-life.html">← 01 生きる意味を問う</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const data = [
+    { k: "物理主義", ans: "意識も、最終的には物理的なプロセスとして説明できる。",
+      p: "世界にあるのは物質とその働きだけであり、意識もその一部。いまはまだ説明できていなくても、それは科学が途上にあるからだ、と考える。",
+      by: "現代の科学者・哲学者の多くが、何らかの形でこの立場に近い。",
+      pl: "科学の成功とよく整合し、脳と意識の密接な対応を自然に説明できる。",
+      mi: "「なぜ感じがともなうのか」という難しい問題に、まだ具体的な答えを出せていない。" },
+    { k: "二元論", ans: "心と物質は、別の種類のものとして存在する。",
+      p: "意識は物理的なものに還元できない、独自の実在だと考える。デカルトの心身二元論が代表的で、心の性質だけを別扱いする穏やかな形もある。",
+      by: "デカルト以来の伝統。チャーマーズは「性質二元論」に近い立場を検討している。",
+      pl: "経験が物理的説明からこぼれ落ちるという直観を、そのまま真剣に受け止められる。",
+      mi: "物質でない心が、どうやって脳や身体に影響を与えるのかを説明しにくい。" },
+    { k: "汎心論", ans: "意識（の萌芽）は、物質の基本的な性質である。",
+      p: "意識は複雑な脳で突然生まれるのではなく、ごく単純なレベルからあらゆるものに備わっている性質で、脳ではそれが組み合わさって豊かな経験になる、と考える。",
+      by: "古くからある発想だが、近年、分析哲学の中で真剣に再検討されている。",
+      pl: "「無から経験が生まれる」という飛躍を避けられる。",
+      mi: "小さな意識がどう組み合わさって一つの統一された経験になるのか（結合問題）が難しい。" },
+    { k: "観念論", ans: "意識・心のほうが根本で、物質はその現れである。",
+      p: "私たちが直接知っているのは経験だけであり、「物質」とは経験の中に現れる規則性のことだ、と考える。物理主義とちょうど逆向きの立場。",
+      by: "バークリーなどの古典的な観念論のほか、近年も擁護する論者がいる。",
+      pl: "もっとも確かな「経験」から出発しており、難しい問題がそもそも生じない。",
+      mi: "誰も見ていないときの世界や、多くの人が同じ世界を共有していることの説明が難しい。" },
+    { k: "錯覚主義", ans: "「説明しがたい感じ」があるという確信こそが、脳のつくる表現である。",
+      p: "クオリアは見かけほど特別なものではなく、脳が自分の状態を単純化して表したもの。説明すべきは「なぜ私たちはそう確信するのか」だと考える。",
+      by: "ダニエル・デネット、キース・フランキッシュらが代表的な論者。",
+      pl: "難しい問題を、科学で扱える「易しい問題」に置き換えられる。",
+      mi: "「錯覚を見ているのは誰なのか」という直観的な反発に答える必要がある。" }
+  ];
+  const tabs = document.querySelector(".theory-tabs");
+  const panel = document.querySelector(".theory-panel");
+  const q = (s) => panel.querySelector(s);
+  const show = (i) => {
+    tabs.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
+    const d = data[i];
+    q(".label").textContent = d.k;
+    q(".ans").textContent = d.ans;
+    q(".desc-p").textContent = d.p;
+    q(".who-by").textContent = d.by;
+    q(".pl").textContent = d.pl;
+    q(".mi").textContent = d.mi;
+  };
+  data.forEach((d, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.role = "tab"; b.textContent = d.k;
+    b.addEventListener("click", () => show(i));
+    tabs.appendChild(b);
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
