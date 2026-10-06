@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>「私」とは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="身体か、記憶か、脳の奥の観察者か。「私」を探していくと、固定した実体ではなく、脳がつくるモデル、絶えず続くプロセスとしての姿が見えてくる。自己モデル理論と仏教の無我を比べながらたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* self page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted)}
+  .series a{color:var(--accent)}
+  .layers{list-style:none;margin:34px 0 10px;display:grid;gap:8px}
+  .layers li{display:grid;grid-template-columns:9.5em 1fr;gap:16px;align-items:baseline;
+    padding:14px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .layers li b{font-family:"Noto Serif JP",serif;font-weight:600;color:var(--ink)}
+  .layers li span{font-size:.9rem;color:var(--sub)}
+  .layers li:nth-child(1){margin-right:0}
+  .layers li:nth-child(2){margin-right:5%}
+  .layers li:nth-child(3){margin-right:10%}
+  .layers li:nth-child(4){margin-right:15%}
+  .layers li:nth-child(5){margin-right:20%}
+  .layers li:nth-child(6){margin-right:25%}
+  .layers li:nth-child(-n+3){border-color:var(--accent)}
+  .layers-legend{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.12em;color:var(--muted);margin-top:6px}
+  @media (max-width:560px){
+    .layers li{grid-template-columns:1fr;gap:2px}
+    .layers li:nth-child(n){margin-right:0}
+  }
+  .exp-panel .question{font-family:"Noto Serif JP",serif;font-size:1.08rem;line-height:1.8;margin:6px 0 14px}
+  .exp-panel .setup{color:var(--sub);font-size:.94rem}
+  .views3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+  .views3 div{padding:12px 14px;border-radius:3px;background:var(--soft);font-size:.86rem;color:var(--sub);line-height:1.8}
+  .views3 b{display:block;font-size:.66rem;letter-spacing:.18em;font-weight:700;color:var(--accent);margin-bottom:2px}
+  @media (max-width:620px){ .views3{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 03</p>
+    <h1><span>眠るたびに消えて、</span><span>毎朝戻ってくる</span><br><span>この「私」は何なのか</span></h1>
+    <p class="lead">「生きる意味」を遡ったとき、「私」は脳がつくる自己モデルなのかもしれない、と考えた。「意識」を考えたとき、「私」は経験の持ち主ではなく、経験の中に現れるものかもしれない、と考えた。今回は、その「私」そのものを正面から探してみる。身体か、記憶か、脳の奥にいる観察者か——探すほど、「私」は実体ではなくプロセスのように見えてきた。</p>
+    <p class="note">これは研究のまとめではなく、「私」という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「理論・仮説」「未決定のこと」を区別して書いています。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味を問う</a> ／ <a href="consciousness.html">02 意識とは何か</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#layers"><b>02</b>「私」の層</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#experiments"><b>04</b>思考実験で揺さぶる</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「私」を探しにいく</h2>
+    <p class="intro">「私」はあまりにも当たり前にそこにあって、ふだんは問いにすらならない。けれども「では、私とはどれのことか」と指さそうとすると、候補が次々に現れては、どれも決め手を欠いていく。</p>
+    <ol class="descent">
+      <li><span class="q">私は、この身体なのか</span><span class="d">細胞は入れ替わり、身体の感覚すら脳がつくっている</span></li>
+      <li><span class="q">私は、記憶の連なりなのか</span><span class="d">記憶を失っても、その人はその人なのか</span></li>
+      <li><span class="q">私は、一人なのか</span><span class="d">分離脳と、自分を語る「解釈者」</span></li>
+      <li><span class="q">私は、自分について語る物語なのか</span><span class="d">言葉と他者の中で編まれる「私」</span></li>
+      <li><span class="q">私は、それらを見ている観察者なのか</span><span class="d">探しても見つからない「見ている私」</span></li>
+      <li><span class="q">それとも、「私」という固定した実体はないのか</span><span class="d">自己モデル理論と、仏教の無我</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="layers">
+    <span class="h2-en">02 · LAYERS OF SELF</span>
+    <h2>「私」は一枚岩ではなく、<br>層になっている</h2>
+    <p class="intro">「私」と一言でいっても、その中身はいくつもの層に分けられる。瞬間ごとに生じる薄い「私」から、人生をまたぐ厚い「私」まで。どれか一つが壊れても、他の層は残ることがある。</p>
+    <ol class="layers">
+      <li><b>身体の所有感</b><span>「これは私の身体だ」という感じ</span></li>
+      <li><b>行為の主体感</b><span>「これは私がやっている」という感じ</span></li>
+      <li><b>視点</b><span>世界を「ここ」から見ているという感じ</span></li>
+      <li><b>記憶</b><span>昨日の私と今日の私をつなぐもの</span></li>
+      <li><b>物語</b><span>「私はこういう人間だ」という自己理解</span></li>
+      <li><b>社会的な私</b><span>名前、役割、他者から見た私</span></li>
+    </ol>
+    <div class="layers-legend"><span>↑ 瞬間的・身体的（最小の自己）</span><span>持続的・言語的（物語的自己） ↓</span></div>
+    <p class="note">哲学者ショーン・ギャラガーは「最小の自己」と「物語的自己」を区別した。神経科学者アントニオ・ダマシオも、「中核自己」と「自伝的自己」という似た区別を提案している。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>私はどこにいるのか</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">私は、この身体なのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>いちばん素朴な答えは「私とはこの身体だ」というものだ。けれども、身体を構成している物質は、食べ物や空気と入れ替わり続けている。子どもの頃の私の身体と、いまの私の身体は、材料としてはかなり違う。</p>
+          <p>船の板を一枚ずつ取り替えていき、すべての板が新しくなったとき、それは同じ船なのか——「テセウスの船」と呼ばれる古い問いが、そのまま自分に当てはまる。</p>
+          <div class="insight">「私」は、材料ではなく、材料が入れ替わっても保たれる「かたち」や「パターン」のほうにあるのかもしれない。</div>
+          <p class="aside"><b>補足：</b>ただし体のすべてが同じ速さで入れ替わるわけではなく、脳の神経細胞の多くは生涯にわたって保たれる。それでも、その中の分子は絶えず入れ替わっている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">「これは私の身体だ」という感じも、つくられている</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>机の上に置かれたゴムの手と、見えないように隠した自分の手を、同時に筆でなでる。しばらくすると、ゴムの手が自分の手のように感じられてくる。「ラバーハンド錯覚」と呼ばれる有名な実験だ。</p>
+          <p>視覚と触覚の情報がそろうと、脳は「この手が私の手だ」と推論してしまう。VRなどを使って、身体全体の位置の感覚がずれる錯覚を起こす研究もある。</p>
+          <div class="insight">身体は「私」のもっとも確かな拠り所に思えるが、「これが私の身体だ」という感覚さえ、脳が感覚情報から組み立てた推論なのかもしれない。</div>
+          <p class="aside"><b>関連する研究：</b>ラバーハンド錯覚は、ボトヴィニックとコーエンが1998年に報告した。前回の「脳は世界を予測している」という話と同じく、身体もまた脳のモデルとして経験されている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">私は、記憶の連なりなのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>身体が入れ替わっても私が私であるのは、昨日のことを覚えていて、その記憶が今日につながっているからではないか。哲学者ジョン・ロックは、人格の同一性を「意識（記憶）の連続」に求めた。</p>
+          <p>ところが、新しい記憶をつくれなくなった人や、過去の記憶を失った人も、多くの場合、性格や好み、話し方、身についた技能はそのまま残っている。周りの人にとって、その人は依然として「その人」だ。</p>
+          <div class="insight">記憶は「私」の大切な一部だが、「私」のすべてではない。記憶よりも深いところに、身体や習慣、感じ方として「私」が刻まれている。</div>
+          <p class="aside"><b>関連する考え方：</b>ロックの記憶説に対して、トマス・リードは「勇敢な将校」の例で反論した。老将軍が若い頃の自分を覚えていなければ、記憶説では同一人物でなくなってしまう、という指摘だ。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>私は一人なのか</h3></div>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">脳を二つに分けると、何が起きるか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>重いてんかんの治療のため、左右の大脳半球をつなぐ脳梁を切断した人々（分離脳患者）を対象に、1960年代から研究が行われた。ふだんの生活ではほとんど変わりがないように見えるが、特殊な実験をすると、左右の半球がそれぞれ別の情報を持っていることが分かる。</p>
+          <p>とくに印象的なのは、右半球だけに見せた指示で体が動いたとき、言葉を担う左半球が、その本当の理由を知らないまま、もっともらしい理由をすらすらと作り出してしまうことだ。</p>
+          <div class="insight">私たちは、自分の行動の理由を「知っている」のではなく、後から「語っている」だけのことがあるのかもしれない。</div>
+          <p class="aside"><b>関連する研究：</b>ロジャー・スペリーとマイケル・ガザニガらの研究。ガザニガは、左半球のこの働きを「解釈者（インタープリター）」と呼んだ。分離脳の人に「二人の私」がいるのかどうかは、いまも議論が続いている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">「私」は、自分について語る物語なのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「私は人見知りだ」「私はこういう経験をしてきた」。私たちは自分について絶えず語り、その物語によって自分を理解している。物語は、ばらばらの出来事を一本の筋にまとめ、「一貫した私」を形づくる。</p>
+          <p>その物語は一人では書かれない。言葉は他者から学んだものだし、「私はこういう人だ」という理解の多くは、周りの人の反応を通して形づくられてきた。</p>
+          <div class="insight">物語的な「私」は、脳の中だけでなく、言葉と他者との関係の中で編まれている。だから物語は、書き換えることもできる。</div>
+          <p class="aside"><b>関連する考え方：</b>ダニエル・デネットは、自己を「物語の重心」と表現した。重心は物体のどこかにある部品ではないが、物体の振る舞いを説明するのに欠かせない。自己もそういうものだ、という見方。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>「本当の私」を探す</h3></div>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">見ている「私」を見ようとすると、見つからない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>身体も、記憶も、物語も、「私が持っているもの」であって、それを持っている「私」そのものではない気がする。では、それらを内側から見ている観察者こそが「本当の私」なのか。</p>
+          <p>実際に探してみる。目を閉じて、いま見ている「私」に注意を向けようとすると、見つかるのは音、身体の感覚、浮かんでくる考え——つまり「見られているもの」ばかりで、「見ている私」はどこにも捕まらない。</p>
+          <div class="insight">「見ている私」は、経験の中のどこにも対象として現れない。脳の奥に小さな観察者がいると考えると、その観察者を見ている観察者が必要になり、無限後退に陥る。</div>
+          <p class="aside"><b>関連する考え方：</b>デイヴィッド・ヒュームは、自分の内側をどれだけ探っても見つかるのは個々の知覚ばかりで、知覚なしに「自己」そのものを捉えることはできないと述べ、自己を「知覚の束」と呼んだ。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">自己モデル理論：「私」は透明なモデル</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>では、なぜ私たちは「私がいる」とこれほど強く感じるのか。一つの答えが、脳は生き延びるために「この生き物（自分）」のモデルをつくっている、というものだ。</p>
+          <p>ポイントは、そのモデルが「透明」だということ。私たちはモデルを「モデルとして」見ることができない。窓ガラスを通して景色を見るとき、ガラスに気づかないように、自己モデルを通して世界を経験しているとき、私たちはそれをモデルとは思わず、ただ「私」だと感じる。</p>
+          <div class="flow"><span>脳</span><i>→</i><span>自己モデルを生成</span><i>→</i><span>モデルが透明</span><i>→</i><span>「私がいる」と感じる</span></div>
+          <div class="insight">「私」は錯覚というより、とてもよくできた、見えないモデルなのかもしれない。モデルであることと、役に立つ現実の働きであることは両立する。</div>
+          <p class="aside"><b>関連する考え方：</b>哲学者トーマス・メッツィンガーは著書『Being No One』（2003）で、世界に「自己」というものは存在せず、存在するのは自己モデルと、それを透明に経験する生き物だけだと論じた。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">仏教の無我：固定した「我」は見つからない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>二千五百年ほど前、仏教はまったく別の道から似た場所にたどり着いていた。人間を五つの集まり（五蘊：色・受・想・行・識）に分けて観察すると、そのどれもが移ろい、どれも「これが私だ」と言える不変の実体ではない——これが「無我（非我）」の教えだ。</p>
+          <div class="tags"><span>色：身体</span><span>受：感受</span><span>想：知覚・表象</span><span>行：意志・形成作用</span><span>識：認識</span></div>
+          <p>無我は「私はまったく存在しない」という意味ではない。さまざまな条件が集まって（縁起）、移ろいながら成り立っている「私」はある。ただ、それを固定した実体として握りしめるところに、苦しみが生まれると説く。</p>
+          <div class="compare">
+            <div><small>自己モデル理論</small>「私」がどう成り立っているかを説明しようとする（記述・科学）</div>
+            <div><small>仏教の無我</small>「私」への執着から自由になることを目指す（実践・解放）</div>
+          </div>
+          <div class="insight">両者は「固定した実体としての私は見つからない」という点で重なる。けれども、目的も方法も違う。同じものとして扱わず、問題意識の重なりとして見ておきたい。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>時間と世界の中の私</h3></div>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">昨日の私と、今日の私は同じなのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>地球上の装置で全身をスキャンし、火星でまったく同じ身体を再構成する転送装置を想像する。火星で目覚めた人は、私の記憶も性格もすべて持っている。それは「私」なのか。もし元の身体が壊されずに地球に残っていたら、私は二人になるのか。</p>
+          <p>このような思考実験を通して、哲学者デレク・パーフィットは、「同一性」はそれほど重要ではないのかもしれない、と論じた。大切なのは「同じ一人の私がいるかどうか」ではなく、記憶や性格、意図がどれだけつながり、続いているか（心理的な連続性）だ、と。</p>
+          <div class="insight">「私」をくっきりした境界のある一個のものと考えると、答えの出ない問いが生まれる。程度を持ってつながり続けるものと考えると、問いの性質が変わる。</div>
+          <p class="aside"><b>関連する考え方：</b>パーフィットは『理由と人格』（1984）の中で、この見方を受け入れたとき、自分と他人を隔てる壁が薄くなり、死への恐れも和らいだと書いている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">「私」はどこで終わるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>前回までに、「私」と「世界」は完全には切り離せない、と考えた。身体は食べ物や空気でできていて、言葉や価値観は他者から受け取ったものだ。</p>
+          <p>さらに考えると、手帳やスマートフォンに記憶を預け、道具を使って考え、他者との会話の中で考えがまとまっていく。思考や記憶は、頭蓋骨の内側だけで完結していないのかもしれない。</p>
+          <div class="insight">「私」の境界は、皮膚で決まっているわけではない。どこまでを「私」と呼ぶかは、見方によって伸び縮みする。</div>
+          <p class="aside"><b>関連する考え方：</b>アンディ・クラークとデイヴィッド・チャーマーズは、論文「拡張された心」（1998）で、ノートなどの外部の道具も条件次第で心の一部になりうると論じた。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>前回までの問いへ戻る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">「私」がモデルなら、私の人生は無意味なのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「私は脳がつくったモデルにすぎない」と聞くと、足場が崩れるように感じるかもしれない。けれども最初の記事で考えたように、波が分子の運動から生じるからといって、波が存在しないことにはならない。</p>
+          <p>「私」はモノではなくプロセスだとしても、そのプロセスは確かに続き、感じ、選び、誰かと関わっている。意味が「誰にとっての意味か」の中で生まれるのなら、その「誰」は、固定した実体である必要はない。</p>
+          <div class="insight">「私」が実体でなくても、意味は失われない。むしろ、変わりうるプロセスだからこそ、選び直し、育っていくことができる。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">固定した「私」がないことは、救いにもなる</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「私はこういう人間だ」という物語は、支えにもなるが、ときに檻にもなる。「失敗した私」「ダメな私」を固定した事実のように握りしめると、苦しみは長引く。</p>
+          <p>「私」が絶えず組み立て直されているプロセスなら、今の感情や考えは「私そのもの」ではなく、いま起きている一つの出来事として眺めることができる。これは、マインドフルネスや認知行動療法の考え方ともつながっている。</p>
+          <div class="insight">「私」を問うことは、抽象的な哲学であると同時に、とても実践的な問いでもある。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="experiments">
+    <span class="h2-en">04 · THOUGHT EXPERIMENTS</span>
+    <h2>思考実験で「私」を揺さぶる</h2>
+    <p class="intro">ふだん疑わない「私」の輪郭は、ありえない状況を想像したときに浮かび上がる。それぞれの問いに、まず自分なりに答えてから、三つの見方と比べてみてください。</p>
+
+    <div class="who-tabs exp-tabs" role="tablist" aria-label="思考実験"></div>
+    <div class="who-panel exp-panel" role="tabpanel" aria-live="polite">
+      <div class="label"></div>
+      <p class="setup"></p>
+      <div class="question"></div>
+      <div class="views3">
+        <div><b>身体・脳を重んじる見方</b><span class="v1"></span></div>
+        <div><b>心理的連続性を重んじる見方</b><span class="v2"></span></div>
+        <div><b>無我・プロセスとしての見方</b><span class="v3"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>身体を構成する物質は、生きているあいだ絶えず入れ替わっている。</li>
+          <li>「これは私の身体だ」という所有感は、感覚情報の組み合わせによって錯覚させることができる。</li>
+          <li>記憶を失っても、性格や技能など「その人らしさ」の多くは残ることがある。</li>
+          <li>人は、自分の行動の本当の理由を知らないまま、もっともらしい説明を作ることがある。</li>
+          <li>内省しても、知覚から独立した「観察者としての私」を対象として捉えることは難しい。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>理論・仮説</h4>
+        <ul>
+          <li>「私」は脳がつくる自己モデルであり、透明であるために実体のように感じられるのかもしれない。</li>
+          <li>「私」は、最小の自己から物語的自己まで、複数の層からなるのかもしれない。</li>
+          <li>大切なのは同一性そのものではなく、心理的なつながりの程度なのかもしれない。</li>
+          <li>「私」の境界は皮膚で終わらず、道具や他者との関係へ広がっているのかもしれない。</li>
+          <li>自己モデル理論と仏教の無我は、「固定した実体としての私はない」という点で重なる。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>自己モデルを経験している「何か」は、結局のところ何なのか。</li>
+          <li>同じ「私」であるための条件はあるのか。それとも問い自体が誤っているのか。</li>
+          <li>分離脳の人の中には、一人の私がいるのか、二人の私がいるのか。</li>
+          <li>コピーされた「私」は私なのか。</li>
+          <li>AIのようなシステムが自己モデルを持ったとき、そこに「私」はあるのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">「私」を探して、身体にも、記憶にも、脳の奥の観察者にも、それ単独で「これが私だ」と言えるものは見つからなかった。けれども、「私」が何もないわけでもない。いま一番しっくりくるのは、「私」を名詞ではなく動詞のように捉えることだ。</p>
+
+    <div class="formula">
+      <div class="no">脳の奥にいる、変わらない小さな観察者としての「私」</div>
+      <div class="yes"><span>身体</span><i>×</i><span>記憶</span><i>×</i><span>物語</span><i>×</i><span>関係</span></div>
+      <div class="cap">これらが絶えず組み合わさり続けるところに現れる、プロセスとしての「私」</div>
+    </div>
+
+    <blockquote class="big">「私」は、どこかにしまわれている「もの」ではなく、身体と記憶と物語と他者とのあいだで、いまも続いている「出来事」なのかもしれない。川の水が入れ替わっても、川が川であり続けるように。</blockquote>
+    <p class="note">ただし、そのプロセスを「経験している」とはどういうことか——という前回の問い（意識の難問）は、ここでも解けずに残っている。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>身体の材料は入れ替わる。「私」は材料よりも、保たれるパターンのほうにあるのかもしれない。</li>
+      <li>「これは私の身体だ」という感覚さえ、脳の推論によってつくられている。</li>
+      <li>記憶は「私」の大切な一部だが、すべてではない。</li>
+      <li>人は自分の行動の理由を、後から物語として作ることがある。</li>
+      <li>「見ている私」を探しても、対象としては見つからない。</li>
+      <li>「私」は透明な自己モデルであり、仏教の無我とも問題意識が重なる（ただし同じではない）。</li>
+      <li>「私」が実体でなくても意味は失われない。変わりうるからこそ、選び直すことができる。</li>
+    </ol>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>自己モデルを「経験している」のは、いったい何なのか？</li>
+      <li>深い眠りから覚めた私は、眠る前の私と同じなのか？</li>
+      <li>完全なコピーがつくられたら、どちらが「私」なのか？</li>
+      <li>分離脳の人の中には、何人の「私」がいるのか？</li>
+      <li>「私」の境界は、どこまで広げることができるのか？</li>
+      <li>物語的な「私」は、どこまで自由に書き換えられるのか？</li>
+      <li>無我を「理解する」ことと、「実感する」ことは何が違うのか？</li>
+      <li>自己モデルを持つAIに、「私」は生まれうるのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>自由意志とは何か</b><p>「私」がプロセスなら、「私が選ぶ」とは何が選んでいるのか。</p></div>
+      <div><b>仏教との接続</b><p>無我・縁起・渇愛・執着を、自己モデルや意味の議論と照らし合わせる。</p></div>
+      <div><b>死とは何か</b><p>「私」がプロセスなら、そのプロセスが止まるとはどういうことか。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>「私」を探しに出かけて、<br>見つかったのは「私」ではなく、<br>「私」が組み立てられていく、その仕組みだった。</p>
+    <p class="last">探している当人が、<br>探されているものでもある。<br>この問いは、たぶんそこから離れられない。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="consciousness.html">← 02 意識とは何か</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const data = [
+    { k: "テセウスの船",
+      setup: "あなたの身体の細胞を、一つずつ人工の部品に置き換えていく。どの段階でも、あなたは普段どおりに考え、話し、記憶もそのまま。やがてすべてが置き換わった。",
+      q: "最後に残ったその存在は、あなたなのか？",
+      v1: "材料がすべて入れ替わったなら、どこかの段階で「私」は失われた、と考えうる。",
+      v2: "記憶や性格が途切れずにつながっているなら、それは私である。",
+      v3: "もともと「私」は入れ替わり続けるプロセスなので、この問いは日々の生活とそれほど変わらない。" },
+    { k: "転送装置",
+      setup: "地球の装置があなたを原子レベルでスキャンし、火星でまったく同じ身体を再構成する。地球の身体は分解される。火星で目覚めた人は、すべてを覚えている。",
+      q: "これは移動なのか、それとも死と複製なのか？",
+      v1: "元の身体と脳が壊されたのなら、それは死であり、火星の人は別人である。",
+      v2: "記憶・性格・意図が完全に連続しているなら、それは私の移動とみなせる。",
+      v3: "「同じ私かどうか」に決着をつけること自体より、何がどれだけ続くかのほうが大切なのかもしれない。" },
+    { k: "分岐",
+      setup: "転送装置が故障し、地球の身体は壊れずに残った。火星にも同じ人が目覚めた。二人とも、自分こそが本物だと感じている。",
+      q: "どちらが「本当の私」なのか？",
+      v1: "身体が連続している地球の人が本物で、火星の人はコピーである。",
+      v2: "どちらも等しく心理的に連続しているので、どちらか一方を選ぶ根拠はない。",
+      v3: "「一人の本当の私」がいるという前提こそが、問いを解けなくしているのかもしれない。" },
+    { k: "記憶の喪失",
+      setup: "事故で、あなたは過去の記憶をすべて失った。けれども性格、好み、話し方、身についた技能は残っている。家族はあなたを以前と同じように扱う。",
+      q: "記憶を失ったその人は、以前のあなたと同じ人なのか？",
+      v1: "同じ身体と脳が続いているので、同じ人である。",
+      v2: "記憶のつながりは切れたが、性格や技能の連続性が残る分だけ、部分的に同じといえる。",
+      v3: "「同じか違うか」の二択ではなく、何が続き、何が途切れたのかを見ればよい。" },
+    { k: "ゴムの手",
+      setup: "目の前のゴムの手と、隠れた自分の手が同時になでられ続け、ゴムの手が自分の手のように感じられてきた。そこへ誰かがゴムの手にハンマーを振り下ろそうとする。",
+      q: "そのとき思わず身構える「私」は、どこにいるのか？",
+      v1: "本当の私の身体は隠れた手のほうで、身構えるのは脳の誤作動にすぎない。",
+      v2: "身構えるのは記憶や性格ではなく、もっと手前の身体的な「私」の働きである。",
+      v3: "「私の身体」の境界さえ、その場で脳が組み立てている。固定した境界はもともとない。" }
+  ];
+  const tabs = document.querySelector(".exp-tabs");
+  const panel = document.querySelector(".exp-panel");
+  const q = (s) => panel.querySelector(s);
+  const show = (i) => {
+    tabs.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
+    const d = data[i];
+    q(".label").textContent = "思考実験 " + (i + 1) + " · " + d.k;
+    q(".setup").textContent = d.setup;
+    q(".question").textContent = d.q;
+    q(".v1").textContent = d.v1;
+    q(".v2").textContent = d.v2;
+    q(".v3").textContent = d.v3;
+  };
+  data.forEach((d, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.role = "tab"; b.textContent = d.k;
+    b.addEventListener("click", () => show(i));
+    tabs.appendChild(b);
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
