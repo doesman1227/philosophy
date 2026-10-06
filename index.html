@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>哲学ノート ｜ m-note</title>
+<meta name="description" content="生きる意味・存在・自己・意識・自由意志。答えのない問いを一段ずつ遡って考える、個人的な哲学の思考記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --accent:#3e4c78; }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --accent:#9aa8d6; }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased}
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.9;letter-spacing:.02em}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  .top{padding:calc(env(safe-area-inset-top) + 22px) 0 0}
+  .top a,footer a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover,footer a:hover{color:var(--ink)}
+  .hero{padding:96px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  h1{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.7rem,5.6vw,2.6rem);margin:20px 0 22px;letter-spacing:.06em}
+  .lead{color:var(--sub);max-width:32em}
+  .list{border-top:1px solid var(--line);margin-bottom:80px}
+  .row{display:grid;grid-template-columns:3em 1fr auto;gap:12px;align-items:baseline;padding:24px 0;
+    border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+  a.row:hover .ttl{color:var(--accent)}
+  a.row:hover .arrow{transform:translateX(4px);color:var(--accent)}
+  .idx{font-family:"Noto Serif JP",serif;color:var(--faint);font-size:.9rem}
+  .cat{display:block;font-size:.66rem;font-weight:700;letter-spacing:.22em;color:var(--muted)}
+  .ttl{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.14rem;margin:2px 0 4px;transition:color .2s}
+  .desc{display:block;font-size:.88rem;color:var(--sub)}
+  .arrow{color:var(--faint);transition:transform .2s,color .2s}
+  .row.soon{opacity:.5}
+  .row.soon .arrow{font-size:.68rem;letter-spacing:.14em}
+  footer{border-top:1px solid var(--line);padding:40px 0 calc(env(safe-area-inset-bottom) + 48px);font-size:.78rem;color:var(--muted)}
+  footer p{margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><a href="../">← m-note トップ</a></header>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE</p>
+    <h1>哲学ノート</h1>
+    <p class="lead">答えのない問いを、急いで閉じずに考える。ひとつの問いを一段ずつ遡り、問いがどう深まり、自分の見方がどう変わったかを記録していくノートです。</p>
+  </div>
+
+  <nav class="list">
+    <a class="row" href="meaning-of-life.html">
+      <span class="idx">01</span>
+      <span class="body">
+        <span class="cat">MEANING OF LIFE</span>
+        <span class="ttl">生きる意味を問う</span>
+        <span class="desc">「なぜ生きるのか」を遡ったら、存在・自己・意識の問題にたどり着いた思考の記録。</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+    <div class="row soon">
+      <span class="idx">02</span>
+      <span class="body"><span class="cat">CONSCIOUSNESS</span><span class="ttl">意識とは何か</span>
+        <span class="desc">物理現象から、なぜ主観的な経験が生まれるのか。</span></span>
+      <span class="arrow">準備中</span>
+    </div>
+    <div class="row soon">
+      <span class="idx">03</span>
+      <span class="body"><span class="cat">SELF</span><span class="ttl">「私」とは何か</span>
+        <span class="desc">自己モデルと無我を比べながら、「私」という感覚の成り立ちを考える。</span></span>
+      <span class="arrow">準備中</span>
+    </div>
+    <div class="row soon">
+      <span class="idx">04</span>
+      <span class="body"><span class="cat">FREE WILL</span><span class="ttl">自由意志とは何か</span>
+        <span class="desc">本能・脳・環境に決められていても、人は自分で選んでいるのか。</span></span>
+      <span class="arrow">準備中</span>
+    </div>
+  </nav>
+
+  <footer>
+    <a href="../">← m-note トップ</a>
+    <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+  </footer>
+</div>
+</body>
+</html>

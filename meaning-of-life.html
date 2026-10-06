@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>生きる意味を問う ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="「なぜ生きるのか」という問いを一段ずつ遡り、存在・自己・意識の問題へ。問いがどう深まり、見方がどう変わったかをたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 01</p>
+    <h1><span>「生きる意味」を探していたら、</span><span>意識にたどり着いた</span></h1>
+    <p class="lead">「自分はなぜ生きるのか」。その問いを一段ずつ遡っていくと、存在とは何か、私とは何か、意識とは何か——という、より根本的な問いが現れてきた。これは答えのまとめではなく、問いがどう深まり、見方がどう変わったかをたどる思考の記録です。</p>
+    <p class="note">ここに書いたのは結論ではなく、現時点での暫定的な理解です。「科学的にほぼ確かなこと」「哲学的な仮説」「未決定のこと」をできるだけ区別して書いています。</p>
+  </div>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#process"><b>02</b>思考のプロセス</a></li>
+      <li><a href="#who"><b>03</b>誰にとっての意味か</a></li>
+      <li><a href="#levels"><b>04</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>05</b>現時点の最適解</a></li>
+      <li><a href="#change"><b>06</b>何が変わったか</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>問いは、一段ずつ深くなった</h2>
+    <p class="intro">最初は「人生には客観的な意味や目的があるのではないか」という方向から問い始めた。ところが一つ答えようとするたびに、その足元にさらに根本的な問いが見えてきた。</p>
+    <ol class="descent">
+      <li><span class="q">生きる意味とは何か</span><span class="d">人生には、あらかじめ与えられた目的があるのか</span></li>
+      <li><span class="q">存在する意味とは何か</span><span class="d">生きることより手前の、「在ること」の意味</span></li>
+      <li><span class="q">宇宙から見て、私に目的はあるか</span><span class="d">宇宙全体という視点から見た存在意義</span></li>
+      <li><span class="q">創造主がいるなら、なぜ創ったのか</span><span class="d">そして、創造主自身はなぜ存在するのか</span></li>
+      <li><span class="q">なぜ「無」ではなく「何か」があるのか</span><span class="d">存在そのものの根拠</span></li>
+      <li><span class="q">意識とは何か</span><span class="d">物理現象から、なぜ主観的な経験が生まれるのか</span></li>
+      <li><span class="q">意味を感じている「私」とは何か</span><span class="d">問いを立てている当の主体へ</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="process">
+    <span class="h2-en">02 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">13の段階に分けて、その時々に何を考え、何に気づいたかを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>意味と目的を分ける</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">「生きる意味」は最初から存在するのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>まず、生きる意味が客観的に存在する可能性を考えた。宗教的には神から与えられた使命として、実存主義的には自分でつくるものとして——立場によって答えは複数ある。</p>
+          <p>そこで、「生きる意味」と「生きたい理由」は違うのではないか、という視点が出てきた。美味しいものを食べたい、誰かと話したい、何かを知りたい、何かを作りたい。どれも人生全体の意味ではないが、実際に人生を動かしている。</p>
+          <div class="insight">人生全体を正当化する究極的な意味を、必ずしも見つけなければならないわけではない。</div>
+          <p class="aside"><b>関連する考え方：</b>サルトルは「実存は本質に先立つ」と述べ、人間はまず存在し、その後で自分が何者かを選び取っていくと考えた。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">「存在の意味」はさらに根本的ではないか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「生きる意味」と同じように、「存在する意味」も問えるのではないか。そう考えると、問いは一気に広がった。</p>
+          <div class="tags"><span>なぜ宇宙が存在するのか</span><span>なぜ生命が存在するのか</span><span>なぜ意識が存在するのか</span><span>なぜ「私」が存在するのか</span></div>
+          <div class="insight">「生きる意味」よりも、「なぜ何かが存在するのか」という問いのほうが根本にある。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">宇宙から見て、私に目的はあるか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>科学的には、宇宙が人間を特定の目的のために作ったという証拠はない。けれども、「目的がない」ことと「価値がない」ことは同じではない。</p>
+          <p>そもそも私は、宇宙の外から宇宙を眺めている存在ではなく、宇宙の一部として存在している。だから二つの問いは分けて考える必要がある。</p>
+          <div class="compare">
+            <div><small>問い A</small>宇宙にとって、私にはどんな意味があるか</div>
+            <div><small>問い B</small>私にとって、私の存在にはどんな意味があるか</div>
+          </div>
+          <div class="insight">「目的がない」ことは、「価値がない」ことを意味しない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">生物の「生きたい」は目的なのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>人間にも他の生物にも「生きたい」という本能がある。では、種を残そうとすることこそが意味や目的なのではないか。</p>
+          <p>ここでは「生物学的な機能としての目的」と「宇宙から与えられた目的」を区別した。生物が生存・繁殖へ向かう性質を持つことは、進化によって説明できる。そういう性質を持つものが残ってきた、ということだ。しかしそこから「だから人間は子孫を残すために存在する」とまでは言えない。</p>
+          <div class="insight">生物学的な目的のように見えるものと、人生の究極的な目的は同一ではない。</div>
+          <p class="aside"><b>関連する考え方：</b>「〜である」という事実から「〜すべきである」という規範は直接は導けない、というヒュームの指摘（いわゆる「ヒュームの法則」）とも重なる論点。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>本能と選択のあいだ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">人間は本能を超えて目的を選べるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「生きたい」という本能があっても、人間はそれを対象化できる。「お金が欲しい」→「なぜ欲しいのか？」→「本当にそれが自分にとって重要なのか？」と考えられる。</p>
+          <div class="flow"><span>本能</span><i>→</i><span>欲求</span><i>→</i><span>自己認識</span><i>→</i><span>評価</span><i>→</i><span>選択</span></div>
+          <p>ただし、「本能を超えた」と思っている価値観そのものも、進化や環境、経験の影響を受けている可能性がある。</p>
+          <div class="insight">人間は本能から完全に独立して目的を選ぶのではない。本能や環境を抱えたまま、それらを認識し、再評価し、ある程度方向を変えることができる。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">メタ認知と脳</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>人間は「怖い」と感じるだけでなく、「自分はいま怖がっている」と認識でき、さらに「なぜ怖がっているのだろう？」と、自分の状態そのものを対象にできる。</p>
+          <p>脳の発達によって、欲求と行動のあいだに「認識・自己観察・評価」を挟む構造が高度化したのではないか。ここから問いは「自由意志」の問題にもつながっていった。</p>
+          <div class="flow"><span>怖い</span><i>→</i><span>私は怖がっている</span><i>→</i><span>なぜ怖いのだろう？</span></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>「私」とは何か</h3></div>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">メタ認知している「私」とは何なのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「私は今、怒っている」と考えるとき、「怒っている私」と「それを観察している私」がいるように感じる。しかし、「その観察している私を観察しているのは誰？」と問うと、無限後退に陥る。</p>
+          <p>そこで、脳の中に小さな観察者がいるのではなく、脳が自分自身の状態をモデル化しているのではないか、という仮説を考えた。</p>
+          <div class="tags"><span>身体</span><span>記憶</span><span>感情</span><span>感覚</span><span>経験</span><span>将来の予測</span><span>他者との関係</span></div>
+          <div class="insight">「私」は固定された一つの物体ではなく、これらから形成される「自己モデル」なのかもしれない。</div>
+          <p class="aside"><b>関連する考え方：</b>ヒュームは自己を「知覚の束」と表現した。現代では哲学者トーマス・メッツィンガーらが、自己を脳がつくる「自己モデル」として論じている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">「私」と世界の境界</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>私の身体は、食べ物・水・空気・地球環境によって維持されている。言葉や価値観も、社会や他者との関係の中で形成されてきた。「私」と「世界」は完全に独立したものではない。</p>
+          <div class="insight">「私が世界の中にいる」というより、「私」という現象そのものが、世界との相互作用の中で成立している。</div>
+          <p class="aside"><b>仏教との接点：</b>ここで仏教の「無我」「縁起」との共通点が見えてきた。ただし、現代の自己モデル理論と仏教の無我は同じものではない。問題意識に重なりがある、という位置づけにとどめておく。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">意味を考えること自体も物理現象なのではないか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>生きる意味を考えていることも、結局は脳内の物理現象なのではないか。意識や思考は、次のような階層として見ることができる。</p>
+          <div class="flow"><span>物理現象</span><i>→</i><span>脳活動</span><i>→</i><span>認知</span><i>→</i><span>自己モデル</span><i>→</i><span>意味</span></div>
+          <p>「波」が分子の運動から生じるとしても、波という現象が存在しないことにはならない。同じように「意味」も、物理的な脳活動から生じる上位レベルの現象として捉えられるかもしれない。</p>
+          <div class="insight">物理現象であることと、意味がないことは同じではない。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>意味はどこにあるのか</h3></div>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">「誰にとっての意味なのか」</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ここで、今回いちばん重要な気づきがあった。「意味があるのか？」と問うのではなく、「誰にとっての意味なのか？」と問うこと。</p>
+          <p>宇宙にとって、人類にとって、社会にとって、他者にとって、自分自身にとって、生物としての自分にとって——意味を帰属させる主体によって、答えはまったく変わる。（<a href="#who">次の章</a>で詳しく）</p>
+          <div class="insight">意味は存在そのものに絶対的に貼り付いているものではなく、主体との関係の中で生じる。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>存在と意識の根っこへ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">創造主がいるとしたら？</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>宇宙が奇跡的なバランスで成り立っていることから、創造主がいる可能性も仮定してみた。もしいるなら、創造の目的としては次のようなものが考えられる。</p>
+          <div class="tags"><span>創造そのものが目的</span><span>意識を生み出すこと</span><span>自由な存在を生み出すこと</span><span>愛を経験させること</span></div>
+          <p>しかし、宇宙を創った目的が創造主にあるとしても、「では創造主はなぜ存在するのか？」という問いが残る。</p>
+          <div class="insight">創造主を仮定しても、「なぜ存在するのか」という究極の問いは完全には解決しない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">なぜ「何か」が存在するのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ここで問いは「宇宙がなぜ存在するのか」から、「なぜ完全な無ではなく、何かが存在するのか？」へと変わった。宇宙の原因、創造主、必然的存在、完全な無、そして「なぜ？」という問い自体の限界について考えた。</p>
+          <div class="compare">
+            <div><small>可能性 A</small>存在には究極的な根拠がある</div>
+            <div><small>可能性 B</small>存在には究極的な理由はなく、ただ存在している</div>
+          </div>
+          <p>現時点では、どちらにも決着していない。人間の因果的な思考そのものでは、この問いを完全には扱えないのかもしれない。</p>
+          <p class="aside"><b>関連する考え方：</b>ライプニッツは「なぜ無ではなく、何かがあるのか」を最も根本的な問いとして掲げた。ハイデガーも形而上学の根本問題としてこの問いを取り上げている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">13</span><span class="t">「意味を感じている意識」とは何か</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>脳には神経細胞、シナプス、電気信号、神経伝達物質、脳ネットワークがある。しかし「痛い」「美しい」「悲しい」「意味がある」という主観的な経験そのものは、物質として単純に見つかるわけではない。</p>
+          <p>物理的な脳活動から、なぜ主観的経験が生まれるのか——いわゆる「意識の難問（ハードプロブレム）」が残った。</p>
+          <div class="compare">
+            <div><small>物理主義</small>意識も最終的には物理的なプロセスとして説明できる</div>
+            <div><small>二元論</small>心と物質は別種のものとして存在する</div>
+            <div><small>汎心論</small>意識（あるいはその萌芽）は物質の基本的な性質である</div>
+            <div><small>観念論</small>意識・心のほうが根本で、物質はその現れである</div>
+          </div>
+          <p>どの立場が最終的に正しいのかは、まだ決まっていない。</p>
+          <p class="aside"><b>関連する考え方：</b>「意識のハードプロブレム」という言葉は、哲学者デイヴィッド・チャーマーズが1990年代に提唱したもの。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section id="who">
+    <span class="h2-en">03 · FOR WHOM?</span>
+    <h2>「意味があるか」ではなく、<br>「誰にとっての意味か」</h2>
+    <p class="intro">同じ「私の存在には意味があるか？」という問いでも、誰の視点に立つかで答えは変わる。視点を切り替えてみてください。</p>
+
+    <div class="who-tabs" role="tablist" aria-label="意味を帰属させる主体"></div>
+    <div class="who-panel" role="tabpanel" aria-live="polite">
+      <div class="label"></div>
+      <div class="ans"></div>
+      <p></p>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="levels">
+    <span class="h2-en">04 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <p class="intro">科学的に確かめられていることと、哲学的な見方、まだ誰にも分からないことを混ぜないように整理した。</p>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>生物には、生存・繁殖につながる性質が進化してきた。</li>
+          <li>人間には、自分の欲求・感情・思考を対象化するメタ認知能力がある。</li>
+          <li>人間の自己認識や意識は、脳活動と深く関係している。</li>
+          <li>「意味」は、少なくとも人間の経験において実際に生じている。</li>
+          <li>「意味があるか」という問いは、「誰にとっての意味か」を分けて考える必要がある。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>仮説・哲学的な見方</h4>
+        <ul>
+          <li>「私」は固定的な実体ではなく、脳が構築する自己モデルなのかもしれない。</li>
+          <li>意味は宇宙に最初からあるのではなく、意識を持つ存在との関係から生じるのかもしれない。</li>
+          <li>人間は本能に完全に支配されるのではなく、本能を認識して方向を選び直せるのかもしれない。</li>
+          <li>「宇宙の一部が、自分自身について考えている」と見ることができる。</li>
+          <li>「私」もまた、世界との相互作用の中で一時的に成立するプロセスなのかもしれない。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>宇宙に創造主は存在するのか。宇宙に究極的な目的はあるのか。</li>
+          <li>なぜ何もないのではなく、何かが存在するのか。</li>
+          <li>意識はなぜ存在するのか。脳から完全に説明できるのか。</li>
+          <li>自由意志はどの程度成立しているのか。</li>
+          <li>「意味」は主観的な現象なのか、何らかの客観的実在性を持つのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="answer">
+    <span class="h2-en">05 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">「宇宙にあらかじめ与えられた客観的な生きる目的がある」とは断定できない。一方で、「客観的な目的が確認できないから、生きることには意味がない」と結論づける必要もない。いまはこの立場がもっとも妥当だと考えている。</p>
+
+    <div class="formula">
+      <div class="no">宇宙 → 人間 → 意味（上から一方的に与えられるもの）</div>
+      <div class="yes"><span>世界</span><i>×</i><span>意識</span><i>×</i><span>経験</span><i>×</i><span>価値判断</span></div>
+      <div class="cap">意味は、これらの関係の中から生まれてくるものとして考える</div>
+    </div>
+
+    <blockquote class="big">生きる意味を一つの最終回答として「発見」することよりも、意味を感じ、問い、選びながら生きていくこと自体を、人間の営みとして捉える。</blockquote>
+    <p class="note">ただし、これも最終的な真理ではなく、現時点でもっとも納得できる仮説にすぎない。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>「生きる意味」と「生きたいという本能」は同じではない。</li>
+      <li>「目的がない」と「意味がない」は同じではない。</li>
+      <li>「意味」は、誰にとっての意味なのかを考える必要がある。</li>
+      <li>人間は本能を持ちながら、その本能をメタ認知して問い直すことができる。</li>
+      <li>メタ認知している「私」は固定された観察者ではなく、脳が構築する自己モデルなのかもしれない。</li>
+      <li>「なぜ何かが存在するのか」という問いには、現在も決定的な答えはない。</li>
+      <li>生きる意味を探すこと自体が、意味を感じる意識を持つ人間の営みなのかもしれない。</li>
+    </ol>
+  </section>
+
+  <!-- 06 -->
+  <section id="change">
+    <span class="h2-en">06 · BEFORE / AFTER</span>
+    <h2>この思考で何が変わったか</h2>
+    <div class="ba">
+      <div>
+        <small>BEFORE</small>
+        <p>「生きる意味とは何なのか？」<br>人生には何らかの客観的な意味や目的があるのではないか、という方向から問い始めた。</p>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="after">
+        <small>AFTER</small>
+        <p>一つの客観的な答えがあるとは限らない。しかし「だから人生は無意味だ」とも言えない。意味は、意識を持つ存在と世界との関係の中から生じるのかもしれない。そして、意味を探し続けること自体が、人間という存在の特徴なのかもしれない。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>なぜ「何もない」のではなく「何か」が存在するのか？</li>
+      <li>宇宙には本当に目的があるのか？</li>
+      <li>創造主は存在するのか？</li>
+      <li>創造主がいるなら、なぜ創造したのか？</li>
+      <li>創造主自身はなぜ存在するのか？</li>
+      <li>意識はなぜ存在するのか？</li>
+      <li>物理現象から主観的経験が生じるのはなぜか？</li>
+      <li>「私」は本当に存在するのか、それとも自己モデルなのか？</li>
+      <li>自由意志はどの程度存在するのか？</li>
+      <li>意味は主観的・関係的な現象にすぎないのか、客観的な意味もありうるのか？</li>
+      <li>「意味を探し続けること」に、究極的な意味はあるのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>意識とは何か</b><p>物理現象から、なぜ主観的経験が生まれるのか。</p></div>
+      <div><b>自己とは何か</b><p>「自己モデル」と「無我」を比べながら、「私」という感覚の成り立ちを考える。</p></div>
+      <div><b>自由意志とは何か</b><p>本能・脳・環境に決められているとしても、人間は本当に自分で選んでいるのか。</p></div>
+      <div><b>意味はどう生まれるか</b><p>価値・欲望・感情・意識と「意味」の関係。</p></div>
+      <div><b>神・創造主の問題</b><p>創造主を仮定すると、存在の問題は本当に説明されるのか。</p></div>
+      <div><b>仏教との接続</b><p>無我・縁起・渇愛・執着を、自己・意識・意味の議論と照らし合わせる。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>「生きる意味」を探していたら、<br>「存在とは」「私とは」「意識とは」という問いまでたどり着いた。<br>究極的な答えは、まだ分からない。</p>
+    <p class="last">答えを見つけられないことと、<br>問い続けることが無意味であることは、<br>同じではない。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const data = [
+    { k: "宇宙", ans: "目的が与えられている証拠は、いまのところない。",
+      p: "科学は、宇宙が人間を特定の目的のために作ったことを示していない。ただし、目的がないことは価値がないことと同じではない。そして私は宇宙の外ではなく、宇宙の一部としてここにいる。" },
+    { k: "生物としての自分", ans: "生き延び、遺伝子を残す方向性がある。",
+      p: "進化の結果として「生きたい」という傾向を持っている。けれどもそれは機能としての方向性であって、「そのために存在する」という究極的な目的とは別のものだ。" },
+    { k: "人類", ans: "人類という営みの一部を担っている。",
+      p: "知識や文化、言葉を受け継ぎ、少しずつ次へ渡していく流れの中に、一人ひとりがいる。その意味は大きな物語の中での役割として現れる。" },
+    { k: "社会", ans: "役割や関係の中に、意味が生まれる。",
+      p: "仕事、共同体、制度。社会の中で何かを担うことで、他者にとっての意味が生じる。ただし社会的な意味だけが人生の意味のすべてではない。" },
+    { k: "他者", ans: "誰かにとって、かけがえのない存在でありうる。",
+      p: "家族や友人、出会った人にとっての意味は、宇宙的な目的とは無関係に、確かに存在している。意味が関係の中で生まれることが、いちばん実感しやすい場面かもしれない。" },
+    { k: "自分自身", ans: "意味は、感じ・問い・選ぶことの中にある。",
+      p: "美味しい、面白い、知りたい、作りたい。そうした経験が人生を動かしている。そして「意味とは何か」と問うこと自体も、意味を感じる意識を持つ自分の営みだ。" }
+  ];
+  const tabs = document.querySelector(".who-tabs");
+  const panel = document.querySelector(".who-panel");
+  const [label, ans, p] = [panel.querySelector(".label"), panel.querySelector(".ans"), panel.querySelector("p")];
+  const show = (i) => {
+    tabs.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
+    label.textContent = data[i].k + "にとって";
+    ans.textContent = data[i].ans;
+    p.textContent = data[i].p;
+  };
+  data.forEach((d, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.role = "tab"; b.textContent = d.k + "にとって";
+    b.addEventListener("click", () => show(i));
+    tabs.appendChild(b);
+  });
+  show(5);
+})();
+</script>
+</body>
+</html>
