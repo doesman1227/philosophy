@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>意味はどう生まれるか ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="「意味がある」と感じるとき、心と脳では何が起きているのか。感情・欲望・物語・関係から意味の成り立ちをたどり、意味は「見つける」でも「作る」でもなく「育つ」ものとして捉え直す思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* meaning page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted)}
+  .series a{color:var(--accent)}
+  .triad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0 10px}
+  .triad div{padding:22px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-align:center}
+  .triad .en{display:block;font-size:.64rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .triad b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.2rem;margin:6px 0}
+  .triad .q{display:block;font-family:"Noto Serif JP",serif;font-size:.92rem;color:var(--ink);margin-bottom:6px}
+  .triad span{font-size:.84rem;color:var(--sub);line-height:1.8;display:block}
+  @media (max-width:620px){ .triad{grid-template-columns:1fr} }
+
+  .lab{margin-top:28px;padding:26px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .lab-grid{display:grid;grid-template-columns:1fr 260px;gap:28px;align-items:start}
+  @media (max-width:680px){ .lab-grid{grid-template-columns:1fr} }
+  .lab label{display:block;font-size:.88rem;color:var(--sub);margin-top:14px}
+  .lab label:first-child{margin-top:0}
+  .lab label b{font-weight:500;color:var(--ink)}
+  .lab label small{display:block;font-size:.76rem;color:var(--muted);line-height:1.6}
+  .lab .row-in{display:flex;align-items:center;gap:12px;margin-top:4px}
+  .lab input[type=range]{flex:1;accent-color:var(--accent)}
+  .lab output{font-variant-numeric:tabular-nums;width:1.6em;text-align:right;color:var(--accent);font-weight:700}
+  .lab .sep{border-top:1px dashed var(--line);margin:18px 0 4px}
+  .plane{position:relative;width:100%;aspect-ratio:1;border:1px solid var(--line);border-radius:4px;background:var(--bg)}
+  .plane::before,.plane::after{content:"";position:absolute;background:var(--line)}
+  .plane::before{left:50%;top:0;bottom:0;width:1px}
+  .plane::after{top:50%;left:0;right:0;height:1px}
+  .plane .ql{position:absolute;font-size:.66rem;color:var(--muted);line-height:1.4;max-width:46%}
+  .plane .q1{right:8px;top:8px;text-align:right}
+  .plane .q2{left:8px;top:8px}
+  .plane .q3{left:8px;bottom:8px}
+  .plane .q4{right:8px;bottom:8px;text-align:right}
+  .plane .dot{position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 6px var(--accent-soft);transition:left .3s,top .3s;z-index:1}
+  .axis-x,.axis-y{font-size:.66rem;letter-spacing:.12em;color:var(--muted);text-align:center;margin-top:6px}
+  .lab .verdict{margin-top:18px;padding:14px 18px;border-radius:3px;background:var(--accent-soft)}
+  .lab .verdict b{display:block;font-family:"Noto Serif JP",serif;font-weight:600}
+  .lab .verdict span{font-size:.88rem;color:var(--sub)}
+
+  .synth{list-style:none;display:grid;gap:10px;margin-top:20px}
+  .synth li{display:grid;grid-template-columns:7.5em 1fr;gap:14px;padding:14px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);font-size:.92rem;color:var(--sub)}
+  .synth li a{font-family:"Noto Serif JP",serif;font-weight:600;color:var(--accent);text-decoration:none}
+  @media (max-width:520px){ .synth li{grid-template-columns:1fr;gap:2px} }
+  .care{margin-top:16px;font-size:.84rem;color:var(--sub);padding:14px 18px;border:1px solid var(--line);border-radius:3px;background:var(--soft)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 05</p>
+    <h1><span>「意味がある」と感じるとき、</span><br><span>何が起きているのか</span></h1>
+    <p class="lead">最初の記事で、「意味は宇宙から与えられるのではなく、意識を持つ存在と世界との関係の中で生まれるのかもしれない」と考えた。けれども、その「関係の中で生まれる」とは、具体的にどういうことなのか。意識、「私」、自由意志とたどってきた今、もう一度「意味」そのものに戻ってきた。</p>
+    <p class="note">これは研究のまとめではなく、意味という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「理論・仮説」「未決定のこと」を区別して書いています。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味を問う</a> ／ <a href="consciousness.html">02 意識とは何か</a> ／ <a href="self.html">03 「私」とは何か</a> ／ <a href="free-will.html">04 自由意志とは何か</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#triad"><b>02</b>意味の三つの柱</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#lab"><b>04</b>楽しさと意味を分けてみる</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「意味」の成り立ちを分解する</h2>
+    <p class="intro">「意味がある」という感覚は、ふだんは理由もなくやってくる。その感覚を分解していくと、言葉、感情、欲望、物語、他者との関係という、いくつもの層が重なっていた。</p>
+    <ol class="descent">
+      <li><span class="q">そもそも「意味」とは何を指しているのか</span><span class="d">言葉の意味、出来事の意義、人生の意味</span></li>
+      <li><span class="q">何かを「大事」と感じさせるものは何か</span><span class="d">感情と、身体が下す価値の判断</span></li>
+      <li><span class="q">欲しいものを手に入れれば、意味は満たされるのか</span><span class="d">欲望・報酬・幸福と、意味の違い</span></li>
+      <li><span class="q">ばらばらの出来事は、どうやって意味を帯びるのか</span><span class="d">物語と、他者との関係</span></li>
+      <li><span class="q">意味が見えなくなるとき、何が起きているのか</span><span class="d">意味の喪失と、不条理</span></li>
+      <li><span class="q">意味は見つけるものか、作るものか</span><span class="d">主観と客観のあいだで</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="triad">
+    <span class="h2-en">02 · THREE PILLARS</span>
+    <h2>「意味がある」は、<br>三つの感覚からできている</h2>
+    <p class="intro">心理学では、「人生に意味がある」という感覚を、少なくとも三つの要素に分けて考えることが多い。どれか一つが欠けても、意味の感覚は揺らぐ。</p>
+    <div class="triad">
+      <div><span class="en">COHERENCE</span><b>一貫性</b><span class="q">「分かる」</span><span>自分の人生や世界が、筋の通ったものとして理解できる感覚</span></div>
+      <div><span class="en">PURPOSE</span><b>目的</b><span class="q">「向かう」</span><span>大切にしたい目標や方向があり、そこへ進んでいる感覚</span></div>
+      <div><span class="en">SIGNIFICANCE</span><b>重要性</b><span class="q">「値する」</span><span>自分の人生が、生きるに値する、価値あるものだという感覚</span></div>
+    </div>
+    <p class="note">心理学者フランク・マルテラとマイケル・スティーガー（2016）による整理。研究者によって呼び方や分け方には違いがある。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>「意味」という言葉をほどく</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">「意味」には三つの使い方がある</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「この単語の意味」「あの出来事には意味があった」「人生の意味」。同じ「意味」という言葉でも、指しているものは少しずつ違う。</p>
+          <div class="compare">
+            <div><small>言葉の意味</small>記号が、それ自身を超えた何かを指し示している</div>
+            <div><small>出来事の意義</small>ある出来事が、より大きな流れの中で役割を持っている</div>
+          </div>
+          <p>けれども共通点もある。どの場合も、「それ単独では閉じていない何かが、それを超えたものとつながっている」ということだ。単語は物を指し、出来事は人生の流れとつながり、人生は人生を超えた何かとつながる。</p>
+          <div class="insight">意味とは、ある種の「つながり」のことなのかもしれない。何かが、それ自身を超えたものと結びつくとき、そこに意味が生まれる。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">意味の感覚は、思ったより身近にある</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「人生の意味」と聞くと、何か壮大な答えがなければならない気がする。ところが心理学の調査では、多くの人が「自分の人生にはそれなりに意味がある」と答える傾向があることが報告されている。</p>
+          <p>そしてその感覚は、壮大な使命よりも、日常のささやかなこと——家族との食事、仕事の手応え、誰かとの会話、決まった習慣——と結びついていることが多い。</p>
+          <div class="insight">最初の記事で考えた「生きる意味」と「生きたい理由」の区別がここでもつながる。意味の感覚は、究極の答えからではなく、日々の小さなつながりの積み重ねから生まれているのかもしれない。</div>
+          <p class="aside"><b>関連する研究：</b>心理学者サマンサ・ハインツェルマンとローラ・キング（2014）は、さまざまな調査を検討し、人生は多くの人にとって「かなり意味のあるもの」と感じられていると論じた。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>身体と脳から見る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">感情が、物事に「大事」の印をつける</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>私たちは、理性で冷静に判断したうえで「これは大事だ」と決めているように思っている。けれども神経科学は、別の姿を示している。</p>
+          <p>前頭葉の一部（腹内側前頭前野）を損傷した人の中には、知能テストの成績や論理的な推論は保たれているのに、日常の決断がひどく難しくなる人がいる。どの選択肢にも「気持ちの重み」がつかなくなり、どれも同じように見えてしまうのだ。</p>
+          <div class="insight">感情がなければ、何も「大事」にならない。意味の土台には、理屈より先に、身体と感情が下す価値の判断がある。</div>
+          <p class="aside"><b>関連する考え方：</b>神経科学者アントニオ・ダマシオの「ソマティック・マーカー仮説」。身体の反応が選択肢に「良い／悪い」の印をつけ、判断を導いているという考え方。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">「欲しい」と「好き」は、脳の中で別のもの</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>欲しいものを手に入れれば満たされるはずなのに、手に入れた途端に次が欲しくなる。この経験には、脳の仕組みが関わっているらしい。</p>
+          <p>ドーパミンは「快楽の物質」と呼ばれることが多いが、研究からは、むしろ「欲しい」と駆り立てる働きや、「予想より良かった／悪かった」を知らせる信号に深く関わっていることが分かってきた。一方、実際に「好き」「心地よい」と感じる働きは、それとは別の仕組みに支えられているという。</p>
+          <div class="compare">
+            <div><small>欲しい（wanting）</small>駆り立てられる。手に入れるまで落ち着かない</div>
+            <div><small>好き（liking）</small>味わう。そのものに満たされる</div>
+          </div>
+          <p>さらに人間は、良い出来事にも悪い出来事にも、しばらくすると慣れてしまう（快楽順応）。</p>
+          <div class="insight">欲望を満たし続けることは、意味の感覚を満たすこととは同じではない。「欲しい」に駆り立てられ続ける構造は、仏教が「渇愛」と呼んだものとよく似ている。</div>
+          <p class="aside"><b>関連する研究：</b>ケント・ベリッジらは「wanting」と「liking」を区別した。ヴォルフラム・シュルツらは、ドーパミン神経が「報酬予測誤差」を伝えていることを示した。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">幸福と意味は、別の軸かもしれない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>楽しい人生と、意味のある人生は同じなのか。ある心理学の研究では、二つは重なり合いながらも、別の要因と結びついていることが報告されている。</p>
+          <div class="compare">
+            <div><small>幸福（楽しさ）と結びつくもの</small>欲求が満たされること、いまを楽しむこと、受け取ること</div>
+            <div><small>意味と結びつくもの</small>与えること、過去と未来をつなげて考えること、ときにストレスや苦労</div>
+          </div>
+          <p>子育て、介護、困難な仕事。その最中は楽しいとは限らないが、深く意味があると感じられることがある。</p>
+          <div class="insight">意味は、楽しさとは別の軸で測られている。だから「楽しくないこと」が「意味のないこと」とは限らない。（<a href="#lab">04章</a>で、この二つの軸を自分の経験で試せます）</div>
+          <p class="aside"><b>関連する研究・考え方：</b>ロイ・バウマイスターらの研究（2013）。アリストテレスも、一時的な快楽とは区別して、よく生きること（エウダイモニア）を人生の目的と考えた。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>物語と関係の中で</h3></div>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">物語が、出来事に意味を与える</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>同じ失敗でも、「あの失敗があったから今の自分がある」と語られるときと、「あの失敗ですべてが狂った」と語られるときとでは、その出来事の意味はまったく違う。出来事そのものは変わっていないのに。</p>
+          <p>前回の「私」の記事で、「私」は物語として編まれていると考えた。その物語の中で、過去の出来事は位置づけられ、意味を帯びる。</p>
+          <div class="flow"><span>出来事</span><i>→</i><span>解釈</span><i>→</i><span>物語に位置づける</span><i>→</i><span>意味</span></div>
+          <div class="insight">意味は出来事そのものの中にあるのではなく、出来事を人生の物語の中にどう位置づけるかによって生まれる。だから意味は、後から変わりうる。</div>
+          <p class="aside"><b>関連する考え方：</b>心理学者ダン・マクアダムスは、人が自分の人生を物語として組み立てる「ナラティブ・アイデンティティ」を研究し、つらい出来事が良い結果へとつながる「救済の物語」が、心の健康と結びつく傾向を報告している。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">意味は、他者とのあいだで生まれる</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>人生の意味を感じる源として、多くの人が真っ先に挙げるのは、家族、友人、仲間といった他者との関係だ。逆に、孤立したり、仲間外れにされたりすると、人生の意味の感覚が下がることを示す研究もある。</p>
+          <p>最初の記事で「誰にとっての意味か」と問うた。その答えの多くは、「誰か他の人にとって」という形をしているのかもしれない。誰かに必要とされること、誰かのために何かをすること。</p>
+          <div class="insight">意味の感覚は、一人の頭の中で完結するものではなく、他者とのあいだに生まれる。「私」の境界が皮膚で終わらないように、意味の境界も私の内側で終わらない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">どんな状況にも、意味を見出す道はあるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>精神科医ヴィクトール・フランクルは、ナチスの強制収容所を生き延びた経験をもとに、人間にとってもっとも根源的なのは「意味への意志」だと考えた。そして、人が意味を見出す道として、三つを挙げている。</p>
+          <div class="tags"><span>何かを創造すること・行うこと</span><span>何かを体験すること・誰かを愛すること</span><span>避けられない苦しみに対して、ある態度をとること</span></div>
+          <p>三つ目は、とりわけ重い。状況そのものを変えられないときでも、その状況にどう向き合うかを選ぶことには、意味を見出す余地がある——という考え方だ。</p>
+          <div class="insight">前回の「自由意志」の記事で、自由とは刺激と反応のあいだの「間」の広さだと考えた。フランクルが示したのは、その「間」こそが、意味を見出す最後の場所でもある、ということなのかもしれない。</div>
+          <p class="aside"><b>関連する考え方：</b>フランクル『夜と霧』（1946）。彼が創始した心理療法は「ロゴセラピー」と呼ばれる。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>意味が見えなくなるとき</h3></div>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">意味が感じられなくなるとき</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>何をしても空虚に感じる。以前は楽しかったことに、何も感じない。そういう時期は誰にでも訪れうる。</p>
+          <p>ここまでの考えに沿えば、意味の感覚は、感情・欲求・物語・関係が噛み合うところに生まれる。だとすれば、意味が見えなくなるのは「人生が無意味だと証明された」からではなく、その噛み合わせのどこかが一時的に止まっているから、と見ることもできる。</p>
+          <div class="insight">「意味が感じられない」ことは、「意味がない」ことの証明ではない。意味を感じる仕組みのほうが、疲れていたり、傷ついていたりするのかもしれない。</div>
+          <p class="care">意味が感じられない状態や、強い空虚感・落ち込みが長く続くときは、哲学的に考え込むより先に、信頼できる人や医療・相談窓口の専門家に話してみてください。それは弱さではなく、意味を感じる仕組みを休ませ、立て直すための一歩です。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">不条理：世界は答えてくれない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>人間は意味を求めずにいられない。けれども世界は、その問いに黙ったまま答えない。作家アルベール・カミュは、この食い違いを「不条理」と呼んだ。</p>
+          <p>神々の罰として、山頂まで岩を押し上げては転がり落とされることを永遠に繰り返すシーシュポス。カミュはその姿に絶望ではなく、反抗と自由を見た。そして、岩を押す彼を「幸福だと想像しなければならない」と書いた。</p>
+          <div class="insight">世界が意味を与えてくれないことを認めたうえで、それでも生き、それでも岩を押す。その姿勢そのものに、意味の一つの形があるのかもしれない。</div>
+          <p class="aside"><b>関連する考え方：</b>カミュ『シーシュポスの神話』（1942）。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>意味は見つけるのか、作るのか</h3></div>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">主観と客観のあいだで</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>意味は、自分が「意味がある」と感じさえすればそれでいいのか（主観説）。それとも、本人がどう感じるかに関わらず、意味のある生き方とそうでない生き方があるのか（客観説）。</p>
+          <p>たとえば、草の葉の数を一生かけて数え続けることに、本人が深い満足を感じていたら、その人生は意味があると言えるのか。多くの人は、どこか引っかかりを感じる。</p>
+          <div class="compare">
+            <div><small>主観だけだと</small>どんなことでも、本人が満足していれば意味があることになってしまう</div>
+            <div><small>客観だけだと</small>本人が何も感じていない「立派な」人生にも、意味があることになってしまう</div>
+          </div>
+          <div class="insight">意味は、主観だけでも客観だけでもなく、「心から惹かれること」と「それ自体に価値があること」が出会うところに生まれるのかもしれない。</div>
+          <p class="aside"><b>関連する考え方：</b>哲学者スーザン・ウルフは、意味は「主観的な惹かれ」が「客観的な魅力（価値）」と出会うときに生まれる、という混合説を唱えた（『Meaning in Life and Why It Matters』2010）。草の葉を数える例は、ジョン・ロールズの議論に由来する。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">四つの記事をつなぐと</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ここまでの記事で考えてきたことを並べてみると、意味の成り立ちが一つの絵として見えてきた。</p>
+          <ul class="synth">
+            <li><a href="consciousness.html">意識</a><span>意味が「感じられる」場所。経験する主体がいなければ、「誰にとっての意味か」の「誰」がいない。</span></li>
+            <li><a href="self.html">「私」</a><span>意味が「編まれる」場所。物語としての私の中で、出来事は位置づけられ、意味を帯びる。</span></li>
+            <li><a href="free-will.html">自由意志</a><span>意味が「選ばれる」場所。刺激と反応のあいだの「間」で、何を大切にするかを選び直せる。</span></li>
+            <li><a href="meaning-of-life.html">関係</a><span>意味が「生まれる」場所。世界や他者とのつながりの中で、何かが自分を超えたものと結びつく。</span></li>
+          </ul>
+          <div class="insight">意味は、意識が感じ、「私」が物語り、自由が選び、関係がつなぐ——その重なりの中で、少しずつ育っていくものなのかもしれない。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="lab">
+    <span class="h2-en">04 · TRY IT</span>
+    <h2>楽しさと意味を、<br>分けて見てみる</h2>
+    <p class="intro">最近の出来事を一つ思い浮かべて（仕事、誰かとの時間、趣味、苦労したことなど）、それぞれの感覚を0〜10で振り返ってみてください。入力した内容はどこにも保存・送信されません。</p>
+
+    <div class="lab">
+      <div class="lab-grid">
+        <div>
+          <label><b>楽しさ・心地よさ</b><small>そのとき、楽しい・気持ちいいと感じたか</small>
+            <span class="row-in"><input type="range" min="0" max="10" value="7" data-k="fun"><output>7</output></span></label>
+          <div class="sep"></div>
+          <label><b>一貫性</b><small>自分の人生の流れの中で、筋が通っていると感じるか</small>
+            <span class="row-in"><input type="range" min="0" max="10" value="4" data-k="coh"><output>4</output></span></label>
+          <label><b>目的</b><small>大切にしたい方向に向かっていると感じるか</small>
+            <span class="row-in"><input type="range" min="0" max="10" value="3" data-k="pur"><output>3</output></span></label>
+          <label><b>重要性</b><small>やる価値がある、誰かや何かにとって大事だと感じるか</small>
+            <span class="row-in"><input type="range" min="0" max="10" value="4" data-k="sig"><output>4</output></span></label>
+        </div>
+        <div>
+          <div class="plane" aria-hidden="true">
+            <span class="ql q1">楽しく、<br>意味も深い</span>
+            <span class="ql q2">楽しくはないが、<br>意味は深い</span>
+            <span class="ql q3">どちらも<br>薄い</span>
+            <span class="ql q4">楽しいが、<br>意味は薄い</span>
+            <span class="dot"></span>
+          </div>
+          <div class="axis-x">← 楽しさ →　／　↑ 意味（三つの平均）</div>
+        </div>
+      </div>
+      <div class="verdict" aria-live="polite"><b></b><span></span></div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>感情は、物事の価値の判断や意思決定に深く関わっている。</li>
+          <li>脳の中で、「欲しい」と駆り立てる働きと、「好き」と味わう働きは区別できる。</li>
+          <li>人は良い出来事にも悪い出来事にも、時間とともに慣れていく。</li>
+          <li>他者とのつながりは、多くの人にとって人生の意味の感覚の大きな源になっている。</li>
+          <li>同じ出来事でも、どう解釈し語るかによって、受け止め方は変わる。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>理論・仮説</h4>
+        <ul>
+          <li>意味の感覚は、一貫性・目的・重要性という複数の要素からなる。</li>
+          <li>幸福（楽しさ）と意味は、重なりながらも別の軸である。</li>
+          <li>意味とは、何かがそれ自身を超えたものとつながることである。</li>
+          <li>意味は、主観的な惹かれと客観的な価値が出会うところに生まれる（混合説）。</li>
+          <li>避けられない苦しみに対しても、態度を選ぶことで意味を見出しうる。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>本人の感じ方と無関係な「客観的な意味」は存在するのか。</li>
+          <li>「価値がある」とは、そもそも何によって決まるのか。</li>
+          <li>意味の感覚は、進化の中でどんな役割を果たしてきたのか。</li>
+          <li>人生全体に一つの意味は必要なのか、それとも小さな意味の集まりで十分なのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">意味は、どこかに完成品として置かれていて「見つける」ものではない。かといって、何もないところから好き勝手に「作る」ものでもない。いま一番しっくりくるのは、意味は世界と関わる中で「育つ」ものだ、という見方だ。</p>
+
+    <div class="formula">
+      <div class="no">どこかに置かれた完成品の「意味」を探し当てる</div>
+      <div class="yes"><span>感情</span><i>×</i><span>物語</span><i>×</i><span>関係</span><i>×</i><span>選択</span></div>
+      <div class="cap">これらが世界と噛み合うところで、意味は少しずつ育っていく</div>
+    </div>
+
+    <blockquote class="big">意味は、答えとして手に入れるものではなく、何かを大切にし、誰かと関わり、自分の物語を語り直しながら、日々の中で育てていくものなのかもしれない。だから、いま意味が見えなくても、それは終わりではない。</blockquote>
+    <p class="note">ただし、「本人の感じ方を超えた客観的な意味はあるのか」という問いは、ここでも決着していない。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>意味とは、何かがそれ自身を超えたものとつながることなのかもしれない。</li>
+      <li>意味の感覚は、一貫性・目的・重要性の三つの柱から考えられる。</li>
+      <li>感情がなければ、何も「大事」にはならない。</li>
+      <li>「欲しい」を満たし続けることと、意味が満たされることは違う。</li>
+      <li>楽しさと意味は別の軸。楽しくないことにも、深い意味はありうる。</li>
+      <li>意味は出来事そのものではなく、物語と関係の中で生まれ、後から変わりうる。</li>
+      <li>意味が感じられないことは、意味がないことの証明ではない。</li>
+    </ol>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>本人の感じ方を超えた「客観的な意味」はあるのか？</li>
+      <li>「価値がある」とは、何によって決まるのか？</li>
+      <li>意味の感覚は、なぜ進化したのか？</li>
+      <li>人生全体を貫く一つの意味は、必要なのか？</li>
+      <li>他者がいなくても、人は意味を感じられるのか？</li>
+      <li>意味を求めること自体が、苦しみの原因になることはないのか？</li>
+      <li>意味の感覚を持つAIは、ありうるのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>仏教との接続</b><p>渇愛・執着・無我・縁起。「意味を求めること」と苦しみの関係を考える。</p></div>
+      <div><b>死とは何か</b><p>終わりがあることは、意味を奪うのか、それとも意味を与えるのか。</p></div>
+      <div><b>幸福とは何か</b><p>楽しさ、満足、意味。幸福にはいくつの形があるのか。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>意味を探して歩いてきて、<br>意味は遠くのどこかではなく、<br>世界と関わる、そのあいだに生まれていると分かってきた。</p>
+    <p class="last">見つけるのでも、作るのでもなく、<br>育てていく。<br>今日のささやかなつながりから。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="free-will.html">← 04 自由意志とは何か</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const inputs = [...document.querySelectorAll(".lab input[type=range]")];
+  const dot = document.querySelector(".plane .dot");
+  const vb = document.querySelector(".verdict b");
+  const vs = document.querySelector(".verdict span");
+  const val = (k) => +inputs.find(i => i.dataset.k === k).value;
+  const update = () => {
+    inputs.forEach(i => { i.nextElementSibling.textContent = i.value; });
+    const fun = val("fun");
+    const mean = (val("coh") + val("pur") + val("sig")) / 3;
+    dot.style.left = (fun / 10 * 100) + "%";
+    dot.style.top = (100 - mean / 10 * 100) + "%";
+    let t, d;
+    if (fun >= 5 && mean >= 5) { t = "楽しく、意味も深い"; d = "楽しさと意味の両方が満ちている経験。どんな条件がそろっていたのかを覚えておくと、次の手がかりになります。"; }
+    else if (fun < 5 && mean >= 5) { t = "楽しくはないが、意味は深い"; d = "苦労や負担があっても、意味を感じている経験。楽しさと意味が別の軸であることがよく表れています。"; }
+    else if (fun >= 5 && mean < 5) { t = "楽しいが、意味は薄い"; d = "楽しい時間そのものにも価値があります。ただ、意味の感覚は別の軸で育つことが見えてきます。"; }
+    else { t = "どちらも薄い"; d = "そういう経験もあって当然です。もしこの状態が長く続くなら、三つの柱のどれが欠けているかを見てみると、手がかりになるかもしれません。"; }
+    vb.textContent = t + "（意味の平均 " + mean.toFixed(1) + "）";
+    vs.textContent = d;
+  };
+  inputs.forEach(i => i.addEventListener("input", update));
+  update();
+})();
+</script>
+</body>
+</html>
