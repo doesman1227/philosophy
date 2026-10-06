@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>自由意志とは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="すべてが原因で決まっているなら、私は本当に選んでいるのか。決定論、リベットの実験、両立論、責任の問題をたどり、自由を「あるかないか」ではなく「程度」として捉え直す思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* free will page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted)}
+  .series a{color:var(--accent)}
+  .matrix{display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;margin:30px 0 8px}
+  .matrix .ax{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--muted);display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;line-height:1.6}
+  .matrix .ax.row{writing-mode:vertical-rl;padding:10px 4px}
+  .matrix .cell{padding:18px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);transition:all .3s}
+  .matrix .cell b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.02rem;margin-bottom:4px}
+  .matrix .cell span{font-size:.86rem;color:var(--sub);line-height:1.8;display:block}
+  .matrix .cell.on{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 1px var(--accent)}
+  .matrix .cell.dim{opacity:.4}
+  @media (max-width:560px){
+    .matrix{grid-template-columns:1fr}
+    .matrix .ax{display:none}
+    .matrix .cell::before{content:attr(data-tag);display:block;font-size:.64rem;letter-spacing:.14em;color:var(--muted);margin-bottom:4px}
+  }
+  .quiz{margin-top:30px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .quiz .qq{margin-bottom:18px}
+  .quiz .qq:last-of-type{margin-bottom:0}
+  .quiz .qt{font-family:"Noto Serif JP",serif;font-size:1rem;margin-bottom:8px;line-height:1.8}
+  .quiz .qt small{display:block;font-family:"Noto Sans JP",sans-serif;font-size:.8rem;color:var(--muted)}
+  .quiz .opts{display:flex;flex-wrap:wrap;gap:8px}
+  .quiz .opts button{font:inherit;font-size:.86rem;padding:6px 16px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--sub);cursor:pointer;transition:all .2s}
+  .quiz .opts button:hover{border-color:var(--accent);color:var(--accent)}
+  .quiz .opts button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .quiz .opts button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .result{margin-top:16px;padding:18px 22px;border-radius:4px;background:var(--accent-soft);min-height:3em;color:var(--ink)}
+  .result .rl{font-size:.66rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .result p{font-size:.92rem;color:var(--sub);margin-top:4px}
+  .result b{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.06rem}
+  .result .reset-q{font:inherit;font-size:.74rem;color:var(--muted);background:none;border:0;cursor:pointer;margin-top:8px;text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 04</p>
+    <h1><span>「私が選んだ」と感じるとき、</span><br><span>選んでいるのは誰なのか</span></h1>
+    <p class="lead">「生きる意味」では、人間は本能を対象化して選び直せるのではないか、と考えた。「意識」では、意識する前に脳が動き出しているらしいことを知った。「私」では、選んでいる「私」そのものが固定した実体ではないかもしれない、と考えた。三つの記事が、同じ問いを指さしている。——私は本当に、自分で選んでいるのだろうか。</p>
+    <p class="note">これは研究のまとめではなく、自由意志という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「理論・仮説」「未決定のこと」を区別して書いています。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味を問う</a> ／ <a href="consciousness.html">02 意識とは何か</a> ／ <a href="self.html">03 「私」とは何か</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#positions"><b>02</b>四つの立場と、あなたの直観</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#levels"><b>04</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>05</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>06</b>未解決の問い</a></li>
+      <li><a href="#next"><b>07</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「自由に選ぶ」を分解する</h2>
+    <p class="intro">今朝、コーヒーではなく紅茶を選んだ。それは本当に自由な選択だったのか。問いを掘っていくと、物理学、脳科学、倫理、そして「私」の問題が次々に絡んできた。</p>
+    <ol class="descent">
+      <li><span class="q">「自由に選んだ」とは、どういうことか</span><span class="d">別の選択もできたこと？ 自分の理由で選んだこと？</span></li>
+      <li><span class="q">世界はすべて原因で決まっているのか</span><span class="d">決定論と、量子のランダムさ</span></li>
+      <li><span class="q">脳は、私より先に決めているのか</span><span class="d">リベットの実験と、その後の論争</span></li>
+      <li><span class="q">決まっていても、自由はありうるのか</span><span class="d">両立論・決定論・自由意志論</span></li>
+      <li><span class="q">自由がないなら、責任もないのか</span><span class="d">称賛・非難・罰の意味</span></li>
+      <li><span class="q">では、「私が選ぶ」とはどういうことか</span><span class="d">プロセスとしての私と、程度としての自由</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="positions">
+    <span class="h2-en">02 · POSITIONS</span>
+    <h2>二つの問いで決まる、<br>四つの立場</h2>
+    <p class="intro">自由意志をめぐる立場は、大きく二つの問いへの答えで整理できる。まず自分の直観で答えてみてください。あなたの答えに近い立場が光ります。</p>
+
+    <div class="quiz">
+      <div class="qq">
+        <div class="qt">Q1. 世界の出来事（あなたの脳の中の出来事も含めて）は、すべて先行する原因によって決まっていると思う？</div>
+        <div class="opts" data-q="det">
+          <button type="button" data-v="yes" aria-pressed="false">決まっていると思う</button>
+          <button type="button" data-v="no" aria-pressed="false">決まっていないと思う</button>
+        </div>
+      </div>
+      <div class="qq">
+        <div class="qt">Q2. すべてが原因で決まっていたとしても、「自分の理由で、強制されずに選んだ」なら、それは自由な選択だと言える？
+          <small>（いいえ＝本当の自由には「まったく別の選択もできた」ことが必要）</small></div>
+        <div class="opts" data-q="comp">
+          <button type="button" data-v="yes" aria-pressed="false">言える</button>
+          <button type="button" data-v="no" aria-pressed="false">言えない</button>
+        </div>
+      </div>
+      <div class="result" aria-live="polite">
+        <div class="rl">YOUR POSITION</div>
+        <p class="rt">二つの問いに答えると、あなたの直観に近い立場が表示されます。</p>
+      </div>
+    </div>
+
+    <div class="matrix">
+      <div></div>
+      <div class="ax">自由と決定論は両立する</div>
+      <div class="ax">自由と決定論は両立しない</div>
+      <div class="ax row">世界は決定されている</div>
+      <div class="cell" data-key="yes-yes" data-tag="決定されている × 両立する"><b>両立論</b><span>決まっていても、自分の理由や価値観から行為するなら、それは自由だ。現代の哲学者にもっとも多い立場とされる。</span></div>
+      <div class="cell" data-key="yes-no" data-tag="決定されている × 両立しない"><b>ハード決定論</b><span>すべては決まっており、本当の意味での自由意志はない。「選んだ」という感覚は、原因を知らないことから生まれる。</span></div>
+      <div class="ax row">決定されていない</div>
+      <div class="cell" data-key="no-yes" data-tag="決定されていない × 両立する"><b>両立論（決定論は問わない）</b><span>世界が決定論的かどうかに関係なく、自由は「どう選ぶか」の問題であって、物理の問題ではない。</span></div>
+      <div class="cell" data-key="no-no" data-tag="決定されていない × 両立しない"><b>自由意志論（リバタリアニズム）</b><span>世界は決まっておらず、人は原因の連鎖を超えて、本当に別の選択をすることができる。</span></div>
+    </div>
+    <p class="note">ここでの「リバタリアニズム」は、政治思想のリバタリアニズム（自由至上主義）とは別もの。どちらの「両立しない」側にも、「決定論でも非決定論でも自由はない」とする懐疑的な立場（ハード非両立論）がある。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>自由とは何のことか</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">「自由に選んだ」には二つの意味がある</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>紅茶を選んだとき、私が「自由に選んだ」と感じるのはなぜか。考えてみると、二つの違う意味が混ざっていた。</p>
+          <div class="compare">
+            <div><small>別の道もあった</small>まったく同じ状況でも、コーヒーを選ぶこともできた（他行為可能性）</div>
+            <div><small>自分から選んだ</small>誰にも強制されず、自分の好みや理由に基づいて選んだ（源泉性）</div>
+          </div>
+          <p>日常で「自由に選んだ」と言うとき、たいていは後者の意味だ。けれども自由意志の議論で問題になるのは、主に前者のほうだった。</p>
+          <div class="insight">「自由意志はあるか」と問う前に、どちらの「自由」の話をしているのかを分ける必要がある。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">世界がすべて決まっているなら</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ある瞬間の宇宙のすべての状態と、すべての物理法則を知っている知性がいたら、その知性には未来がすべて計算できる。そこには、私が明日何を選ぶかも含まれる。</p>
+          <div class="flow"><span>過去の状態</span><i>＋</i><span>自然法則</span><i>→</i><span>現在の状態</span><i>→</i><span>未来の状態</span></div>
+          <p>私の脳も物理的なシステムである以上、私の選択もまたこの連鎖の一部ではないか。だとすれば、「別の選択もできた」という意味の自由は、どこにも入る余地がない。</p>
+          <div class="insight">決定論が正しければ、「選んだ」という出来事も、宇宙の始まりから続く原因の連鎖の一部ということになる。</div>
+          <p class="aside"><b>関連する考え方：</b>このような知性は、数学者ピエール＝シモン・ラプラスにちなんで「ラプラスの悪魔」と呼ばれる（1814）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">量子のランダムさは、自由を救うか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>20世紀の物理学は、ミクロの世界の出来事の一部は確率的にしか予測できないことを明らかにした。世界は完全には決まっていないのかもしれない。では、これで自由は救われるのか。</p>
+          <p>考えてみると、そうでもない。もし私の選択が、脳の中のランダムなゆらぎで決まっていたとしたら、それは「私が選んだ」というより、「サイコロが決めた」に近い。</p>
+          <div class="insight">決定されていることも、ランダムであることも、どちらも「私が選ぶ」こととは違って見える。自由の問題は、決定論か非決定論かだけでは解けない。</div>
+          <p class="aside"><b>補足：</b>そもそも量子レベルのゆらぎが、神経細胞の活動や意思決定に意味のある形で影響しているかどうかについても、議論が分かれている。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>脳から見る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">脳は、私が決める前に動き出している？</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>前回の「意識とは何か」でも触れたリベットの実験（1980年代）。被験者が好きなタイミングで手首を動かすとき、「動かそう」と意識した時点よりも数百ミリ秒前に、脳の「準備電位」が立ち上がり始めていた。</p>
+          <p>2008年には、脳の活動パターンから、被験者が左右どちらのボタンを押すかを、本人が決めたと自覚するより数秒前に、偶然よりは高い確率（6割程度）で予測できたという研究も報告された。</p>
+          <div class="flow"><span>脳の準備活動</span><i>→</i><span>「動かそう」と意識</span><i>→</i><span>動く</span></div>
+          <div class="insight">意識的な「決めた」という感覚は、決定のスタート地点ではないのかもしれない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">ただし、その実験は何を示しているのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>これらの実験の解釈には、大きな論争がある。</p>
+          <div class="tags"><span>準備電位は「決定」ではなく、脳活動のゆらぎの蓄積かもしれない</span><span>「意識した時刻」の自己報告は不正確になりやすい</span><span>予測精度は6割程度で、決定的ではない</span></div>
+          <p>さらに重要なのは、実験で扱っているのが「いつ手首を動かすか」「左右どちらを押すか」といった、理由のない気まぐれな選択だということだ。転職するか、誰と生きるかといった、理由を比べて時間をかけて考える選択とは性質がまったく違う。</p>
+          <div class="insight">「脳が先に決めているから自由意志はない」とは、これらの実験からは言えない。言えるのは、意識的な意図が行為のすべてを始めているわけではない、というところまでだ。</div>
+          <p class="aside"><b>関連する研究：</b>アーロン・シュルガーらは2012年、準備電位は脳活動のゆらぎが閾値に達する過程を反映しているだけかもしれない、とするモデルを提案した。リベット自身も、意識には動き出した行為を「拒否」する余地があると考えていた。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">「私がやった」という感覚も、つくられている</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>前回の「私」の記事で、分離脳の人が、自分の行動の本当の理由を知らないまま、もっともらしい理由を作り出す例を見た。</p>
+          <p>心理学者ダニエル・ウェグナーは、「自分の意志で行為を起こした」という感覚そのものが、脳が「意図」と「行為」の結びつきを後から推論してつくる経験だと論じた。実際、自分が動かしていないのに「自分が動かした」と感じたり、その逆が起きたりする状況をつくることができる。</p>
+          <div class="insight">「私の意志が行為を起こした」という感じは、行為の原因そのものではなく、脳による一つの解釈なのかもしれない。——ただし、解釈であることは、それが役に立たないことを意味しない。</div>
+          <p class="aside"><b>関連する考え方：</b>ウェグナーの著書『The Illusion of Conscious Will』（2002）。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>哲学の答え方</h3></div>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">両立論：決まっていても、自由はある</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>両立論は、問題になっている「自由」の意味を問い直す。大切なのは「原因がないこと」ではなく、「どんな原因から行為が出てきたか」だという。銃で脅されて財布を渡すのと、自分の考えで寄付するのとでは、どちらも原因はあるが、後者だけが「自由」だと私たちは感じる。</p>
+          <p>ハリー・フランクファートは、人間には「〜したい」という欲求（一階の欲求）だけでなく、「〜したいと思うような自分でありたい」という欲求（二階の欲求）がある、と指摘した。自分が反省して支持する欲求に従って行為するとき、人は自由なのだという。</p>
+          <div class="flow"><span>一階の欲求：タバコを吸いたい</span><i>⇄</i><span>二階の欲求：吸いたいと思わない自分でいたい</span></div>
+          <div class="insight">これは、最初の記事の「本能 → 欲求 → 自己認識 → 評価 → 選択」とほとんど同じ構造をしている。自由とは、メタ認知によって自分の欲求を評価し、方向を選び直せる能力のことなのかもしれない。</div>
+          <p class="aside"><b>関連する考え方：</b>両立論の源流はトマス・ホッブズやデイヴィッド・ヒュームにさかのぼる。現代ではダニエル・デネットが代表的な論者で、決定論は「何をしても無駄」という運命論とは違う、と強調した。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">ハード決定論：自由は、原因を知らないことから生まれる錯覚</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>一方で、両立論は言葉の意味をずらしているだけだ、という批判も根強い。たしかに私は自分の理由で選んだ。けれども、その理由をもつようになったのは、遺伝子、生育環境、過去の経験、さっき食べたもの——どれも私が選んだものではない。</p>
+          <p>だとすれば、私が「自由に選んだ」と感じるのは、自分の選択を決めた原因の連鎖が見えていないからにすぎないのではないか。</p>
+          <div class="insight">「自分の理由で選ぶ」と言っても、その「自分」も理由も、自分ではつくっていない。この指摘には、簡単には反論できない重みがある。</div>
+          <p class="aside"><b>関連する考え方：</b>スピノザは、人が自分を自由だと思うのは、自分の欲求は意識していても、その欲求を決めている原因を知らないからだと論じた。現代では神経科学者ロバート・サポルスキーが『Determined』（2023）で、自由意志は存在しないという立場を詳しく展開している。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">自由意志論：人は原因の連鎖を超えられる</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>反対側には、私たちは本当に「別の選択もできた」のであり、行為者そのものが新しい原因の始まりになれる、とする立場がある。迷いに迷ってどちらとも決めがたいときの選択こそ、自分がつくっているのだ、という考え方もある。</p>
+          <p>この立場は、「本当に選んでいる」という私たちの実感にもっとも忠実だ。けれども、物理法則に従う脳の中で、行為者がどうやって原因の連鎖の外から介入できるのか——そして、それが先ほどの「ランダムさ」とどう違うのかを説明するのは難しい。</p>
+          <div class="insight">実感にもっとも近い立場が、説明はもっとも難しい。これは「意識の難問」とよく似た構図をしている。</div>
+          <p class="aside"><b>関連する考え方：</b>ロバート・ケインらは、非決定論的な脳内過程の中で、人が自分の性格を形づくる「自己形成的な選択」をしていると論じている。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>責任はどうなるのか</h3></div>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">自由がないなら、誰も責められないのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>自由意志の問題が抽象的な話で終わらないのは、それが責任と直結しているからだ。誰かを褒める、責める、罰する。それは「その人が別の選択もできた」ことを前提にしているように見える。</p>
+          <p>けれども、自由意志が完全に否定されても、責任の実践がすべて消えるわけではない、という考え方もある。</p>
+          <div class="compare">
+            <div><small>報いとしての責任</small>悪いことをしたのだから、苦しみを受けるに値する</div>
+            <div><small>前向きな責任</small>行動を変え、被害を防ぎ、関係を修復するために責任を問う</div>
+          </div>
+          <div class="insight">自由意志を疑うことは、「何をしても許される」ではなく、「なぜその人はそうしたのか」をより深く理解し、報復より修復へと向かう視点にもなりうる。</div>
+          <p class="aside"><b>関連する考え方：</b>ピーター・ストローソンは論文「自由と怒り」（1962）で、感謝や憤りといった人間関係の中の自然な反応こそが責任の基盤であり、形而上学的な自由の証明を待つ必要はないと論じた。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>前回までの問いへ戻る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">原因の連鎖の中に、「私」もいる</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「すべては原因で決まっている」と聞くと、私の外側にある原因が、私を操っているように感じる。けれども前回考えたように、「私」が身体・記憶・物語・関係が組み合わさり続けるプロセスなのだとしたら、話は変わる。</p>
+          <p>私の価値観、私の迷い、私の熟慮——それ自体が、原因の連鎖の一部であり、しかも行為を決めている重要な部分だ。「原因に決められている」のではなく、「私というプロセスが、原因として働いている」と見ることもできる。</p>
+          <div class="insight">決定論は「私が何をしても結果は同じ」という意味ではない。私がどう考えるかが、結果を変える原因そのものだからだ。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">自由は「あるかないか」ではなく「程度」</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>最初の記事で、人間は本能から完全に独立して選ぶのではなく、本能や環境を抱えたまま、それらを認識し、再評価し、ある程度方向を変えられる、と考えた。今回たどり着いたのも、やはりそこだった。</p>
+          <p>怒りに任せて反射的に言い返すときと、「いま自分は怒っている」と気づき、一呼吸おいてから言葉を選ぶときとでは、同じように原因で決まっていても、自由の度合いはまったく違うように思える。</p>
+          <div class="flow"><span>刺激</span><i>→</i><span>気づき</span><i>→</i><span>間（ま）</span><i>→</i><span>評価</span><i>→</i><span>応答</span></div>
+          <div class="insight">自由とは、原因から逃れることではなく、刺激と反応のあいだに「間」を広げ、より多くの理由に応じて行為を変えられることなのかもしれない。そしてその「間」は、マインドフルネスのような実践によって育てられる。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="levels">
+    <span class="h2-en">04 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>人の選択は、遺伝・環境・経験・身体状態など、自分では選んでいない多くの要因に影響されている。</li>
+          <li>単純な動作の前には、本人が「決めた」と自覚するより前から脳の活動が始まっている。</li>
+          <li>「自分が行為を起こした」という感覚は、実際の因果と食い違うことがある。</li>
+          <li>人間は自分の欲求を対象化し、反省し、行動を変えることができる。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>理論・仮説</h4>
+        <ul>
+          <li>自由とは「原因がないこと」ではなく、自分が支持する理由から行為すること（両立論）。</li>
+          <li>自由とは、メタ認知によって自分の欲求を評価し直せる能力のことかもしれない。</li>
+          <li>「私」というプロセス自体が、選択の原因として働いている。</li>
+          <li>自由は「ある／ない」ではなく、程度の問題として捉えられる。</li>
+          <li>責任は、報いよりも、行動の変化と関係の修復のためにあるのかもしれない。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>世界は根本的に決定論的なのか、そうでないのか。</li>
+          <li>「別の選択もできた」という意味の自由は存在するのか。</li>
+          <li>両立論の「自由」は、私たちが本当に求めている自由なのか。</li>
+          <li>リベット型の実験は、熟慮を要する重要な選択にも当てはまるのか。</li>
+          <li>自由意志がないとしたら、罰や称賛はどう正当化されるのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="answer">
+    <span class="h2-en">05 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">原因の連鎖からまったく独立して選ぶ「私」は、おそらくいない。けれども、だから「選ぶ」ことが無意味になるわけでもない。いまの自分の立場は、両立論にかなり近い。ただし、ハード決定論の指摘する「自分も理由も自分ではつくっていない」という重みは、手放さずに持っておきたい。</p>
+
+    <div class="formula">
+      <div class="no">原因の外側に立って、無から選択を生み出す「私」</div>
+      <div class="yes"><span>本能</span><i>×</i><span>環境</span><i>×</i><span>理由</span><i>×</i><span>内省</span></div>
+      <div class="cap">これらが絡み合う中で、「私」というプロセスそのものが原因として働き、選択が生まれる</div>
+    </div>
+
+    <blockquote class="big">自由とは、原因から逃れることではなく、自分を動かしている原因に気づき、そのあいだに小さな「間」をつくること。その「間」の広さの分だけ、人は自由なのかもしれない。</blockquote>
+    <p class="note">ただし、その「気づく力」や「間をつくる力」さえ、遺伝や環境から与えられたものだ、という指摘は残る。だからこそ、自分にも他人にも、少しやさしくなれるのかもしれない。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>「別の選択もできた」自由と、「自分の理由で選んだ」自由は区別する必要がある。</li>
+      <li>決定論でもランダムでも、それだけで「私が選ぶ」ことは説明できない。</li>
+      <li>リベット型の実験は、自由意志の否定までは示していない。</li>
+      <li>「私がやった」という感覚は、脳による解釈でもある。</li>
+      <li>両立論では、自由とはメタ認知によって自分の欲求を評価し直す能力に近い。</li>
+      <li>自由意志を疑うことは、責任を捨てることではなく、報復から修復へ視点を移すことにもなりうる。</li>
+      <li>自由は「ある／ない」ではなく、刺激と反応のあいだの「間」の広さとして捉えられる。</li>
+    </ol>
+  </section>
+
+  <!-- 06 -->
+  <section id="open">
+    <span class="h2-en">06 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>世界は根本的に決まっているのか？</li>
+      <li>「別の選択もできた」は、本当にありうるのか？</li>
+      <li>自分の理由も性格も自分で選んでいないなら、それでも自由と言えるのか？</li>
+      <li>意識的な熟慮は、選択の原因になっているのか、それとも追認なのか？</li>
+      <li>自由意志がないとしたら、罰はどう正当化されるのか？</li>
+      <li>「気づく力」を育てようと決めることは、自由な選択なのか？</li>
+      <li>自由意志を信じることと疑うことで、生き方はどう変わるのか？</li>
+      <li>AIが理由を比べて選ぶとき、それは「選んでいる」と言えるのか？</li>
+    </ol>
+  </section>
+
+  <!-- 07 -->
+  <section id="next">
+    <span class="h2-en">07 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>意味はどう生まれるか</b><p>価値・欲望・感情・意識と「意味」の関係を、四つの記事を踏まえて考える。</p></div>
+      <div><b>仏教との接続</b><p>渇愛・執着と「間」。縁起の中で選ぶとはどういうことか。</p></div>
+      <div><b>死とは何か</b><p>「私」がプロセスなら、そのプロセスが止まるとはどういうことか。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>選んでいるのは、原因の外にいる「私」ではなく、<br>原因の流れの中で、迷い、考え、ためらう「私」だった。</p>
+    <p class="last">流れの外には出られない。<br>けれど、流れの中で立ち止まり、<br>向きを少し変えることはできる。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="self.html">← 03 「私」とは何か</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const ans = { det: null, comp: null };
+  const res = {
+    "yes-yes": ["両立論", "世界は決まっていても、強制されず自分の理由で選ぶなら自由だ——という立場に近い直観です。ヒューム、フランクファート、デネットらの側。"],
+    "yes-no":  ["ハード決定論", "すべては原因で決まっており、本当の自由意志はない——という立場に近い直観です。スピノザやサポルスキーの側。"],
+    "no-yes":  ["両立論（決定論は問わない）", "自由は物理が決定論的かどうかではなく、「どう選ぶか」の問題だ——という直観です。"],
+    "no-no":   ["自由意志論（リバタリアニズム）", "世界は決まっておらず、人は本当に別の選択ができる——という立場に近い直観です。実感に忠実ですが、説明の難しさも抱えています。"]
+  };
+  const cells = document.querySelectorAll(".matrix .cell");
+  const rt = document.querySelector(".result .rt");
+  const render = () => {
+    if (!ans.det || !ans.comp) {
+      cells.forEach(c => c.classList.remove("on", "dim"));
+      rt.innerHTML = ans.det || ans.comp ? "もう一つの問いにも答えてください。" : "二つの問いに答えると、あなたの直観に近い立場が表示されます。";
+      return;
+    }
+    const key = ans.det + "-" + ans.comp;
+    cells.forEach(c => { const on = c.dataset.key === key; c.classList.toggle("on", on); c.classList.toggle("dim", !on); });
+    rt.innerHTML = "";
+    const b = document.createElement("b"); b.textContent = res[key][0];
+    const s = document.createElement("span"); s.style.display = "block"; s.textContent = res[key][1];
+    const r = document.createElement("button"); r.type = "button"; r.className = "reset-q"; r.textContent = "答えをリセット";
+    r.addEventListener("click", () => {
+      ans.det = ans.comp = null;
+      document.querySelectorAll(".quiz .opts button").forEach(x => x.setAttribute("aria-pressed", "false"));
+      render();
+    });
+    rt.append(b, s, r);
+  };
+  document.querySelectorAll(".quiz .opts").forEach(group => {
+    group.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        ans[group.dataset.q] = btn.dataset.v;
+        group.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === btn)));
+        render();
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
