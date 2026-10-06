@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>死とは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="「私」がプロセスなら、それが止まるとはどういうことか。死の定義、エピクロスとルクレティウス、剥奪説、不死の退屈、死の恐怖、大切な人の死、そして無常。終わりがあることと意味の関係をたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* death page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted)}
+  .series a{color:var(--accent)}
+  .care{margin-top:24px;font-size:.86rem;color:var(--sub);padding:16px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper);line-height:1.9}
+  .care b{display:block;font-size:.68rem;letter-spacing:.2em;color:var(--accent);margin-bottom:4px}
+  .care a{color:var(--accent)}
+  .triad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0 10px}
+  .triad div{padding:22px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .triad .en{display:block;font-size:.64rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .triad b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.14rem;margin:6px 0 2px}
+  .triad .q{display:block;font-family:"Noto Serif JP",serif;font-size:.92rem;color:var(--ink);margin-bottom:8px}
+  .triad span{font-size:.86rem;color:var(--sub);line-height:1.8;display:block}
+  .triad .mid{border-color:var(--accent)}
+  @media (max-width:620px){ .triad{grid-template-columns:1fr} }
+  .view-panel .claim{font-family:"Noto Serif JP",serif;font-size:1.1rem;line-height:1.8;margin:6px 0 10px}
+  .view-panel .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .view-panel .cols div{padding:12px 14px;border-radius:3px;font-size:.88rem;color:var(--sub);line-height:1.85}
+  .view-panel .cols b{display:block;font-size:.66rem;letter-spacing:.2em;font-weight:700;margin-bottom:2px}
+  .view-panel .plus{background:var(--sure-soft)} .view-panel .plus b{color:var(--sure)}
+  .view-panel .minus{background:var(--open-soft)} .view-panel .minus b{color:var(--open)}
+  .view-panel .by{font-size:.78rem;color:var(--muted)}
+  @media (max-width:560px){ .view-panel .cols{grid-template-columns:1fr} }
+  .related{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
+  .related a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-decoration:none;transition:border-color .2s}
+  .related a:hover{border-color:var(--accent)}
+  .related small{display:block;font-size:.64rem;font-weight:700;letter-spacing:.2em;color:var(--muted)}
+  .related b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin:2px 0}
+  .related span{font-size:.82rem;color:var(--sub);line-height:1.7;display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 07</p>
+    <h1><span>「私」がプロセスなら、</span><br><span>それが止まるとは</span><span>どういうことか</span></h1>
+    <p class="lead">「私」は固定した実体ではなく、身体・記憶・物語・関係が組み合わさり続けるプロセスなのかもしれない——そう考えてきた。仏教の記事では、すべては移ろう（無常）という見方に触れた。その先に、避けて通れない問いがある。そのプロセスが止まるとき、何が起きるのか。死は、私にとって何なのか。そして、終わりがあることは、生きる意味を奪うのか、それとも与えるのか。</p>
+    <p class="note">これは死についての正解を示すものではなく、死という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「哲学的な見方」「未決定のこと」を区別して書いています。</p>
+    <div class="care"><b>読む前に</b>死について考えることは、ときに気持ちを重くします。読んでいてつらくなったら、無理に読み進めず、いったん離れてください。もし「消えてしまいたい」「死にたい」という気持ちが強くなっているときは、一人で抱えず、身近な人や専門の相談窓口に話してください。相談先は厚生労働省の<a href="https://www.mhlw.go.jp/mamorouyokokoro/" target="_blank" rel="noopener">「まもろうよ こころ」</a>にまとめられています。</div>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味</a> ／ <a href="consciousness.html">02 意識</a> ／ <a href="self.html">03 「私」</a> ／ <a href="free-will.html">04 自由意志</a> ／ <a href="meaning.html">05 意味の成り立ち</a> ／ <a href="buddhism.html">06 仏教</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#persons"><b>02</b>三つの人称の死</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#views"><b>04</b>死をめぐる五つの考え方</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「死」を分解する</h2>
+    <p class="intro">「死とは何か」と問うと、いくつもの問いが絡まり合っていることに気づく。生物学の問い、「私」の問い、価値の問い、そして感情の問い。一つずつほどいていく。</p>
+    <ol class="descent">
+      <li><span class="q">死とは、何がどうなることなのか</span><span class="d">生物学的な死と、「私」の死</span></li>
+      <li><span class="q">死は、死ぬ本人にとって悪いことなのか</span><span class="d">エピクロス、ルクレティウス、剥奪説</span></li>
+      <li><span class="q">死ななければよいのか</span><span class="d">不死は本当に望ましいか</span></li>
+      <li><span class="q">終わりがあることは、意味を奪うのか、与えるのか</span><span class="d">有限性と選択の重み</span></li>
+      <li><span class="q">なぜ私たちは死をこれほど恐れるのか</span><span class="d">死の恐怖と、大切な人の死</span></li>
+      <li><span class="q">死とともに、どう生きるか</span><span class="d">無常と、死を想うこと</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="persons">
+    <span class="h2-en">02 · THREE PERSONS</span>
+    <h2>死には、<br>三つの人称がある</h2>
+    <p class="intro">同じ「死」でも、誰の死かによって、まったく別の経験になる。哲学者ウラジミール・ジャンケレヴィッチは、死を一人称・二人称・三人称に分けて考えた。</p>
+    <div class="triad">
+      <div><span class="en">FIRST PERSON</span><b>一人称の死</b><span class="q">「私の死」</span><span>誰もがいつか迎えるのに、決して「経験」することはできない。死んだとき、それを経験する私はもういない。</span></div>
+      <div class="mid"><span class="en">SECOND PERSON</span><b>二人称の死</b><span class="q">「あなたの死」</span><span>家族や友人、大切な人の死。私たちが実際に「経験」する死は、ほとんどがこれ。もっとも深く心を揺さぶる。</span></div>
+      <div><span class="en">THIRD PERSON</span><b>三人称の死</b><span class="q">「誰かの死」</span><span>ニュースや統計の中の死。知ってはいても、自分の人生の外側の出来事として受け止められる。</span></div>
+    </div>
+    <p class="note">ジャンケレヴィッチ『死』（1966）による区別。この記事では、主に一人称の死（私の死）を考え、最後に二人称の死に触れる。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>死とは、何が終わることか</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">死は「瞬間」ではなく「過程」</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ドラマでは、心電図が平らになった瞬間に人が死ぬ。けれども生物学的には、死は一瞬で起きるわけではない。心臓が止まっても、すべての細胞が同時に死ぬのではなく、組織によって時間差がある。</p>
+          <p>だから社会は、どこかで線を引く必要がある。心臓と呼吸が止まり、瞳孔が開いた状態をもって死とする考え方（いわゆる三徴候）のほか、脳全体の機能が失われた状態（脳死）を人の死とする考え方もある。日本では、臓器移植の場面などで脳死が人の死として扱われる。</p>
+          <div class="insight">「死」とは、自然の中にくっきり引かれた線ではなく、連続した過程のどこかに、私たちが引いている線なのかもしれない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">「私」の死とは、何が止まることか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「私」の記事で、「私」は身体・記憶・物語・関係が組み合わさり続けるプロセスだと考えた。だとすれば、私の死とは、そのプロセスが止まることだ。</p>
+          <p>ただし、すべてが同時に止まるわけではない。身体の働きは止まる。経験も、おそらく止まる。けれども、私が他者の中に残した記憶や影響、私が関わってきた物語は、しばらく続いていく。</p>
+          <div class="flow"><span>身体の働き</span><i>→</i><span>経験（意識）</span><i>→</i><span>記憶・物語</span><i>→</i><span>他者との関係・影響</span></div>
+          <div class="insight">「私」がいくつもの層からなるプロセスなら、死もまた、層ごとに違う速さで訪れる。関係の層は、身体よりずっと長く続くことがある。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">経験の終わりは、経験できない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「意識」の記事で、意識は脳活動と深く対応していると考えた。もし意識が脳の働きに依存しているなら、脳が止まれば経験も止まる。</p>
+          <p>夢を見ない深い眠りや全身麻酔のとき、私たちは何も経験していない。目覚めて初めて「時間が飛んだ」と気づく。けれども、死には目覚めがない。</p>
+          <div class="insight">死を恐れるとき、私は「暗闇の中に閉じ込められる私」を想像してしまう。けれども、暗闇を経験する私もいないのだとしたら、その想像そのものが、死の姿を取り違えているのかもしれない。</div>
+          <p class="aside"><b>注意：</b>意識が脳だけに依存しているかどうかは、「意識の難問」と同じく完全には決着していない。死後も何らかの形で経験が続くという宗教的・哲学的な見方もあり、ここではそれを否定も肯定もしない。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>死は、悪いことなのか</h3></div>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">エピクロス：死は私たちにとって何ものでもない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>古代ギリシアの哲学者エピクロスは、こう論じた。善いことも悪いことも、感じることの中にある。死とは感じることの終わりである。だから、私たちが存在するとき死は存在せず、死が存在するとき私たちはもう存在しない。</p>
+          <div class="compare">
+            <div><small>私がいるとき</small>死はまだ来ていない</div>
+            <div><small>死が来たとき</small>私はもういない</div>
+          </div>
+          <div class="insight">論理としては、驚くほど筋が通っている。死が私に害を与える瞬間は、どこにもないように見える。それでも、この議論を読んで死が怖くなくなる人は少ない。その「割り切れなさ」こそが、考える手がかりになる。</div>
+          <p class="aside"><b>出典：</b>エピクロス「メノイケウス宛の手紙」。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">ルクレティウス：生まれる前の無を、なぜ恐れないのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>エピクロスの思想を受け継いだ古代ローマの詩人ルクレティウスは、もう一つの議論を加えた。私たちが生まれる前にも、永遠とも言える時間があった。そのとき私は存在しなかったが、それを苦痛だと思う人はいない。</p>
+          <p>死後の時間は、生まれる前の時間と鏡のように対称だ。前の無を恐れないなら、後の無を恐れる理由もないのではないか。</p>
+          <div class="insight">たしかに、生まれる前の無を思い出して苦しむ人はいない。けれども私たちは、過去の無と未来の無を、どうしても同じには感じられない。この非対称の感覚は、どこから来るのだろう。</div>
+          <p class="aside"><b>出典：</b>ルクレティウス『物の本質について』。この議論は「対称性論法」と呼ばれる。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">剥奪説：死は、未来の善いものを奪う</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>エピクロスに対する有力な反論が、「剥奪説」だ。死が悪いのは、死そのものが苦痛だからではない。もし生きていれば得られたはずの経験——喜び、出会い、成長——を奪うからだ、と考える。</p>
+          <p>本人がそれに気づかなくても、害はありうる。たとえば、陰で裏切られていることに一生気づかなかったとしても、その人は害を受けていると言えるのと同じように。</p>
+          <div class="insight">死の悪さは、「死の中」にあるのではなく、「死がなければあったはずの人生」との比較の中にある。だとすれば、死の悪さは人によって、時期によって違う。</div>
+          <p class="aside"><b>関連する考え方：</b>トマス・ネーゲルの論文「死」（1970）が代表的。ルクレティウスの対称性に対しては、生まれるのが早まっていたら別の人になっていたかもしれない、私たちは過去より未来を気にかけるようにできている（パーフィット）、などの応答がある。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>終わりと意味</h3></div>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">死ななければ、それでよいのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>死が未来の善いものを奪うなら、永遠に生きられれば最善なのか。哲学者バーナード・ウィリアムズは、ある戯曲に登場する、薬で三百年以上生き続けた女性の例を挙げて、そうではないと論じた。彼女は、あらゆることに倦み果て、最後には生きることそのものに無関心になってしまう。</p>
+          <p>永遠の時間があれば、何をいつやってもいい。今日やらなくても、いつかできる。そうなったとき、一つ一つの選択は、どれだけの重みを持てるだろう。</p>
+          <div class="insight">自由意志の記事で、自由とは「選び直せること」だと考えた。けれども、終わりがなければ、選ぶことそのものが軽くなってしまうのかもしれない。有限であることが、選択に重みを与えている。</div>
+          <p class="aside"><b>出典：</b>ウィリアムズ「マクロプロス事件」（1973）。カレル・チャペックの戯曲に基づく。もちろん「永遠でなくても、今よりずっと長く生きたい」という願いまで否定されるわけではない。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">死を自覚することが、生き方を変える</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>哲学者マルティン・ハイデガーは、人間を「死へと向かう存在」として捉えた。ふだん私たちは、「人はいつか死ぬ」と一般論として語り、自分の死からは目を逸らしている。</p>
+          <p>けれども、自分が必ず死ぬこと、それがいつ来るか分からないこと、誰にも代わってもらえないことに向き合うとき、人は「世間がどう言うか」ではなく、「自分はどう生きるか」を問われる。</p>
+          <div class="insight">死は誰にも代わってもらえない。だからこそ、死を自覚することは、他の誰でもない「自分の人生」を引き受けることにつながる。</div>
+          <p class="aside"><b>出典：</b>ハイデガー『存在と時間』（1927）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">私が死んでも、世界は続く——それが意味を支えている</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>こんな想像をしてみる。もし、自分が死んだ30日後に人類が滅亡すると分かっていたら。自分の死は変わらない。それでも、今やっていることの多く——研究、子育て、作品づくり、木を植えること——は、急に色あせてしまうのではないか。</p>
+          <p>哲学者サミュエル・シェフラーはこの思考実験から、私たちが「意味がある」と感じることの多くは、自分の死後も人々が生き続けることを、暗黙の前提にしていると論じた。</p>
+          <div class="insight">「意味」の記事で、意味は他者とのあいだで生まれると考えた。その関係は、自分の死の向こう側まで伸びている。私の人生の意味は、私がいなくなった後の世界にも支えられている。</div>
+          <p class="aside"><b>出典：</b>シェフラー『Death and the Afterlife』（2013）。彼はこれを、個人の来世ではなく「集団的な来世」と呼んだ。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>恐れと悲しみ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">死の恐怖は、どこから来るのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>エピクロスの議論に納得しても、恐怖は消えない。それは、死の恐怖が理屈ではなく、もっと深いところから来ているからだろう。最初の記事で見たように、生き物には「生きたい」という強い傾向が進化の中で備わっている。</p>
+          <p>文化人類学者アーネスト・ベッカーは、人間の文化や価値観の多くは、死の恐怖から目を逸らすためにつくられていると論じた。それをもとにした心理学の「存在脅威管理理論」は、死を意識させられると、人は自分の属する文化や価値観をより強く守ろうとする傾向がある、と主張している。</p>
+          <div class="insight">意味を求めること自体が、死の恐怖への応答なのかもしれない——そう考えると少し居心地が悪い。けれども、恐怖から生まれたものが、だから偽物だということにはならない。</div>
+          <p class="aside"><b>注意：</b>ベッカー『死の拒絶』（1973）。存在脅威管理理論の中心的な実験効果については、近年の大規模な再現研究でうまく再現されなかったという報告もあり、議論が続いている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">大切な人の死：二人称の死</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>エピクロスの議論は、私の死についての慰めにはなっても、大切な人を失う悲しみには何も答えてくれない。私たちが実際に経験する死は、ほとんどが「あなたの死」だ。</p>
+          <p>かつては、悲しみを乗り越えるには故人との絆を断ち切り、前に進む必要があると考えられていた。けれども近年の研究では、故人との関係は終わるのではなく、形を変えて続いていく——思い出し、語りかけ、その人の価値観を受け継ぐ——という見方も重視されている。</p>
+          <div class="insight">「私」が関係の中で成り立っていたように、亡くなった人もまた、私の中で関係として生き続ける。死は関係を終わらせるのではなく、関係のかたちを変える。</div>
+          <p class="aside"><b>関連する考え方：</b>「継続する絆（continuing bonds）」と呼ばれる考え方（クラス、シルバーマン、ニックマン編、1996）。悲しみが長く強く続き、生活が立ち行かなくなるときは、専門家の支えを借りることも大切だ。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>無常とともに</h3></div>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">死を想い、いまに戻る</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>仏教には、自分がいつか必ず死ぬことを静かに思い起こす「死随念（しずいねん）」という実践がある。西洋にも「メメント・モリ（死を忘れるな）」という言葉がある。どちらも、死を想うことで、恐れに沈むのではなく、いまをどう生きるかに目を向けさせる。</p>
+          <p>「私」の記事で触れたパーフィットは、「私」を固定した実体ではなくつながりの程度として見たとき、自分と他人のあいだの壁が薄くなり、死への恐れも和らいだと書いた。無我の教えも、同じ方向を指している。</p>
+          <div class="insight">すべては移ろう。私も例外ではない。そう受け入れることは、絶望ではなく、いま目の前にあるものを大切にすることにつながる。終わりがあるから、いまが「いま」になる。</div>
+          <p class="aside"><b>補足：</b>伝統的な仏教では、死は輪廻の中の一つの節目でもあり、死後についての独自の教えがある。ここでは、無常と死随念という実践の側面だけを取り出している。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="views">
+    <span class="h2-en">04 · FIVE VIEWS</span>
+    <h2>死をめぐる五つの考え方</h2>
+    <p class="intro">死は悪いことなのか、恐れるべきものなのか。哲学の主な考え方を切り替えて、それぞれの「慰め」と「引っかかり」を比べてみてください。</p>
+
+    <div class="who-tabs view-tabs" role="tablist" aria-label="死をめぐる考え方"></div>
+    <div class="who-panel view-panel" role="tabpanel" aria-live="polite">
+      <div class="label"></div>
+      <div class="claim"></div>
+      <p class="by"></p>
+      <div class="cols">
+        <div class="plus"><b>この考え方がくれる慰め</b><span class="c1"></span></div>
+        <div class="minus"><b>引っかかるところ</b><span class="c2"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>生物学的な死は一瞬ではなく、細胞や組織によって時間差のある過程である。</li>
+          <li>何をもって「人の死」とするかには、社会的・法的な判断が含まれる。</li>
+          <li>意識の状態は脳の働きと深く対応しており、深い眠りや麻酔では経験が途切れる。</li>
+          <li>人間を含む生き物には、生き延びようとする強い傾向が進化の中で備わっている。</li>
+          <li>私たちが実際に経験する死の多くは、他者の死である。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>哲学的な見方・仮説</h4>
+        <ul>
+          <li>死が悪いのは、未来の善いものを奪うからである（剥奪説）。</li>
+          <li>不死は、選択から重みを奪い、退屈をもたらすかもしれない。</li>
+          <li>私たちの「意味」の多くは、自分の死後も世界が続くことに支えられている。</li>
+          <li>死者との関係は終わるのではなく、かたちを変えて続く。</li>
+          <li>有限性を自覚することが、いまを大切にすることにつながる。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>死後に、何らかの形で経験は続くのか。</li>
+          <li>意識は、脳の停止とともに完全に終わるのか。</li>
+          <li>生まれる前の無と死後の無は、なぜ違って感じられるのか。</li>
+          <li>死は、死ぬ本人にとって本当に「悪い」と言えるのか。</li>
+          <li>死の恐怖は、理解によってどこまで和らげられるのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">死とは、「私」というプロセスが止まること——いまはそう考えるのがもっとも妥当に思える。ただし、そのとき経験がどうなるのかは、意識の問題と同じく最後のところで分からない。そして、死は意味を奪うものではなく、むしろ選択と関係に重みを与えているのかもしれない。</p>
+
+    <div class="formula">
+      <div class="no">終わりがあるのなら、何をしても無意味だ</div>
+      <div class="yes"><span>有限性</span><i>×</i><span>選択</span><i>×</i><span>つながり</span><i>×</i><span>無常</span></div>
+      <div class="cap">終わりがあるからこそ、選ぶことと関わることに重みが生まれる</div>
+    </div>
+
+    <blockquote class="big">死は、人生の外側から意味を奪いに来るものではなく、人生のかたちを縁取っている輪郭なのかもしれない。輪郭があるから、絵は絵になる。そして私の絵の一部は、私がいなくなった後も、誰かの中に残っていく。</blockquote>
+    <p class="note">ただし、これは死の恐怖を消すための答えではない。恐れや悲しみは、生きているものの自然な反応であって、消さなければならないものではない。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>死は瞬間ではなく過程であり、どこで線を引くかには社会的な判断が含まれる。</li>
+      <li>「私」がプロセスなら、死は層ごとに違う速さで訪れ、関係の層は長く残る。</li>
+      <li>私の死は、私自身によって経験されることはない（エピクロス）。</li>
+      <li>それでも死が悪いとすれば、未来の善いものを奪うからだ（剥奪説）。</li>
+      <li>終わりがあることが、選択に重みを与えている（不死の退屈）。</li>
+      <li>私たちの意味の多くは、自分の死後も世界が続くことに支えられている。</li>
+      <li>大切な人との関係は、死によって終わるのではなく、かたちを変えて続く。</li>
+    </ol>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">m-note 内の関連ノート</h3>
+    <div class="related">
+      <a href="../time/"><small>TIME</small><b>時間とは何か</b><span>光速不変から、時間の遅れ、時空、ブラックホールまで。時間は誰にとっても同じではなかった。</span></a>
+      <a href="../early-buddhism/"><small>EARLY BUDDHISM</small><b>原始仏教</b><span>釈迦が説いた最初の教えを、苦・執着からメタ認知まで現代の視点で捉え直すノート。</span></a>
+      <a href="../mindfulness/"><small>MINDFULNESS</small><b>マインドフルネス</b><span>瞑想・ACT・セルフアクセプタンスの実践ノート。</span></a>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>死後に、何らかの経験は続くのか？</li>
+      <li>生まれる前の無と死後の無は、なぜこれほど違って感じられるのか？</li>
+      <li>経験されない死は、本人にとって「悪い」と言えるのか？</li>
+      <li>どれくらいの長さの人生なら、退屈せずに生きられるのか？</li>
+      <li>人類がいつか必ず終わるとしたら、意味はどうなるのか？</li>
+      <li>完全なコピーが残るなら、私は死んだことになるのか？</li>
+      <li>死の恐怖をなくすことは、望ましいことなのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>幸福とは何か</b><p>快楽、満足、意味、苦しみの消滅。有限な人生の中で、幸福にはいくつの形があるのか。</p></div>
+      <div><b>時間とは何か（哲学編）</b><p>過去・現在・未来は本当にあるのか。「いま」とは何か。</p></div>
+      <div><b>空とは何か</b><p>縁起を推し進めた大乗仏教の「空」と、生と死の見方。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>死について考えていたはずが、<br>気づけば、どう生きるかを考えていた。<br>たぶん、それが死という問いの性質なのだと思う。</p>
+    <p class="last">終わりがあるから、<br>いまが「いま」になる。<br>今日を、もう少し丁寧に生きてみる。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="buddhism.html">← 06 仏教との接続</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const data = [
+    { k: "エピクロス", claim: "死は私たちにとって何ものでもない。私がいるとき死はなく、死があるとき私はいない。",
+      by: "古代ギリシアの哲学者エピクロス（前341頃〜前270頃）",
+      c1: "死そのものが私を苦しめる瞬間はない。死んだ後の私を心配する必要はない。",
+      c2: "論理は通っていても、恐怖は消えない。死の「前」にある喪失や、生きられなかった未来は扱えない。" },
+    { k: "ルクレティウス", claim: "生まれる前の永遠の無を恐れないなら、死後の無も恐れる必要はない。",
+      by: "古代ローマの詩人ルクレティウス（前1世紀）",
+      c1: "死後の無は、誰も苦しんだことのない「生まれる前」と同じものだと思える。",
+      c2: "私たちは過去より未来を気にかけるようにできている。過去の無と未来の無は、どうしても対称に感じられない。" },
+    { k: "剥奪説", claim: "死が悪いのは、生きていれば得られたはずの善いものを奪うからだ。",
+      by: "トマス・ネーゲル「死」（1970）など",
+      c1: "死を悲しむことが筋の通ったことになる。若い人の死がとりわけ悲劇的に感じられる理由も説明できる。",
+      c2: "奪われる「誰か」がもういないのに、誰が害を受けるのか。また、この理屈では長く生きるほど常に良いことになる。" },
+    { k: "不死の退屈", claim: "永遠に生きることは、やがて耐えがたい退屈と無関心をもたらす。",
+      by: "バーナード・ウィリアムズ「マクロプロス事件」（1973）",
+      c1: "死は、選択に重みを与え、人生にかたちを与えるものでもある。終わりは呪いだけではない。",
+      c2: "人間がどれくらいで退屈するかは分からない。「永遠は嫌でも、もっと長く生きたい」という願いには答えていない。" },
+    { k: "集合的来世", claim: "私の人生の意味の多くは、自分の死後も人々が生き続けることに支えられている。",
+      by: "サミュエル・シェフラー『Death and the Afterlife』（2013）",
+      c1: "私がいなくなっても、私が関わった世界は続き、私の行いはその中で意味を持ち続ける。",
+      c2: "では、人類そのものがいつか必ず終わるとき、その意味はどうなるのか、という問いが残る。" }
+  ];
+  const tabs = document.querySelector(".view-tabs");
+  const panel = document.querySelector(".view-panel");
+  const q = (s) => panel.querySelector(s);
+  const show = (i) => {
+    tabs.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
+    const d = data[i];
+    q(".label").textContent = d.k;
+    q(".claim").textContent = d.claim;
+    q(".by").textContent = d.by;
+    q(".c1").textContent = d.c1;
+    q(".c2").textContent = d.c2;
+  };
+  data.forEach((d, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.role = "tab"; b.textContent = d.k;
+    b.addEventListener("click", () => show(i));
+    tabs.appendChild(b);
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
