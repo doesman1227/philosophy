@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>善く生きるとは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="自分の幸福と、他者への責任。善悪はどこから来るのか、何が正しい行為なのか。功利主義・義務論・徳倫理・ケアの倫理、トロッコ問題、道徳と感情、仏教の倫理をたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* ethics page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted);line-height:2}
+  .series a{color:var(--accent)}
+  .quad{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:30px 0 10px}
+  .quad div{padding:22px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .quad .en{display:block;font-size:.64rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .quad b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.14rem;margin:6px 0 2px}
+  .quad .q{display:block;font-family:"Noto Serif JP",serif;font-size:.94rem;color:var(--ink);margin-bottom:8px}
+  .quad span{font-size:.86rem;color:var(--sub);line-height:1.8;display:block}
+  .quad span.who{margin-top:8px;font-size:.78rem;color:var(--muted)}
+  @media (max-width:620px){ .quad{grid-template-columns:1fr} }
+
+  .scen-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+  .scen-tabs button{font:inherit;font-size:.84rem;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--sub);cursor:pointer}
+  .scen-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .scen-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .scen{margin-top:14px;padding:26px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .scen .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .scen .setup{color:var(--sub);font-size:.94rem;margin:8px 0 12px}
+  .scen .question{font-family:"Noto Serif JP",serif;font-size:1.12rem;line-height:1.8}
+  .scen .choices{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .scen .choices button{font:inherit;font-size:.9rem;padding:8px 20px;border:1px solid var(--accent);border-radius:3px;background:var(--bg);color:var(--accent);cursor:pointer;transition:all .2s}
+  .scen .choices button:hover{background:var(--accent-soft)}
+  .scen .choices button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+  .scen .choices button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .scen .resp{margin-top:16px}
+  .scen .resp[hidden]{display:none}
+  .scen .resp .lens{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .scen .resp .lens div{padding:12px 14px;border-radius:3px;background:var(--soft);font-size:.86rem;color:var(--sub);line-height:1.8}
+  .scen .resp .lens b{display:block;font-size:.66rem;letter-spacing:.18em;font-weight:700;color:var(--accent);margin-bottom:2px}
+  .scen .resp .most{margin-top:10px;padding:12px 16px;border-radius:3px;background:var(--accent-soft);font-size:.88rem;color:var(--sub)}
+  @media (max-width:560px){ .scen .resp .lens{grid-template-columns:1fr} }
+  .pattern{margin-top:16px;padding:18px 22px;border:1px dashed var(--accent);border-radius:4px;font-size:.9rem;color:var(--sub);line-height:1.9}
+  .pattern[hidden]{display:none}
+  .pattern b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;color:var(--ink);margin-bottom:2px}
+
+  .related{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
+  .related a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-decoration:none;transition:border-color .2s}
+  .related a:hover{border-color:var(--accent)}
+  .related small{display:block;font-size:.64rem;font-weight:700;letter-spacing:.2em;color:var(--muted)}
+  .related b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin:2px 0}
+  .related span{font-size:.82rem;color:var(--sub);line-height:1.7;display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 09</p>
+    <h1><span>「善く生きる」の</span><span>「善く」とは、</span><br><span>何のことなのか</span></h1>
+    <p class="lead">「幸福」の記事では、自分にとって良い人生とは何かを考えた。けれども、人は一人で生きているわけではない。自分の幸福を追い求めることと、他者に対して正しくあることは、いつも一致するとは限らない。古代ギリシアのソクラテスは、大切なのはただ生きることではなく、善く生きることだと語ったと伝えられる。では、その「善く」とは何なのか。</p>
+    <p class="note">これは倫理の正解を示すものではなく、「善く生きるとは何か」という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「理論・仮説」「未決定のこと」を区別して書いています。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味</a> ／ <a href="consciousness.html">02 意識</a> ／ <a href="self.html">03 「私」</a> ／ <a href="free-will.html">04 自由意志</a> ／ <a href="meaning.html">05 意味の成り立ち</a> ／ <a href="buddhism.html">06 仏教</a> ／ <a href="death.html">07 死</a> ／ <a href="happiness.html">08 幸福</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#theories"><b>02</b>倫理の四つのレンズ</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#trolley"><b>04</b>トロッコ問題で試す</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「善く生きる」を分解する</h2>
+    <p class="intro">「良い人であろう」とは誰もが思う。けれども、何をもって「良い」とするのかを問われると、答えは人によって、場面によって、驚くほど食い違う。</p>
+    <ol class="descent">
+      <li><span class="q">善悪は、どこから来るのか</span><span class="d">神、文化、進化、それとも理性</span></li>
+      <li><span class="q">善悪は、文化や人によって違うだけなのか</span><span class="d">相対主義と、道徳の進歩</span></li>
+      <li><span class="q">何が「正しい行為」なのか</span><span class="d">結果、原則、人柄、関係</span></li>
+      <li><span class="q">道徳は、理性で決めているのか、感情で決めているのか</span><span class="d">トロッコ問題と直観</span></li>
+      <li><span class="q">私は、どこまでの他者に責任を負うのか</span><span class="d">遠くの他者、未来の世代</span></li>
+      <li><span class="q">自分の幸福と、善く生きることは一致するのか</span><span class="d">アリストテレス、仏教、そしてこれまでの記事</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="theories">
+    <span class="h2-en">02 · FOUR LENSES</span>
+    <h2>「正しさ」を見る、<br>四つのレンズ</h2>
+    <p class="intro">倫理学には、「何が正しいか」を判断するための大きな考え方がいくつかある。同じ状況でも、どのレンズを通すかで、見えてくる答えが変わる。</p>
+    <div class="quad">
+      <div><span class="en">CONSEQUENCES</span><b>功利主義</b><span class="q">「結果は、どれだけ良いか」</span><span>行為の正しさは、その結果によって決まる。関係するすべての人の幸福を、できるだけ大きくする行為が正しい。</span><span class="who">ベンサム、ミル、現代ではピーター・シンガーなど</span></div>
+      <div><span class="en">DUTY</span><b>義務論</b><span class="q">「原則に、かなっているか」</span><span>結果がどうであれ、してはならないこと、守るべき義務がある。人を単なる手段として扱ってはならない。</span><span class="who">カントなど</span></div>
+      <div><span class="en">VIRTUE</span><b>徳倫理</b><span class="q">「善い人なら、どうするか」</span><span>個々の行為よりも、どんな人柄を育てるかを重視する。勇気、正直、思いやりといった徳を備えた人のように行為する。</span><span class="who">アリストテレスなど</span></div>
+      <div><span class="en">CARE</span><b>ケアの倫理</b><span class="q">「目の前の人の必要に、応えているか」</span><span>抽象的な原則より、具体的な関係の中で、傷つきやすい他者の必要に応え、関係を育むことを重視する。</span><span class="who">キャロル・ギリガン、ネル・ノディングスなど</span></div>
+    </div>
+    <p class="note">実際の倫理学には、契約説、自然法論、討議倫理など、ほかにも多くの立場がある。ここでは代表的な四つに絞っている。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>善悪は、どこから来るのか</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">神が命じるから善なのか、善だから神が命じるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>もっとも古い答えの一つは、「善とは神が命じることだ」というものだ。けれどもプラトンの対話篇『エウテュプロン』で、ソクラテスは鋭い問いを投げかけている。神が愛するから善いのか。それとも、善いから神が愛するのか。</p>
+          <div class="compare">
+            <div><small>神が命じるから善い</small>だとすると、神が残酷さを命じたら、残酷さが善になってしまう</div>
+            <div><small>善いから神が命じる</small>だとすると、善は神とは独立に存在し、神なしでも問える</div>
+          </div>
+          <div class="insight">最初の記事で、「創造主を仮定しても『なぜ存在するのか』という問いは終わらない」と考えた。善についても同じ構造がある。神を持ち出しても、「善とは何か」という問いそのものは残る。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">善悪は、文化によって違うだけなのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>何が礼儀正しいか、何を食べてよいか、誰と結婚してよいか。道徳的な規範は、時代や文化によって大きく違う。だとすれば、善悪とは結局、それぞれの社会の決まりごとにすぎないのではないか（道徳的相対主義）。</p>
+          <p>けれども、もしそうなら、奴隷制や差別が当たり前だった社会を「間違っていた」と言う根拠がなくなる。奴隷制の廃止を「道徳の進歩」と呼ぶことも、できなくなってしまう。</p>
+          <div class="insight">規範が文化によって違うことは事実だ。けれどもそれは、「どれも同じくらい正しい」ことを意味しない。違いがあることと、比べられないことは別だ。</div>
+          <p class="aside"><b>補足：</b>一方で、多くの文化に共通する道徳的な関心——身内を大切にする、恩に報いる、公平であろうとする、不必要な危害を避けるなど——があることも指摘されている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">道徳は、進化の中で生まれたのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>人間は、集団で協力し合うことで生き延びてきた。血縁者を助ける傾向、恩を返す傾向、ずるをする者を罰する傾向は、進化の中で形づくられてきたと考えられている。チンパンジーなどにも、争いのあとで仲直りしたり、傷ついた仲間を慰めたりするような行動が観察されている。</p>
+          <p>乳児が、他者を助けるキャラクターを、邪魔するキャラクターより好むように見える、という実験も報告されている。</p>
+          <div class="insight">道徳の「根っこ」は、理性より古いのかもしれない。けれども最初の記事で考えたように、「進化によってそうなった」ことは、「そうすべきだ」ことを意味しない。道徳の起源を説明することと、道徳を正当化することは別の仕事だ。</div>
+          <p class="aside"><b>関連する研究：</b>霊長類学者フランス・ドゥ・ヴァールの研究。乳児の実験はキリー・ハムリンらによる（2007）が、その後の追試では結果が分かれている。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>何が「正しい行為」なのか</h3></div>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">功利主義：最大多数の最大幸福</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ジェレミー・ベンサムとジョン・スチュアート・ミルは、行為の正しさをその結果で判断した。関係するすべての人の幸福を足し合わせ、それがもっとも大きくなる行為が正しい。誰の幸福も、等しく一人分として数える。</p>
+          <p>この考え方は、身分や国籍にとらわれない平等さを持っている。ベンサムは、動物についても「彼らは考えられるか」ではなく「彼らは苦しむことができるか」が問題だと述べた。</p>
+          <div class="insight">功利主義の強さは、その公平さにある。けれども、全体の幸福のためなら、一人の権利を踏みにじってもよいことになりかねない。（<a href="#trolley">04章</a>の「臓器移植」を参照）</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">義務論：人を手段としてだけ扱ってはならない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>イマヌエル・カントは、結果ではなく、行為の原則（格率）に目を向けた。自分の行為の原則が、すべての人にとっての普遍的な法則になってもよいと言えるか。たとえば「都合が悪いときは嘘をつく」が普遍的な法則になれば、約束や信頼そのものが成り立たなくなる。</p>
+          <p>そしてカントは、人間を、単なる手段としてではなく、つねに同時に目的として扱え、と説いた。人には、何かのための道具ではない、それ自体としての尊厳がある。</p>
+          <div class="insight">義務論の強さは、人の尊厳を守る「越えてはならない一線」を引けることにある。けれども、殺人者に友人の居場所を聞かれても嘘をついてはならない、といった結論は、多くの人にとって受け入れがたい。</div>
+          <p class="aside"><b>補足：</b>カントは晩年の小論で、この「戸口の殺人者」の例について、嘘は許されないという立場をとった。カント研究者の間でも、この結論の解釈には議論がある。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">徳倫理：どんな人になるか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「幸福」の記事で見たアリストテレスは、「この場面で何をすべきか」より、「どんな人間になるべきか」を問うた。善い行為とは、徳を備えた人がその場面で行うような行為だ。</p>
+          <p>彼にとって徳とは、多くの場合、二つの極端のあいだの「中庸」だった。勇気は、臆病と無謀のあいだにある。そして、状況に応じて何がその中庸かを見抜く力を、「実践知（フロネーシス）」と呼んだ。</p>
+          <div class="flow"><span>臆病</span><i>—</i><span>勇気（中庸）</span><i>—</i><span>無謀</span></div>
+          <div class="insight">徳は、ルールを覚えることではなく、繰り返しの実践の中で身につく「人柄」だ。「私」がプロセスであるように、善い人であることもまた、育ち続けるプロセスなのだと思う。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">ケアの倫理：関係の中の責任</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>心理学者キャロル・ギリガンは、それまでの道徳発達の理論が、抽象的な原則や公正さばかりを重んじ、人と人との関係やケアの視点を見落としていると指摘した。</p>
+          <p>ケアの倫理は、私たちが誰もが、赤ちゃんとして、病人として、老人として、誰かのケアに依存して生きている、という事実から出発する。独立した個人どうしの契約ではなく、傷つきやすい者どうしの関係が、倫理の基盤になる。</p>
+          <div class="insight">「私」の記事で、「私」は関係の中で編まれていると考えた。ケアの倫理は、その「関係としての私」から出発する倫理なのだと思う。</div>
+          <p class="aside"><b>出典：</b>ギリガン『もうひとつの声』（1982）。教育哲学者ネル・ノディングスらがケアの倫理を発展させた。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>直観と理性</h3></div>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">トロッコ問題：同じ「一人と五人」なのに</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>暴走するトロッコの先に五人がいる。ポイントを切り替えれば、別の線路の一人が犠牲になる代わりに五人が助かる。多くの人は「切り替える」と答える。</p>
+          <p>ところが、線路の上の歩道橋から大柄な人を突き落として止めれば五人が助かる、という場合には、多くの人が「突き落とさない」と答える。どちらも「一人を犠牲に五人を救う」点では同じなのに。</p>
+          <div class="insight">私たちの道徳的な判断は、結果の計算だけでは説明できない。「自分の手で直接危害を加えるか」「人を手段として使うか」といった違いに、強く反応している。（<a href="#trolley">04章</a>で試せます）</div>
+          <p class="aside"><b>出典：</b>哲学者フィリッパ・フット（1967）が提起し、ジュディス・ジャーヴィス・トムソンが歩道橋などの変形を論じた。神経科学者ジョシュア・グリーンらは、歩道橋のような状況で、感情に関わる脳領域がより強く働くと報告した。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">道徳的判断は、感情が先に下している</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>デイヴィッド・ヒュームは、「理性は情念の奴隷である」と書いた。現代の心理学者ジョナサン・ハイトは、道徳的な判断の多くは、まず直観的・感情的に下され、理由づけは後から行われる、と論じた。誰も傷つかない「タブー」の話を聞いて「なんとなく間違っている」と感じ、理由を問われると答えに詰まる——そうした現象も報告されている。</p>
+          <p>「意識」と「自由意志」の記事で、人は自分の行動の理由を後から語ることがある、と見た。道徳的判断にも同じことが起きているのかもしれない。</p>
+          <div class="insight">感情は道徳の土台だが、感情だけでは偏見や身内びいきも正当化してしまう。理性の役割は、感情を捨てることではなく、感情を問い直し、その輪を広げることにあるのかもしれない。</div>
+          <p class="aside"><b>出典：</b>ハイト『社会はなぜ左と右にわかれるのか（The Righteous Mind）』（2012）。彼は直観を「象」、理性を「象使い」にたとえた。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">遠くの他者に、私は責任を負うのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>池で子どもが溺れている。助けに入れば、高価な靴が台無しになる。それでも助けない人はいないだろう。哲学者ピーター・シンガーは、この直観を突きつけたうえで問う。では、遠い国で同じように命の危険にある子どもを、少しの寄付で救えるのに、それをしないことは、何が違うのか。</p>
+          <p>距離が遠いこと、顔が見えないこと、他にも助けられる人がいること。それらは、道徳的な違いと言えるのだろうか。</p>
+          <div class="insight">私たちの思いやりは、近くの、顔の見える人に強く働くようにできている。けれども、その「思いやりの輪」を、遠くの他者、未来の世代、動物へと少しずつ広げてきたことが、道徳の歴史でもある。</div>
+          <p class="aside"><b>出典：</b>シンガー「飢えと豊かさと道徳」（1972）。この議論は、のちの「効果的利他主義」の運動にも影響を与えた。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>これまでの記事とつなぐ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">仏教の倫理：意図こそが行為である</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>仏教の記事で見たように、仏教は苦しみを減らすことを目指した。その倫理は、在家の人が守るべき基本的な戒め（五戒）にまとめられている。</p>
+          <div class="tags"><span>生き物を殺さない</span><span>盗まない</span><span>よこしまな性的関係を持たない</span><span>嘘をつかない</span><span>酒などに溺れない</span></div>
+          <p>そして仏教は、行為（業・カルマ）の本質を「意図」に見た。ブッダは「意図こそが業である」と説いたと伝えられる。同じ行為でも、どんな心から行われたかが、その行為の質を決める。</p>
+          <div class="insight">「自由意志」の記事で、自由とは刺激と反応のあいだに「間」をつくることだと考えた。その「間」で、渇愛からではなく慈しみから行為を選ぶこと。それが、仏教にとっての善く生きることなのだと思う。</div>
+          <p class="aside"><b>出典：</b>パーリ経典『増支部』。五戒は、外から課された命令というより、自ら引き受ける「学びの戒め」として説かれる。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">自分の幸福と、善く生きることは一致するのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>アリストテレスにとって、幸福（エウダイモニア）と徳は切り離せなかった。善く生きることこそが、幸福に生きることだった。ソクラテスはさらに進んで、不正を為すよりは、不正を受けるほうがよい、とまで語ったと伝えられる。</p>
+          <p>現実には、正直者が損をすることも、ずるい人が得をすることもある。それでも、「幸福」の記事で見たように、人とのつながり、意味のある関わり、足るを知る心が幸福の柱だとすれば、それは善く生きることと大きく重なっている。</p>
+          <div class="insight">善く生きることは、自分の幸福を犠牲にすることではなく、自分の幸福と他者への応答を、一つの生き方として編み上げていくことなのかもしれない。ただし、両者がぶつかる場面は確かにあり、そのとき私たちは迷う。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="trolley">
+    <span class="h2-en">04 · TRY IT</span>
+    <h2>トロッコ問題で、<br>自分の直観を試す</h2>
+    <p class="intro">三つの状況は、どれも「一人を犠牲にすれば五人が助かる」という構造をしている。それぞれ、自分ならどうするかを選んでみてください。選ぶと、四つのレンズからの見え方が表示されます。</p>
+
+    <div class="scen-tabs" role="tablist" aria-label="状況を選ぶ"></div>
+    <div class="scen" role="tabpanel" aria-live="polite">
+      <div class="label"></div>
+      <p class="setup"></p>
+      <div class="question"></div>
+      <div class="choices"></div>
+      <div class="resp" hidden>
+        <div class="lens">
+          <div><b>功利主義</b><span class="l1"></span></div>
+          <div><b>義務論</b><span class="l2"></span></div>
+          <div><b>徳倫理</b><span class="l3"></span></div>
+          <div><b>ケアの倫理</b><span class="l4"></span></div>
+        </div>
+        <p class="most"></p>
+      </div>
+    </div>
+    <div class="pattern" hidden><b></b><span></span></div>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>道徳的な規範は、時代や文化によって大きく異なる。同時に、多くの文化に共通する関心もある。</li>
+          <li>協力や互恵の傾向は、人間以外の動物にも見られ、進化の中で形づくられてきたと考えられている。</li>
+          <li>同じ結果でも、行為の仕方（直接危害を加えるかどうか等）によって、人の道徳的判断は大きく変わる。</li>
+          <li>道徳的判断には、感情が深く関わっている。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>理論・仮説</h4>
+        <ul>
+          <li>正しい行為とは、全体の幸福を最大にする行為である（功利主義）。</li>
+          <li>結果に関わらず、守るべき義務や越えてはならない一線がある（義務論）。</li>
+          <li>善く生きるとは、徳を備えた人柄を育てることである（徳倫理）。</li>
+          <li>倫理の基盤は、傷つきやすい者どうしのケアの関係にある（ケアの倫理）。</li>
+          <li>道徳的判断の多くは、直観が先に下し、理性は後から理由づけをする。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>道徳的な真理は、客観的に存在するのか。</li>
+          <li>どの倫理理論が正しいのか。それとも一つに決める必要はないのか。</li>
+          <li>道徳的直観は、信頼できる手がかりなのか、進化の名残の偏りなのか。</li>
+          <li>私たちは、遠くの他者や未来の世代に、どこまで責任を負うのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">どの倫理理論も、私たちの道徳的な直観の大切な一部を捉えていて、同時に、どれか一つだけでは受け入れがたい結論に行き着く。いまの自分の考えは、正しいルールを一つ見つけることではなく、複数のレンズを持ち、場面ごとに迷いながら判断する力を育てることが、善く生きることに近い、というものだ。</p>
+
+    <div class="formula">
+      <div class="no">正しいルールを一つ見つけて、それに従えば善く生きられる</div>
+      <div class="yes"><span>結果</span><i>×</i><span>原則</span><i>×</i><span>人柄</span><i>×</i><span>ケア</span></div>
+      <div class="cap">四つのレンズを行き来しながら、目の前の状況で判断する力（実践知）を育てていく</div>
+    </div>
+
+    <blockquote class="big">善く生きるとは、いつも正解を当てることではなく、迷い方を磨いていくことなのかもしれない。誰が傷つくのか、何を守るべきか、自分はどんな人でありたいのか、目の前の人は何を必要としているのか。その問いを手放さないこと。</blockquote>
+    <p class="note">そして、完璧に善くあることは誰にもできない。間違えたときに、それを認め、償い、学び直すこともまた、善く生きることの一部なのだと思う。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>神を持ち出しても、「善とは何か」という問いは残る。</li>
+      <li>規範が文化によって違うことは、どれも同じくらい正しいことを意味しない。</li>
+      <li>道徳の起源を説明することと、道徳を正当化することは別の仕事。</li>
+      <li>功利主義・義務論・徳倫理・ケアの倫理は、それぞれ直観の一部を捉えている。</li>
+      <li>道徳的判断の多くは感情が先に下す。理性の役割は、それを問い直し、輪を広げること。</li>
+      <li>思いやりの輪を、遠くの他者や未来へ広げてきたことが、道徳の歴史でもある。</li>
+      <li>善く生きることは、自分の幸福と他者への応答を、一つの生き方として編むこと。</li>
+    </ol>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">m-note 内の関連ノート</h3>
+    <div class="related">
+      <a href="../life-view/"><small>LIFE VIEW</small><b>人生観</b><span>どう生きるか、どう決めるか、人とどう関わるか。まとまったことと、まだ答えの出ていない問い。</span></a>
+      <a href="../early-buddhism/"><small>EARLY BUDDHISM</small><b>原始仏教</b><span>釈迦が説いた最初の教えを、苦・執着からメタ認知まで現代の視点で捉え直すノート。</span></a>
+      <a href="../buddhism/"><small>BUDDHISM</small><b>仏教の思想史</b><span>ブッダから大乗、日本の各宗派まで。「人はどうすれば救われるのか」への答えとして読むノート。</span></a>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>道徳的な「正しさ」は、人間の外側に存在するのか？</li>
+      <li>道徳的直観と理論がぶつかったとき、どちらを信じるべきか？</li>
+      <li>身内を大切にすることと、すべての人を公平に扱うことは、どう両立するのか？</li>
+      <li>遠くの他者を助けないことは、悪いことなのか？</li>
+      <li>まだ生まれていない未来の世代に、私たちは何を負っているのか？</li>
+      <li>自由意志がなくても、道徳的な責任は成り立つのか？</li>
+      <li>AIに道徳的判断を任せることはできるのか？ AIに道徳的な配慮は必要か？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>他者とは何か</b><p>私は他者の心をどこまで知ることができるのか。他者と出会うとはどういうことか。</p></div>
+      <div><b>時間とは何か（哲学編）</b><p>過去・現在・未来は本当にあるのか。「いま」とは何か。</p></div>
+      <div><b>空とは何か</b><p>縁起を推し進めた大乗仏教の「空」と、生き方。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>善く生きるための正解を探していたら、<br>正解がないことよりも、<br>問いを手放さないことのほうが大事に思えてきた。</p>
+    <p class="last">誰が傷つくのか。<br>自分はどんな人でありたいのか。<br>今日も、迷いながら選んでいく。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="happiness.html">← 08 幸福とは何か</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const scenes = [
+    { k: "分岐線",
+      setup: "暴走するトロッコの先に、作業中の五人がいる。あなたの手元にはポイントの切り替えレバーがある。切り替えれば、トロッコは別の線路に入り、そこにいる一人が犠牲になる。",
+      q: "レバーを切り替えますか？",
+      opts: [{ v: "act", label: "切り替える" }, { v: "no", label: "切り替えない" }],
+      l: ["五人が助かり一人が犠牲になる。全体の幸福は大きくなるので、切り替えるべきだと考えやすい。",
+          "一人の死は、五人を救う行為の「副作用」であって、手段ではない。切り替えを許容する立場も多い。",
+          "思慮深く勇気ある人なら、この状況でどうするか。迷いながらも切り替える人が多いかもしれない。",
+          "五人にも一人にも、それぞれ大切な関係がある。抽象的な数より、その重みを感じながら判断する。"],
+      most: "多くの調査で、「切り替える」を選ぶ人が多数派になると報告されている。" },
+    { k: "歩道橋",
+      setup: "暴走するトロッコの先に、五人がいる。あなたは線路の上の歩道橋にいて、隣に大柄な人が立っている。その人を突き落とせば、その体でトロッコが止まり、五人が助かる。あなた自身が飛び降りても、トロッコは止められない。",
+      q: "隣の人を突き落としますか？",
+      opts: [{ v: "act", label: "突き落とす" }, { v: "no", label: "突き落とさない" }],
+      l: ["結果だけを見れば、分岐線と同じ「一人を犠牲に五人」。理論上は突き落とすべきだという結論になりうる。",
+          "その人を、五人を救うための「手段」として使うことになる。人を単なる手段として扱うことは許されない。",
+          "自分の手で人を突き落とす人は、善い人柄と言えるだろうか。多くの人がためらうのは自然なことだと考える。",
+          "目の前の、手の届く人を自分の手で傷つけること。その関係の近さが、判断を大きく変える。"],
+      most: "分岐線と同じ人数なのに、「突き落とす」を選ぶ人は少数派になると報告されている。" },
+    { k: "臓器移植",
+      setup: "あなたは外科医だ。それぞれ別の臓器の移植がなければ死んでしまう患者が五人いる。健康診断に来た一人の健康な人の臓器を、本人の同意なく取り出せば、五人全員を救える。",
+      q: "その一人から臓器を取り出しますか？",
+      opts: [{ v: "act", label: "取り出す" }, { v: "no", label: "取り出さない" }],
+      l: ["単純な計算なら五人が助かる。けれども、病院が信頼できなくなる社会全体への影響を考えれば、多くの功利主義者もこれを否定する。",
+          "本人の同意なく、人の身体を他者のための道具にすることは、もっとも明白な尊厳の侵害だ。",
+          "患者を守るはずの医師が、患者を犠牲にすること。それは医師としての徳そのものを裏切る。",
+          "医師と患者の信頼関係そのものを壊す行為。ケアの関係の根本に反する。"],
+      most: "ほとんどの人が「取り出さない」を選ぶ。三つの状況で、あなたの答えはどう変わっただろうか。" }
+  ];
+  const picks = scenes.map(() => null);
+  const tabs = document.querySelector(".scen-tabs");
+  const box = document.querySelector(".scen");
+  const q = (s) => box.querySelector(s);
+  const pattern = document.querySelector(".pattern");
+  let cur = 0;
+  const renderPattern = () => {
+    if (picks.some(p => !p)) { pattern.hidden = true; return; }
+    const key = picks.join("-");
+    const msg = {
+      "act-act-act": ["一貫して結果を重視する答え", "三つとも「行動する」を選びました。人数という結果を一貫して重視する、功利主義に近い直観です。少数派の答えですが、筋は通っています。"],
+      "act-no-no": ["もっとも多い答えのパターン", "分岐線では切り替え、歩道橋と臓器移植では行動しない。結果は同じでも、「人を手段として使うか」「自分の手で直接傷つけるか」に強く反応する、多くの人に共通する直観です。"],
+      "no-no-no": ["一貫して手を出さない答え", "三つとも「行動しない」を選びました。自分が直接危害を引き起こすことへの強い抵抗、あるいは「何もしないこと」と「殺すこと」の違いを重視する直観です。"]
+    }[key] || ["あなただけの答えのパターン", "選んだ組み合わせ自体が、あなたが何を重視しているかを映しています。なぜその状況ではそう答えたのか、理由を言葉にしてみると、自分の倫理観が見えてくるかもしれません。"];
+    pattern.hidden = false;
+    pattern.querySelector("b").textContent = "三つの答え：" + msg[0];
+    pattern.querySelector("span").textContent = msg[1];
+  };
+  const show = (i) => {
+    cur = i;
+    tabs.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
+    const s = scenes[i];
+    q(".label").textContent = "状況 " + (i + 1) + " · " + s.k;
+    q(".setup").textContent = s.setup;
+    q(".question").textContent = s.q;
+    const ch = q(".choices"); ch.textContent = "";
+    s.opts.forEach(o => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = o.label;
+      b.setAttribute("aria-pressed", String(picks[i] === o.v));
+      b.addEventListener("click", () => { picks[i] = o.v; show(cur); renderPattern(); });
+      ch.appendChild(b);
+    });
+    const r = q(".resp");
+    if (picks[i]) {
+      r.hidden = false;
+      ["l1","l2","l3","l4"].forEach((c, j) => { r.querySelector("." + c).textContent = s.l[j]; });
+      r.querySelector(".most").textContent = s.most;
+    } else { r.hidden = true; }
+  };
+  scenes.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.role = "tab"; b.textContent = (i + 1) + ". " + s.k;
+    b.addEventListener("click", () => show(i));
+    tabs.appendChild(b);
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
