@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>他者とは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="私は、あなたの心をどこまで知ることができるのか。他我問題、心の理論、共感の光と影、鏡としての他者、サルトルのまなざし、レヴィナスの顔、ブーバーの我と汝、和辻哲郎の「間柄」をたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* other page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted);line-height:2}
+  .series a{color:var(--accent)}
+  .ladder{list-style:none;margin:30px 0 10px;display:grid;gap:10px}
+  .ladder li{display:grid;grid-template-columns:3.2em 1fr;gap:14px;align-items:start;padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ladder .no{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1.3rem;line-height:1.4}
+  .ladder b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.06rem}
+  .ladder small{display:block;font-size:.66rem;font-weight:700;letter-spacing:.18em;color:var(--muted);margin-bottom:2px}
+  .ladder span{display:block;font-size:.88rem;color:var(--sub);line-height:1.8;margin-top:2px}
+  .ladder li:last-child{border-color:var(--accent);background:var(--accent-soft)}
+
+  .scen-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+  .scen-tabs button{font:inherit;font-size:.84rem;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--sub);cursor:pointer}
+  .scen-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .scen-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .scen{margin-top:14px;padding:26px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .scen .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .scen .story{list-style:none;margin:12px 0;counter-reset:s}
+  .scen .story li{counter-increment:s;position:relative;padding:6px 0 6px 2em;font-size:.94rem;color:var(--sub);border-bottom:1px dashed var(--line)}
+  .scen .story li::before{content:counter(s);position:absolute;left:0;top:6px;color:var(--faint);font-variant-numeric:tabular-nums;font-size:.84rem}
+  .scen .question{font-family:"Noto Serif JP",serif;font-size:1.1rem;line-height:1.8;margin-top:12px}
+  .scen .choices{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .scen .choices button{font:inherit;font-size:.9rem;padding:8px 18px;border:1px solid var(--accent);border-radius:3px;background:var(--bg);color:var(--accent);cursor:pointer;transition:all .2s}
+  .scen .choices button:hover{background:var(--accent-soft)}
+  .scen .choices button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+  .scen .choices button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .scen .resp{margin-top:16px;padding:16px 18px;border-radius:3px;background:var(--accent-soft);font-size:.92rem;color:var(--sub);line-height:1.9}
+  .scen .resp[hidden]{display:none}
+  .scen .resp b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;color:var(--ink);margin-bottom:2px}
+
+  .related{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
+  .related a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-decoration:none;transition:border-color .2s}
+  .related a:hover{border-color:var(--accent)}
+  .related small{display:block;font-size:.64rem;font-weight:700;letter-spacing:.2em;color:var(--muted)}
+  .related b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin:2px 0}
+  .related span{font-size:.82rem;color:var(--sub);line-height:1.7;display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 10</p>
+    <h1><span>私は、あなたの心を</span><br><span>どこまで知ることが</span><span>できるのか</span></h1>
+    <p class="lead">ここまでの記事で、何度も「他者」が出てきた。意味は他者とのあいだで生まれる。「私」は他者との関係の中で編まれる。死の多くは「あなたの死」として経験される。善く生きることは、他者に応えることでもある。けれども、そもそも「他者」とは何なのか。私は、あなたの痛みを、あなたが感じているように感じることは決してできない。それなのに、私たちは毎日、互いの心を読み合いながら生きている。</p>
+    <p class="note">これは研究のまとめではなく、「他者とは何か」という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「理論・仮説」「未決定のこと」を区別して書いています。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味</a> ／ <a href="consciousness.html">02 意識</a> ／ <a href="self.html">03 「私」</a> ／ <a href="free-will.html">04 自由意志</a> ／ <a href="meaning.html">05 意味の成り立ち</a> ／ <a href="buddhism.html">06 仏教</a> ／ <a href="death.html">07 死</a> ／ <a href="happiness.html">08 幸福</a> ／ <a href="ethics.html">09 善く生きる</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#ladder"><b>02</b>他者への四つの近づき方</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#tasks"><b>04</b>他者の心を読む三つの課題</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「他者」を分解する</h2>
+    <p class="intro">他者は、あまりにも身近にいる。だからこそ、「他者とは何か」と改めて問うと、知る・感じる・つくられる・出会う、という別々の問いが絡まり合っていることに気づく。</p>
+    <ol class="descent">
+      <li><span class="q">他者に心があると、どうして分かるのか</span><span class="d">他我問題</span></li>
+      <li><span class="q">私たちは、どうやって他者の心を読んでいるのか</span><span class="d">心の理論と共感</span></li>
+      <li><span class="q">共感は、いつも善いものなのか</span><span class="d">共感の光と影</span></li>
+      <li><span class="q">他者は、どのように「私」をつくっているのか</span><span class="d">鏡、承認、まなざし</span></li>
+      <li><span class="q">他者と「出会う」とは、どういうことか</span><span class="d">顔、我と汝、人と人のあいだ</span></li>
+      <li><span class="q">分かりきれない他者と、どう生きるか</span><span class="d">これまでの記事とつなぐ</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="ladder">
+    <span class="h2-en">02 · FOUR APPROACHES</span>
+    <h2>他者への、<br>四つの近づき方</h2>
+    <p class="intro">考えを進めるうちに、他者との関わり方には、少なくとも四つの段階があるように思えてきた。下に行くほど、他者は「知る対象」から「出会う相手」へと変わっていく。</p>
+    <ol class="ladder">
+      <li><span class="no">1</span><div><small>UNKNOWABLE</small><b>確かめられない</b><span>他者の経験そのものを、私は直接知ることができない。</span></div></li>
+      <li><span class="no">2</span><div><small>INFER</small><b>推し量る</b><span>表情や言葉、状況から、他者の心を読み取り、共感する。</span></div></li>
+      <li><span class="no">3</span><div><small>MIRROR</small><b>映し合う</b><span>他者のまなざしや承認を通して、「私」がつくられていく。</span></div></li>
+      <li><span class="no">4</span><div><small>ENCOUNTER</small><b>応える</b><span>分かりきれない他者の呼びかけに、応答する。そこに倫理と出会いが生まれる。</span></div></li>
+    </ol>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>他者の心は見えない</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">他者に心があると、どうして分かるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「意識」の記事で、他者の意識は外から確かめられない、と考えた。私が直接知ることのできる経験は、私自身の経験だけだ。あなたが「痛い」と言って顔をしかめても、その痛みそのものを、私は感じることができない。</p>
+          <p>古典的な答えは「類推」だ。私は、痛いときに顔をしかめる。あなたも同じように顔をしかめている。だから、あなたも痛いのだろう。ジョン・スチュアート・ミルは、他者の心をこのような類推によって知ると考えた。</p>
+          <div class="insight">けれども、たった一つの例（自分）から、すべての他者へと一般化するのは、推論としてはかなり心もとない。それなのに私たちは、他者に心があることを、ほとんど疑わずに生きている。</div>
+          <p class="aside"><b>関連する考え方：</b>この問題は哲学で「他我問題」と呼ばれる。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">心は「推論」する前に、「見えて」いるのかもしれない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>考えてみると、友人の怒った顔を見たとき、私は「眉が寄り、口が引き締まっている。ゆえに怒っているのだろう」と推論しているわけではない。怒りは、表情の中に、いわば直接「見えて」いる。</p>
+          <p>現象学の流れをくむ哲学者たちは、他者の心は、まず身体の表情や振る舞いの中に直接知覚されるものであり、推論は後から補うものだと論じた。私たちは、心と身体が切り離された世界ではなく、表情に満ちた世界に生まれてくる。</p>
+          <div class="insight">他者の心は「見えない」が、まったく隠れているわけでもない。それは身体の表情を通して、半分だけ現れている。その「半分」が、他者を知ることと、知りきれないことの両方を生んでいる。</div>
+          <p class="aside"><b>関連する考え方：</b>メルロ＝ポンティの身体論や、現代の哲学者ショーン・ギャラガー、ダン・ザハヴィらの「直接知覚説」。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>心を読むしくみ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">心の理論：他者は、私と違うことを信じている</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>他者の行動を、その人の信念や意図、欲求から理解する能力は「心の理論」と呼ばれる。とくに重要なのは、「他者は、私とは違うこと、しかも間違ったことを信じていることがある」と理解する力だ。</p>
+          <p>有名な「誤信念課題」では、ある子どもが人形を箱に隠して部屋を出ている間に、別の子どもがそれを移動させる。戻ってきた子どもはどこを探すか。多くの研究で、子どもは4歳前後までに、「本人は移動を知らないから、元の場所を探す」と答えられるようになると報告されている。（<a href="#tasks">04章</a>で試せます）</p>
+          <div class="insight">他者を理解するとは、他者が「私とは別の視点を持っている」と認めることから始まる。他者とは、まず何よりも、私と違う世界を見ている存在なのだ。</div>
+          <p class="aside"><b>補足：</b>かつては、自閉スペクトラム症の人は「心の理論」が欠けている、と単純に説明されることがあった。現在では、その説明は一面的だと考えられている。互いに異なる認知のしかたを持つ人どうしでは、どちらの側にも相手の理解が難しくなる、という「二重共感問題」の指摘もある。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">共感には、二つの顔がある</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「共感」と一言でいっても、少なくとも二つの働きが区別されている。</p>
+          <div class="compare">
+            <div><small>情動的共感</small>相手の感情を、自分も感じる。相手が悲しいと、自分も悲しくなる</div>
+            <div><small>認知的共感</small>相手が何を感じ、考えているかを、理解する。必ずしも同じ感情にはならない</div>
+          </div>
+          <p>他人が痛みを受けているのを見ると、自分が痛みを感じるときに働く脳の領域の一部が活動する、という研究もある。ただし、いわゆる「ミラーニューロン」がそのまま共感や他者理解を生み出している、という説明は、一時期大きく広まったものの、現在ではかなり慎重に扱われている。</p>
+          <div class="insight">他者の痛みに「巻き込まれる」ことと、他者の痛みを「理解する」ことは違う。どちらも、他者とつながるための大切な通路だ。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">共感は、スポットライトのように偏る</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>共感は善いものだと思われている。けれども心理学者ポール・ブルームは、あえて「共感に反対する」と論じた。共感は、スポットライトのように、目の前の、顔の見える、自分に似た一人を強く照らし、その外にいる大勢を暗闇に置き去りにする。</p>
+          <p>一人の名前と顔を持つ子どもへの寄付は集まるのに、数百万人の統計への寄付は集まりにくい。身内への共感が、よそ者への敵意と表裏一体になることもある。</p>
+          <div class="insight">「善く生きる」の記事で、思いやりの輪を遠くの他者へ広げることが道徳の歴史だと考えた。共感は、その輪の出発点であると同時に、輪を狭くする力にもなる。だからこそ、共感と、それを問い直す理性の両方が必要になる。</div>
+          <p class="aside"><b>出典：</b>ブルーム『反共感論（Against Empathy）』（2016）。彼は、感情に巻き込まれる共感より、距離を保った思いやり（コンパッション）を重視した。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>他者が「私」をつくる</h3></div>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">他者は、私を映す鏡</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>私は、自分の顔を直接見ることができない。鏡に映して、初めて自分の顔を知る。社会学者チャールズ・クーリーは、自己もこれと同じだと考えた。他者が自分をどう見ているかを想像し、その評価を感じ取ることで、私は「私」を知っていく（鏡映的自己）。</p>
+          <p>社会学者ジョージ・ハーバート・ミードは、人は他者の立場に立って自分を見る経験を重ねることで、自己を形成していくと論じた。</p>
+          <div class="insight">「私」の記事で、「私」は物語として、他者との関係の中で編まれると考えた。他者は、私の外側にいるだけではない。私の内側の「私」を、すでに半分つくっている。</div>
+          <p class="aside"><b>出典：</b>クーリー『人間性と社会秩序』（1902）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">人は、認められることを求める</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ヘーゲルは、人間の自己意識は、他の自己意識によって承認されることで初めて成り立つと考えた。私が「私」であるという確信は、他者から「あなたはあなただ」と認められることを必要とする。</p>
+          <p>けれども、承認を一方的に求め合えば、争いになる。彼が描いた「主人と奴隷」の物語では、承認をめぐる闘争が、支配と従属の関係を生み出す。本当の承認は、互いが互いを自由な存在として認め合うときにしか成り立たない。</p>
+          <div class="insight">SNSの「いいね」を思わず求めてしまうのも、承認への深い欲求の表れなのかもしれない。けれども、一方的に求める承認は、渇愛と同じように、満たしても満たしても足りなくなる。</div>
+          <p class="aside"><b>出典：</b>ヘーゲル『精神現象学』（1807）。現代では哲学者アクセル・ホネットが「承認」の理論を発展させている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">まなざし：見られることで、私は「もの」になる</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>サルトルは、こんな場面を描いた。嫉妬に駆られた男が、ドアの鍵穴から部屋をのぞいている。そのとき彼は、のぞくことに夢中で、自分のことなど意識していない。ところが、背後の廊下で足音がする。誰かに見られた。その瞬間、彼は恥ずかしさとともに、「のぞき見をしている男」という、他者から見られた「もの」になる。</p>
+          <p>他者のまなざしは、私を、私自身にはコントロールできない形で決めつけてしまう。サルトルは戯曲の中で、登場人物に「地獄とは他人のことだ」と語らせた。</p>
+          <div class="insight">他者は、私を映す鏡であると同時に、私を勝手に定義してしまう脅威でもある。人間関係の苦しさの多くは、この「まなざし」から来ているのかもしれない。</div>
+          <p class="aside"><b>出典：</b>サルトル『存在と無』（1943）、戯曲『出口なし』（1944）。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>他者と出会う</h3></div>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">顔：「殺してはならない」と語りかけるもの</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>エマニュエル・レヴィナスは、他者を「理解する」ことそのものに危うさを見た。他者を理解するとは、他者を自分の知っている枠組みに取り込み、自分と同じものにしてしまうことでもあるからだ。</p>
+          <p>彼にとって他者とは、私の理解をどこまでも超えていく存在だ。そして他者の「顔」——無防備で、傷つきやすい他者の現れ——は、私に「殺してはならない」と語りかけ、私に応答を求める。倫理は、私が理論から導き出すものではなく、他者の顔との出会いの中で、私に課されるものだという。</p>
+          <div class="insight">他者を「分かった」と思った瞬間、私は他者を見失っているのかもしれない。他者の分かりきれなさを尊重すること。それが、他者を他者として扱うということなのだと思う。</div>
+          <p class="aside"><b>出典：</b>レヴィナス『全体性と無限』（1961）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">我とそれ、我と汝</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>マルティン・ブーバーは、人間の関わり方には二つの根本的な態度があると考えた。</p>
+          <div class="compare">
+            <div><small>我—それ</small>相手を、観察し、分析し、利用する「対象」として関わる。役割や機能として相手を見る</div>
+            <div><small>我—汝</small>相手と、全存在をかけて向き合う。相手を何かのための手段ではなく、かけがえのない「あなた」として出会う</div>
+          </div>
+          <p>私たちは、ふだんほとんどの時間を「我—それ」の関係で生きている。店員、同僚、ニュースの中の人。それは悪いことではない。けれども、ふとした瞬間に、相手が「それ」ではなく「あなた」として立ち現れることがある。</p>
+          <div class="insight">「善く生きる」の記事で見たカントの「人を単なる手段として扱うな」は、ブーバーの言葉でいえば、「それ」の世界の中にも「汝」への敬意を残しておけ、ということなのかもしれない。</div>
+          <p class="aside"><b>出典：</b>ブーバー『我と汝』（1923）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">人間とは、「人」と「人」の「あいだ」</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>日本語の「人間」という言葉は、もともと「人の住む世の中」、つまり人と人とのあいだを意味していた。哲学者・和辻哲郎は、ここに注目した。人間とは、孤立した個人ではなく、人と人との「間柄」においてある存在だ、と。</p>
+          <p>仏教の記事で見た「縁起」——すべては関係の中で生じる——とも、この見方は響き合う。そして現代の研究も、人とのつながりが心身の健康に大きく関わっていることを示している。社会的なつながりの乏しさが、喫煙などの既知の危険因子に匹敵するほど死亡リスクと関連している、という分析もある。</p>
+          <div class="insight">他者は、私の外側にいる「もう一人」ではない。私は最初から、他者とのあいだに生まれ、あいだで生きている。他者とは、私が存在している場所そのものなのかもしれない。</div>
+          <p class="aside"><b>出典：</b>和辻哲郎『人間の学としての倫理学』（1934）。つながりと死亡リスクの分析は、ジュリアン・ホルト＝ランスタッドらによる（2010）。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>これまでの記事とつなぐ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">分かりきれない他者と、生きる</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>他者の心は、完全には分からない。けれども、まったく分からないわけでもない。表情の中に半分現れ、推し量ることができ、映し合い、呼びかけてくる。そして、その「分かりきれなさ」こそが、他者が私とは別の、かけがえのない存在であることのしるしでもある。</p>
+          <ul class="tags" style="list-style:none">
+            <li><span><a href="meaning.html">意味</a>は、他者とのあいだで生まれる</span></li>
+            <li><span><a href="self.html">「私」</a>は、他者のまなざしの中で編まれる</span></li>
+            <li><span><a href="death.html">死</a>の多くは、「あなたの死」として経験される</span></li>
+            <li><span><a href="ethics.html">善く生きる</a>とは、他者の呼びかけに応えること</span></li>
+          </ul>
+          <div class="insight">他者とは、完全に理解できる相手ではなく、理解しようとし続けることができる相手なのかもしれない。分かりきれないからこそ、出会いは何度でも新しくなる。</div>
+          <p class="aside"><b>補足：</b>AIは、人間の言葉で語りかけてくる。私たちはそれに心を感じることもある。AIは「他者」なのか、それとも高度な「それ」なのか。この問いは、これからますます切実になっていくだろう。</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="tasks">
+    <span class="h2-en">04 · TRY IT</span>
+    <h2>他者の心を読む、<br>三つの課題</h2>
+    <p class="intro">発達心理学や社会心理学で使われてきた課題をもとにした、三つの問いです。他者の心を読むことの難しさと、私たちのその「くせ」が見えてきます。</p>
+
+    <div class="scen-tabs" role="tablist" aria-label="課題を選ぶ"></div>
+    <div class="scen" role="tabpanel" aria-live="polite">
+      <div class="label"></div>
+      <ol class="story"></ol>
+      <div class="question"></div>
+      <div class="choices"></div>
+      <div class="resp" hidden><b></b><span></span></div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>私たちは、他者の経験そのものを直接感じることはできない。</li>
+          <li>子どもは発達の中で、他者が自分と違う（誤った）信念を持ちうることを理解するようになる。</li>
+          <li>共感には、感情を共有する働きと、相手の心を理解する働きが区別できる。</li>
+          <li>共感は、身近で、顔の見える、自分に似た相手に強く働きやすい。</li>
+          <li>人とのつながりは、心身の健康と強く関連している。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>理論・仮説</h4>
+        <ul>
+          <li>他者の心は、推論の前に、表情や振る舞いの中に直接知覚される。</li>
+          <li>自己は、他者のまなざしや承認を通して形成される（鏡映的自己・承認論）。</li>
+          <li>他者を「理解した」と思うことは、他者を自分の枠組みに取り込むことでもある（レヴィナス）。</li>
+          <li>人間の関わりには、「我—それ」と「我—汝」という二つの態度がある（ブーバー）。</li>
+          <li>人間とは、人と人との「間柄」においてある存在である（和辻哲郎）。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>他者に心があることを、確実に知る方法はあるのか。</li>
+          <li>他者を理解することと、他者を他者として尊重することは、両立するのか。</li>
+          <li>共感と理性、どちらを道徳の基盤とすべきか。</li>
+          <li>AIのような存在は、「他者」と呼べるのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">他者の心を完全に知ることはできない。けれども、だからつながれないわけではない。いまの自分の考えは、他者とは「分かりきることのできない存在」であり、その分かりきれなさを前提にしてこそ、本当に出会うことができる、というものだ。</p>
+
+    <div class="formula">
+      <div class="no">相手の心を完全に分かれば、本当につながれる</div>
+      <div class="yes"><span>推し量る</span><i>×</i><span>映し合う</span><i>×</i><span>応える</span><i>×</i><span>分からなさを尊重する</span></div>
+      <div class="cap">分かりきれないことを前提に、それでも理解しようとし続ける</div>
+    </div>
+
+    <blockquote class="big">他者とは、私には見えない世界を見ている誰かだ。その世界を完全に知ることはできない。けれども、「あなたには、どう見えているの？」と問い続けることはできる。その問いの中に、私たちは出会っている。</blockquote>
+    <p class="note">そして、人間関係がつらいとき、それは「他者が分かりきれない」という、誰にとっても避けられない条件から来ていることも多い。分かってもらえないことも、分かってあげられないことも、人と人とのあいだでは自然に起きることだ。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>他者の経験そのものは、直接知ることができない（他我問題）。</li>
+      <li>それでも他者の心は、表情や振る舞いの中に半分だけ現れている。</li>
+      <li>他者を理解するとは、他者が私と違う視点を持つと認めることから始まる。</li>
+      <li>共感は他者とつながる通路であり、同時にスポットライトのように偏る。</li>
+      <li>他者は、鏡として、承認として、まなざしとして、「私」をつくっている。</li>
+      <li>他者を「分かった」と思うことは、他者を見失うことでもある（レヴィナス）。</li>
+      <li>人間は、人と人との「あいだ」に生まれ、あいだで生きている。</li>
+    </ol>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">m-note 内の関連ノート</h3>
+    <div class="related">
+      <a href="../life-view/"><small>LIFE VIEW</small><b>人生観</b><span>どう生きるか、どう決めるか、人とどう関わるか。まとまったことと、まだ答えの出ていない問い。</span></a>
+      <a href="../emotions/"><small>EMOTIONS</small><b>人間の感情</b><span>8つの基本感情と、輪の外側にある「欲・渇愛・執着」を整理したノート。</span></a>
+      <a href="../developmental-disorder/"><small>NEURODIVERSITY</small><b>発達障害</b><span>ASD・ADHD・SLDの特性と、当事者に起きていることを、脳の多様性の視点でまとめたノート。</span></a>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>他者に心があることを、確実に知る方法はあるのか？</li>
+      <li>他者を理解することと、他者を尊重することは、両立するのか？</li>
+      <li>承認を求めずに、「私」でいることはできるのか？</li>
+      <li>共感の偏りを、どうすれば正せるのか？</li>
+      <li>「我—汝」の出会いは、意図してつくれるものなのか？</li>
+      <li>人間でない存在（動物やAI）は、「他者」になりうるのか？</li>
+      <li>孤独は、他者がいないことなのか、他者と出会えていないことなのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>愛とは何か</b><p>他者を大切に思うとは、どういうことか。エロス、友愛、慈悲、アガペー。</p></div>
+      <div><b>時間とは何か（哲学編）</b><p>過去・現在・未来は本当にあるのか。「いま」とは何か。</p></div>
+      <div><b>空とは何か</b><p>縁起を推し進めた大乗仏教の「空」と、生き方。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>他者の心を知ろうとして、<br>知りきれないことを知った。<br>けれど、その知りきれなさの中にこそ、あなたがいる。</p>
+    <p class="last">「あなたには、どう見えているの？」<br>その問いを、<br>何度でも新しく、差し出していく。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="ethics.html">← 09 善く生きるとは何か</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const tasks = [
+    { k: "サリーとアン",
+      story: ["サリーとアンが部屋にいる。サリーはビー玉を「かご」に入れて、部屋を出ていく。",
+              "サリーがいない間に、アンはビー玉をかごから取り出し、「箱」に移す。",
+              "サリーが部屋に戻ってくる。ビー玉で遊びたい。"],
+      q: "サリーは、ビー玉を探すために、最初にどこを見るでしょう？",
+      opts: [{ v: "a", label: "かご" }, { v: "b", label: "箱" }],
+      ok: "a",
+      right: ["正解：かご", "サリーは、ビー玉が移されたことを知りません。だから、自分が入れた「かご」を探します。ビー玉が本当にどこにあるか（箱）と、サリーが何を信じているか（かご）を区別できることが、「心の理論」の重要な一歩です。多くの子どもは4歳前後でこの課題に正答するようになると報告されています。"],
+      wrong: ["答えは「かご」", "ビー玉は実際には箱にありますが、サリーはそれを知りません。自分が知っていることを、つい他者も知っているかのように考えてしまう——幼い子どもはこの課題で「箱」と答えることが多いとされます。大人でも、急いで考えるとこの罠にはまることがあります。"],
+      note: "ウィマーとパーナー（1983）の課題をもとに、バロン＝コーエンらが用いた「サリーとアン課題」（1985）。" },
+    { k: "知識の呪い",
+      story: ["あなたは、誰もが知っている歌（たとえば「ハッピーバースデー」）を一曲思い浮かべ、そのリズムだけを机で指でたたく。",
+              "向かいに座った人は、そのリズムだけを聞いて、何の歌かを当てる。",
+              "たたいているあなたの頭の中では、メロディーも歌詞もはっきり鳴っている。"],
+      q: "聞き手は、どれくらいの割合で歌を当てられると思いますか？",
+      opts: [{ v: "a", label: "半分くらい" }, { v: "b", label: "4分の1くらい" }, { v: "c", label: "ほとんど当てられない" }],
+      ok: "c",
+      right: ["その通り：ほとんど当てられない", "ある実験では、たたく側は「半分くらいは当ててもらえる」と予想しましたが、実際に当てられたのはごくわずか（数パーセント程度）でした。頭の中でメロディーが鳴っている側には、それが聞こえていない相手の状態を想像するのが、とても難しいのです。"],
+      wrong: ["実際は：ほとんど当てられない", "ある実験では、たたく側は「半分くらいは当ててもらえる」と予想しましたが、実際に当てられたのはごくわずか（数パーセント程度）でした。自分が知っていることを、知らない状態に戻って想像するのは難しい。これは「知識の呪い」と呼ばれます。"],
+      note: "エリザベス・ニュートンの実験（1990）。説明が伝わらない、相手の気持ちが分からないといった日常のすれ違いにも、同じ仕組みが関わっていると考えられている。" },
+    { k: "二重の誤信念",
+      story: ["ジョンとメアリーが公園にいる。アイスクリーム屋さんは「今日は一日中、公園にいるよ」と言う。メアリーはお金を取りに家へ帰る。",
+              "メアリーがいない間に、アイス屋さんはジョンに「やっぱり教会の前に移るよ」と言って移動する。",
+              "その途中、アイス屋さんはメアリーの家の前を通り、メアリーにも「教会の前に移るよ」と伝える。ジョンはそれを知らない。",
+              "ジョンは、メアリーにアイスのことを話そうと、彼女を探しに出かける。"],
+      q: "ジョンは、メアリーがアイスを買いにどこへ行ったと思っているでしょう？",
+      opts: [{ v: "a", label: "公園" }, { v: "b", label: "教会の前" }],
+      ok: "a",
+      right: ["正解：公園", "メアリーは本当は教会の前に向かっています。けれどもジョンは、メアリーが移動を知らされたことを知りません。だからジョンは「メアリーは公園に行った」と思っています。「AさんはBさんが〜と信じている、と信じている」という二重の入れ子を理解する課題で、一重の課題より数年遅れて正答できるようになるとされます。"],
+      wrong: ["答えは「公園」", "メアリー自身は教会の前に向かっていますが、問われているのは「ジョンが、メアリーについてどう思っているか」です。ジョンは、メアリーが移動を知らされたことを知らないので、「公園」だと思っています。他者の心の中の、さらに他者の心。大人でも混乱しやすい構造です。"],
+      note: "パーナーとウィマー（1985）の二次的誤信念課題をもとに、筋を簡略化したもの。" }
+  ];
+  const picks = tasks.map(() => null);
+  const tabs = document.querySelector(".scen-tabs");
+  const box = document.querySelector(".scen");
+  const q = (s) => box.querySelector(s);
+  let cur = 0;
+  const show = (i) => {
+    cur = i;
+    tabs.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
+    const t = tasks[i];
+    q(".label").textContent = "課題 " + (i + 1) + " · " + t.k;
+    const st = q(".story"); st.textContent = "";
+    t.story.forEach(line => { const li = document.createElement("li"); li.textContent = line; st.appendChild(li); });
+    q(".question").textContent = t.q;
+    const ch = q(".choices"); ch.textContent = "";
+    t.opts.forEach(o => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = o.label;
+      b.setAttribute("aria-pressed", String(picks[i] === o.v));
+      b.addEventListener("click", () => { picks[i] = o.v; show(cur); });
+      ch.appendChild(b);
+    });
+    const r = q(".resp");
+    if (picks[i]) {
+      const m = picks[i] === t.ok ? t.right : t.wrong;
+      r.hidden = false;
+      r.querySelector("b").textContent = m[0];
+      r.querySelector("span").textContent = m[1] + "（" + t.note + "）";
+    } else { r.hidden = true; }
+  };
+  tasks.forEach((t, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.role = "tab"; b.textContent = (i + 1) + ". " + t.k;
+    b.addEventListener("click", () => show(i));
+    tabs.appendChild(b);
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
