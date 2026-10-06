@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>仏教との接続 ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="生きる意味・意識・「私」・自由意志・意味。五つの記事で考えてきたことを、苦・渇愛・無我・無常・縁起・中道といった仏教の考え方と重ね、重なりと違いをたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* buddhism page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted)}
+  .series a{color:var(--accent)}
+  .chain{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:34px 0 8px}
+  .chain .node{flex:1 1 120px;padding:16px 14px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-align:center}
+  .chain .node small{display:block;font-size:.64rem;font-weight:700;letter-spacing:.18em;color:var(--muted)}
+  .chain .node b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.1rem;margin:4px 0 2px}
+  .chain .node span{font-size:.8rem;color:var(--sub);line-height:1.7;display:block}
+  .chain .arr{align-self:center;color:var(--faint)}
+  .chain .node.end{border-color:var(--open)}
+  .chain .node.end small{color:var(--open)}
+  .chain .gapnode{flex:0 0 auto;align-self:center;padding:10px 14px;border:1px dashed var(--accent);border-radius:999px;color:var(--accent);font-size:.82rem;background:var(--accent-soft);font-family:"Noto Serif JP",serif}
+  @media (max-width:620px){ .chain{flex-direction:column} .chain .arr{transform:rotate(90deg)} .chain .gapnode{align-self:center} }
+
+  .bridge-panel .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .bridge-panel .cols div{padding:14px 16px;border-radius:3px;font-size:.9rem;color:var(--sub);line-height:1.85}
+  .bridge-panel .cols b{display:block;font-size:.66rem;letter-spacing:.2em;font-weight:700;margin-bottom:4px}
+  .bridge-panel .note-side{background:var(--accent-soft)} .bridge-panel .note-side b{color:var(--accent)}
+  .bridge-panel .bud-side{background:var(--hypo-soft)} .bridge-panel .bud-side b{color:var(--hypo)}
+  .bridge-panel .over{background:var(--sure-soft)} .bridge-panel .over b{color:var(--sure)}
+  .bridge-panel .diff{background:var(--open-soft)} .bridge-panel .diff b{color:var(--open)}
+  .bridge-panel .art{font-size:.8rem;margin-top:12px}
+  .bridge-panel .art a{color:var(--accent)}
+  @media (max-width:560px){ .bridge-panel .cols{grid-template-columns:1fr} }
+
+  .related{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
+  .related a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-decoration:none;transition:border-color .2s}
+  .related a:hover{border-color:var(--accent)}
+  .related small{display:block;font-size:.64rem;font-weight:700;letter-spacing:.2em;color:var(--muted)}
+  .related b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin:2px 0}
+  .related span{font-size:.82rem;color:var(--sub);line-height:1.7;display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 06</p>
+    <h1><span>二千五百年前の問いと、</span><br><span>いまの問いを重ねる</span></h1>
+    <p class="lead">生きる意味、意識、「私」、自由意志、意味の成り立ち。五つの記事で考えるたびに、仏教の言葉が何度も顔を出した。無我、縁起、渇愛、執着。現代の脳科学や哲学とは別の道を通って、仏教は驚くほど近い場所にたどり着いているように見える。今回は、その重なりを確かめながら、同時に「違い」もきちんと見ておきたい。</p>
+    <p class="note">これは仏教の教科書ではなく、ここまでの思考と仏教の考え方を照らし合わせた個人的な記録です。仏教は宗派や時代によって解釈が大きく異なり、ここでは主に初期仏教の考え方を手がかりにしています。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味</a> ／ <a href="consciousness.html">02 意識</a> ／ <a href="self.html">03 「私」</a> ／ <a href="free-will.html">04 自由意志</a> ／ <a href="meaning.html">05 意味の成り立ち</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#chain"><b>02</b>苦が生まれるしくみ</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#bridge"><b>04</b>五つの記事と仏教を重ねる</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>仏教は、何に答えようとしたのか</h2>
+    <p class="intro">私がたどってきたのは「なぜ生きるのか」「私とは何か」という問いだった。仏教の出発点は少し違う。「なぜ人は苦しむのか、そしてその苦しみはどうすれば終わるのか」。けれども、その問いを掘り下げていく道筋は、驚くほど重なっていた。</p>
+    <ol class="descent">
+      <li><span class="q">答えの出ない問いに、どう向き合うか</span><span class="d">ブッダが「答えなかった」問いたち</span></li>
+      <li><span class="q">苦しみとは何か</span><span class="d">痛みではなく「思い通りにならないこと」</span></li>
+      <li><span class="q">苦しみはどこから来るのか</span><span class="d">渇愛と執着</span></li>
+      <li><span class="q">苦しんでいる「私」とは何か</span><span class="d">無我・無常・五蘊</span></li>
+      <li><span class="q">私と世界は、どうつながっているのか</span><span class="d">縁起</span></li>
+      <li><span class="q">では、どう生きればよいのか</span><span class="d">気づき・中道・八正道</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="chain">
+    <span class="h2-en">02 · HOW SUFFERING ARISES</span>
+    <h2>苦しみは、感じた「あと」に<br>生まれている</h2>
+    <p class="intro">仏教の縁起の教えを、ごく単純化して描くとこうなる。何かを感じる。それを「もっと欲しい」「離れたくない」「消えてほしい」と渇望する。その渇望を握りしめる。そこに苦しみが生まれる。そして、感じることと渇望することのあいだには、小さな隙間がある。</p>
+    <div class="chain">
+      <div class="node"><small>受</small><b>感じる</b><span>快・不快・どちらでもない</span></div>
+      <div class="gapnode">気づき（間）</div>
+      <div class="node"><small>渇愛</small><b>渇望する</b><span>もっと欲しい／消えてほしい</span></div>
+      <div class="arr">→</div>
+      <div class="node"><small>取</small><b>握りしめる</b><span>「これが私の」と執着する</span></div>
+      <div class="arr">→</div>
+      <div class="node end"><small>苦</small><b>苦しむ</b><span>思い通りにならなさ</span></div>
+    </div>
+    <p class="note">十二縁起のうち「受 → 愛 → 取」のつながりを中心に、大きく単純化した図。感じること（受）そのものは止められないが、その後の渇愛・執着には介入の余地がある、という読み方は、現代のマインドフルネス系の解説でもよく用いられる。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>答えない、という答え</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">ブッダは、いくつかの問いに答えなかった</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>あるとき、マールンキヤープッタという弟子がブッダに迫った。世界は永遠なのか、そうでないのか。世界には果てがあるのか。魂と身体は同じなのか、別なのか。悟った人は死後も存在するのか。これらに答えてくれないなら、修行をやめる——と。</p>
+          <p>ブッダは答えなかった。代わりに、こういうたとえを語ったと伝えられる。毒矢に射られた人が、「誰が射たのか、弓は何でできているのか、それが分かるまで矢を抜かせない」と言っていたら、答えが分かる前に死んでしまうだろう、と。</p>
+          <div class="insight">最初の記事で行き着いた「なぜ何かが存在するのか」「創造主はいるのか」という問いに、仏教は答えを出さない。問いを否定するのではなく、「いま苦しみを終わらせるために、それは必要か」と優先順位を問い直している。</div>
+          <p class="aside"><b>出典：</b>パーリ経典『中部』の「小マールンキヤ経」に伝えられる「毒矢のたとえ」。ブッダが答えなかったこれらの問いは「無記」と呼ばれる。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">四つの真理：診断と処方</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ブッダが最初に説いたとされる教えの中心は、四つの真理（四聖諦）だ。しばしば医師の診断にたとえられる。</p>
+          <div class="compare">
+            <div><small>苦諦・症状</small>人生には、思い通りにならない苦しみがある</div>
+            <div><small>集諦・原因</small>その原因は、渇愛（渇くような欲望）にある</div>
+            <div><small>滅諦・治癒</small>渇愛がおさまれば、苦しみもおさまる</div>
+            <div><small>道諦・処方</small>そのための実践の道（八正道）がある</div>
+          </div>
+          <div class="insight">仏教は「世界とは何か」を説明する理論である前に、「苦しみをどう扱うか」の実践の体系として始まっている。ここが、私がたどってきた哲学的な問いとの大きな違いでもある。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>苦しみのしくみ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">「苦」は、痛みのことではない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>仏教の「苦」（パーリ語でドゥッカ）は、「痛い」「つらい」だけを指すのではない。もっと広く、「思い通りにならないこと」「どこか満たされきらないこと」を含んでいる。</p>
+          <div class="tags"><span>生・老・病・死</span><span>愛する人と別れる苦しみ</span><span>嫌いな人と会う苦しみ</span><span>求めても得られない苦しみ</span><span>身心に執着する苦しみ</span></div>
+          <p>これが「四苦八苦」と呼ばれるものだ。楽しいことさえ、終わってしまうという意味では「苦」を含んでいる。</p>
+          <div class="insight">「人生は苦である」は悲観ではなく、「すべては移ろい、思い通りにはならない」という観察なのだと思う。そう見ると、苦しみは異常事態ではなく、生きることの当然の一部になる。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">渇愛：「欲しい」が止まらないしくみ</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>前回の「意味」の記事で、脳の中では「欲しい（wanting）」と「好き（liking）」が別の仕組みであり、欲しいものを手に入れても、すぐ次が欲しくなることを見た。仏教はこれを「渇愛」と呼び、苦しみの原因とした。</p>
+          <div class="compare">
+            <div><small>欲愛</small>感覚的な快楽を求める渇き</div>
+            <div><small>有愛</small>存在し続けたい、何者かでありたいという渇き</div>
+            <div><small>無有愛</small>消えてしまいたい、なくなってほしいという渇き</div>
+            <div><small>現代の言葉で</small>報酬を求めて駆り立てられ続ける脳の働き</div>
+          </div>
+          <div class="insight">喉の渇きのように、満たしてもまた戻ってくる。二千五百年前の観察と、現代の脳科学の発見が、同じ形をしているのは偶然ではないのかもしれない。</div>
+          <p class="aside"><b>注意：</b>仏教の渇愛と、神経科学の「wanting」は同じ概念ではない。ここで言えるのは、両者が似た現象を別の言葉で捉えている可能性がある、というところまでだ。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">第二の矢：痛みと、苦しみを分ける</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>経典には、こんなたとえがある。人は誰でも、痛みという「第一の矢」に射られる。けれども教えを学んでいない人は、そこで嘆き、混乱し、自分を責め、もう一本の「第二の矢」を自分に射ち込んでしまう。</p>
+          <div class="flow"><span>第一の矢：出来事・痛み</span><i>→</i><span>第二の矢：反応・解釈・反芻</span></div>
+          <p>第一の矢は避けられない。けれども第二の矢は、自分の心の反応から生まれている。</p>
+          <div class="insight">これは、認知行動療法の「出来事そのものではなく、その受け止め方が感情を左右する」という考え方と、とてもよく似ている。そして、自由意志の記事でたどり着いた「刺激と反応のあいだの間」とも重なる。</div>
+          <p class="aside"><b>出典：</b>パーリ経典『相応部』の「矢経」。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>「私」と世界</h3></div>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">無我：「これは私のものではない」</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「私」の記事で、自己モデル理論と仏教の無我が重なることに触れた。仏教は人間を五つの集まり（五蘊：色・受・想・行・識）として観察し、そのどれについても、こう見るよう説く。</p>
+          <blockquote class="big" style="padding:18px 0;margin:18px 0;font-size:1.05rem">「これは私のものではない。これは私ではない。これは私の自己ではない。」</blockquote>
+          <p>大切なのは、ここで否定されているのが「私がいること」そのものではなく、「何かを『私』『私のもの』として握りしめること」だという点だ。身体も、感情も、考えも、移ろう出来事であって、固定した「私」の所有物ではない。</p>
+          <div class="insight">自己モデル理論が「私はどう成り立っているか」を説明しようとするのに対し、無我は「私への執着をどう手放すか」を目指している。同じ場所を、違う方向から見ている。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">無常：すべては移ろうプロセス</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「私」の記事の結論は、「私」はものではなくプロセスだ、ということだった。川の水が入れ替わっても、川が川であり続けるように。</p>
+          <p>仏教の「諸行無常」——すべての形づくられたものは移ろう——は、まさにこの見方だ。身体も、感情も、関係も、「私」も、生じては変わり、やがて消えていく。</p>
+          <div class="insight">無常は、悲しい事実としてだけでなく、希望としても読める。すべてが変わるのなら、いまの苦しみも、いまの「ダメな私」も、固定されたものではない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">縁起：すべては関係の中で生じる</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「これがあるとき、かれがある。これが生じるから、かれが生じる」。縁起とは、あらゆるものが、それだけで独立して存在するのではなく、さまざまな条件の関係の中で生じている、という見方だ。</p>
+          <p>最初の記事で、「私」と「世界」は完全には切り離せず、「私」は世界との相互作用の中で成り立っている、と考えた。「意味」の記事では、意味は関係の中で生まれると考えた。どちらも、縁起の見方とそのまま重なる。</p>
+          <div class="insight">「意味は誰にとっての意味か」と問うたとき、すでに私は縁起の中で考えていたのかもしれない。意味も「私」も、関係の網の目の結び目のようなものだ。</div>
+          <p class="aside"><b>補足：</b>後の大乗仏教では、ナーガールジュナ（龍樹）が縁起をさらに推し進め、あらゆるものは固有の実体を持たない（空）と論じた。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>どう生きるか</h3></div>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">気づき（サティ）が、「間」をつくる</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>02章の図で見たように、感じること（受）は止められない。けれども、感じたことに渇愛が続く前に、「いま、不快を感じている」「いま、欲しいと思っている」と気づくことができれば、そこに隙間が生まれる。</p>
+          <p>仏教ではこの気づきを「サティ」と呼び、八正道の一つ（正念）として重んじた。自由意志の記事で、自由とは刺激と反応のあいだの「間」の広さだと考えた。サティは、その「間」を広げる訓練だといえる。</p>
+          <div class="flow"><span>感じる</span><i>→</i><span>気づく</span><i>→</i><span>間</span><i>→</i><span>渇愛に巻き込まれず、選ぶ</span></div>
+          <div class="insight">仏教の修行と、私が「自由」と呼んだものは、同じ場所を耕しているのかもしれない。</div>
+          <p class="aside"><b>補足：</b>現代のマインドフルネスは、ジョン・カバット・ジンが1979年に始めたストレス低減プログラム（MBSR）などを通じて、仏教の瞑想を宗教色を薄めた形で取り入れたもの。ストレスや再発性のうつへの効果を示す研究がある一方、効果の大きさや限界についての議論もある。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">中道：二択の両端に立たない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ブッダは、快楽にふける生き方と、身体を痛めつける苦行の、どちらの極端も退け、その「中道」を説いたとされる。</p>
+          <p>この姿勢は、私が五つの記事でくり返してきた考え方とも重なる。「意味がある／ない」の二択ではない。「自由がある／ない」ではなく程度がある。「私がいる／いない」ではなくプロセスとしてある。</p>
+          <div class="compare">
+            <div><small>常見（永遠に続く我がある）</small>変わらない「本当の私」がどこかにいる</div>
+            <div><small>断見（何もない）</small>私も意味も、まったく何もない</div>
+          </div>
+          <div class="insight">仏教は「私」についても、この両極端のどちらでもない道を探した。白黒をつけず、そのあいだの微妙な場所を正確に見ること。それが中道なのだと思う。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>重なりと、違い</h3></div>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">仏教を「科学」にしてしまわない</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ここまで重なりばかりを見てきた。けれども、仏教を「二千五百年前の脳科学」や「心理学」として読むのは、ずいぶん都合のいい切り取りだ。</p>
+          <div class="compare">
+            <div><small>仏教が持っているもの</small>業（カルマ）、輪廻、涅槃、解脱という目標、出家と戒律、信仰と共同体</div>
+            <div><small>現代の見方が持っているもの</small>実験と検証、反証可能性、宗教的な目標を前提としない記述</div>
+          </div>
+          <p>無我も、もともとは輪廻と解脱という枠組みの中で語られている。その枠組みを外して「無我＝自己モデル理論」とするのは、半分だけ取り出して、残りを捨てることでもある。</p>
+          <div class="insight">重なりを見つけることと、同じだと言い切ることは違う。両者を照らし合わせるのは、どちらかをもう一方に還元するためではなく、それぞれをより深く理解するためだ。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">意味を求めることは、渇愛なのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>前回の記事で、「意味を求めること自体が、苦しみの原因になることはないのか」という問いを残した。仏教の言葉でいえば、意味への渇望もまた渇愛なのではないか。</p>
+          <p>仏教は、すべての欲求を否定しているわけではない。苦しみを生む「渇愛（タンハー）」とは別に、よいことを為そうとする健全な意欲（チャンダ）を区別している。修行を続けようとする意欲がなければ、そもそも道は歩めない。</p>
+          <div class="compare">
+            <div><small>握りしめる意味</small>「意味がなければならない」と渇き、見つからない自分を責める</div>
+            <div><small>育てる意味</small>大切なものに向かいながら、結果や答えを握りしめない</div>
+          </div>
+          <div class="insight">意味を「握りしめる」と苦しみになり、意味を「育てる」と生きる力になる。違いは、求めるものの中身ではなく、求め方にあるのかもしれない。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="bridge">
+    <span class="h2-en">04 · BRIDGE</span>
+    <h2>五つの記事と仏教を重ねる</h2>
+    <p class="intro">これまでの五つの記事の結論と、それに対応する仏教の考え方を並べてみた。記事を切り替えて、重なるところと違うところを見比べてみてください。</p>
+
+    <div class="who-tabs bridge-tabs" role="tablist" aria-label="記事を選ぶ"></div>
+    <div class="who-panel bridge-panel" role="tabpanel" aria-live="polite">
+      <div class="label"></div>
+      <div class="ans"></div>
+      <div class="cols">
+        <div class="note-side"><b>哲学ノートでの結論</b><span class="c1"></span></div>
+        <div class="bud-side"><b>仏教の視点</b><span class="c2"></span></div>
+        <div class="over"><b>重なるところ</b><span class="c3"></span></div>
+        <div class="diff"><b>違うところ</b><span class="c4"></span></div>
+      </div>
+      <p class="art"></p>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>初期仏教の経典には、世界の永遠性や死後の存続などの問いにブッダが答えなかったという伝承がある。</li>
+          <li>仏教の中心には、苦・その原因・その終わり・そこへの道という四つの真理がある。</li>
+          <li>無我の教えは、五蘊のどれも「私」「私のもの」として執着すべきではない、という形で説かれる。</li>
+          <li>現代のマインドフルネスは仏教の瞑想に由来し、ストレス低減などへの効果を示す研究がある。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>仮説・個人的な見方</h4>
+        <ul>
+          <li>渇愛と、脳の「wanting」の働きは、似た現象を別の言葉で捉えている可能性がある。</li>
+          <li>無我と自己モデル理論は、「固定した実体としての私はない」という点で重なる。</li>
+          <li>サティ（気づき）は、刺激と反応のあいだの「間」を広げる訓練として理解できる。</li>
+          <li>縁起の見方は、「意味は関係の中で生まれる」という考えと重なる。</li>
+          <li>意味を「握りしめる」か「育てる」かで、意味の探求は苦しみにも力にもなる。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>輪廻や業は、どこまで文字どおりに、どこまで比喩として受け取るべきなのか。</li>
+          <li>涅槃（苦しみの完全な終わり）とは、どのような状態なのか。</li>
+          <li>無我を「理解する」ことと「実感する」ことは、どう違うのか。</li>
+          <li>宗教的な枠組みを外した仏教（世俗的な仏教）は、仏教と呼べるのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">仏教は、私がたどってきた問いに「答え」をくれたわけではない。むしろ、答えの出ない問いを抱えたまま、どう生きるかという「問いの扱い方」を教えてくれた。</p>
+
+    <div class="formula">
+      <div class="no">究極の問いに答えを見つければ、苦しみは消える</div>
+      <div class="yes"><span>気づく</span><i>×</i><span>手放す</span><i>×</i><span>つながりを見る</span><i>×</i><span>選び直す</span></div>
+      <div class="cap">答えが出なくても、苦しみとの関係は変えられる</div>
+    </div>
+
+    <blockquote class="big">問いを捨てる必要はない。けれども、問いの答えが出るまで生きることを保留する必要もない。毒矢を抜くことと、矢について考え続けることは、両立する。</blockquote>
+    <p class="note">ただし、これは仏教のごく一部を、自分の問いに引き寄せて読んだものにすぎない。仏教そのものをより正確に知るには、下の関連ノートや専門の文献を参照してください。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>ブッダは形而上学的な問いに答えず、苦しみへの向き合い方を優先した（無記・毒矢のたとえ）。</li>
+      <li>「苦」は痛みではなく、すべてが思い通りにならないこと。</li>
+      <li>苦しみの原因は渇愛。満たしても戻ってくる「欲しい」は、現代の脳科学の発見とも似ている。</li>
+      <li>痛み（第一の矢）は避けられないが、反応（第二の矢）には介入の余地がある。</li>
+      <li>無我・無常・縁起は、「私」をプロセスや関係として捉える見方と重なる。</li>
+      <li>重なりを見つけることと、同じだと言い切ることは違う。</li>
+      <li>意味を「握りしめる」と苦しみになり、「育てる」と生きる力になる。</li>
+    </ol>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">m-note 内の関連ノート</h3>
+    <div class="related">
+      <a href="../early-buddhism/"><small>EARLY BUDDHISM</small><b>原始仏教</b><span>釈迦が説いた最初の教えを、苦・執着からメタ認知まで現代の視点で捉え直すノート。</span></a>
+      <a href="../buddhism/"><small>BUDDHISM</small><b>仏教の思想史</b><span>ブッダから大乗、日本の各宗派まで。「人はどうすれば救われるのか」への答えとして読むノート。</span></a>
+      <a href="../mindfulness/"><small>MINDFULNESS</small><b>マインドフルネス</b><span>瞑想・ACT・セルフアクセプタンスの実践ノート。</span></a>
+      <a href="../cbt/"><small>CBT</small><b>認知行動療法</b><span>出来事の受け止め方を見直す、紙とペンで始める実践ノート。</span></a>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>ブッダが答えなかった問いは、答えられない問いなのか、答えなくてよい問いなのか？</li>
+      <li>渇愛が完全におさまったとき、人は何を動機に生きるのか？</li>
+      <li>無我を本当に実感したとき、「意味」はどう感じられるのか？</li>
+      <li>輪廻や業を外した仏教に、何が残るのか？</li>
+      <li>気づきの訓練で、自由はどこまで広げられるのか？</li>
+      <li>縁起の網の目の中で、「私の責任」はどう考えればよいのか？</li>
+      <li>苦しみを減らすことと、意味を深めることは、同じ方向を向いているのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>死とは何か</b><p>無常の極みとしての死。「私」がプロセスなら、それが止まるとはどういうことか。</p></div>
+      <div><b>幸福とは何か</b><p>快楽、満足、意味、そして苦しみの消滅。幸福にはいくつの形があるのか。</p></div>
+      <div><b>空とは何か</b><p>縁起を推し進めた大乗仏教の「空」と、現代の関係的な世界観。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>別の時代、別の言葉、別の目的で、<br>同じ問いの近くを歩いていた人たちがいた。<br>そのことに、少し励まされる。</p>
+    <p class="last">答えは出ていない。<br>けれど、矢を抜いて、<br>もう一度、歩き出すことはできる。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="meaning.html">← 05 意味はどう生まれるか</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const data = [
+    { k: "01 生きる意味", href: "meaning-of-life.html", head: "答えの出ない問いと、どう生きるか",
+      c1: "宇宙に客観的な目的があるとは言えないが、だから無意味とも言えない。究極の問いは未決定のまま残った。",
+      c2: "世界の永遠性や死後の存続といった問いには答えず（無記）、苦しみを終わらせることを優先した（毒矢のたとえ）。",
+      c3: "究極の問いに答えが出なくても、生き方を考えることはできる、という姿勢。",
+      c4: "仏教には、輪廻からの解脱という明確な目標がある。哲学ノートは目標を定めず、問い続けることを選んでいる。" },
+    { k: "02 意識", href: "consciousness.html", head: "経験は、どこで生まれるのか",
+      c1: "意識は脳活動と深く対応しているが、なぜ主観的な経験があるのかは説明できていない（意識の難問）。",
+      c2: "意識（識）は五蘊の一つで、条件によって生じては消える働き。固定した主体ではない。",
+      c3: "意識を「持ち主」ではなく、生じては変わる「出来事」として見ること。",
+      c4: "仏教は意識の物理的な仕組みを問わない。関心は、意識がなぜあるかではなく、意識の中で苦しみがどう生まれるかにある。" },
+    { k: "03 「私」", href: "self.html", head: "固定した「私」は見つからない",
+      c1: "「私」は脳がつくる透明な自己モデルであり、身体・記憶・物語・関係が組み合わさり続けるプロセス。",
+      c2: "五蘊のどれも「私」「私のもの」ではない（無我）。すべては移ろう（無常）。",
+      c3: "固定した実体としての私はない、という結論。そして、私をプロセスとして見る視点。",
+      c4: "自己モデル理論は「私の成り立ち」を説明する。無我は「私への執着を手放す」ことを目指す。目的が違う。" },
+    { k: "04 自由意志", href: "free-will.html", head: "刺激と反応のあいだの「間」",
+      c1: "自由とは原因から逃れることではなく、刺激と反応のあいだに「間」をつくり、選び直せる程度のこと。",
+      c2: "感じること（受）から渇愛へ流れる前に気づく（サティ）。気づきによって、苦しみの連鎖に介入できる。",
+      c3: "気づきが「間」を広げ、反射的な反応から自由になる、という構造。",
+      c4: "仏教は「自由意志はあるか」という形では問わない。業（行為とその結果）の教えの中で、行為の責任が語られる。" },
+    { k: "05 意味", href: "meaning.html", head: "握りしめるか、育てるか",
+      c1: "意味は見つけるものでも作るものでもなく、感情・物語・関係・選択の中で育つもの。",
+      c2: "すべては関係の中で生じる（縁起）。渇愛は苦しみを生むが、健全な意欲（チャンダ）は区別される。",
+      c3: "意味も「私」も、関係の網の目の中で生じるという見方。",
+      c4: "仏教では、「意味」への渇望そのものが苦しみの種になりうる。哲学ノートは意味を肯定的に捉えている。" }
+  ];
+  const tabs = document.querySelector(".bridge-tabs");
+  const panel = document.querySelector(".bridge-panel");
+  const q = (s) => panel.querySelector(s);
+  const show = (i) => {
+    tabs.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
+    const d = data[i];
+    q(".label").textContent = d.k;
+    q(".ans").textContent = d.head;
+    ["c1","c2","c3","c4"].forEach(c => { q("." + c).textContent = d[c]; });
+    const a = q(".art"); a.textContent = "";
+    const link = document.createElement("a"); link.href = d.href; link.textContent = d.k + " の記事を読む →";
+    a.appendChild(link);
+  };
+  data.forEach((d, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.role = "tab"; b.textContent = d.k;
+    b.addEventListener("click", () => show(i));
+    tabs.appendChild(b);
+  });
+  show(2);
+})();
+</script>
+</body>
+</html>
