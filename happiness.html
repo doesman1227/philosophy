@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>幸福とは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="「幸せになりたい」とき、私たちは何を望んでいるのか。快楽説・欲求充足説・客観的リスト説、経験機械、お金と幸福の研究、幸福のパラドックス、アリストテレスと仏教の幸福観をたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* happiness page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted);line-height:2}
+  .series a{color:var(--accent)}
+  .triad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0 10px}
+  .triad div{padding:22px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .triad .en{display:block;font-size:.64rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .triad b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.14rem;margin:6px 0 2px}
+  .triad .q{display:block;font-family:"Noto Serif JP",serif;font-size:.92rem;color:var(--ink);margin-bottom:8px}
+  .triad span{font-size:.86rem;color:var(--sub);line-height:1.8;display:block}
+  .triad span.weak{margin-top:8px;font-size:.8rem;color:var(--open)}
+  @media (max-width:620px){ .triad{grid-template-columns:1fr} }
+
+  .machine{margin-top:28px}
+  .scen-tabs{display:flex;flex-wrap:wrap;gap:8px}
+  .scen-tabs button{font:inherit;font-size:.84rem;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--sub);cursor:pointer}
+  .scen-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .scen-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .scen{margin-top:14px;padding:26px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .scen .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .scen .setup{color:var(--sub);font-size:.94rem;margin:8px 0 12px}
+  .scen .question{font-family:"Noto Serif JP",serif;font-size:1.12rem;line-height:1.8}
+  .scen .choices{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .scen .choices button{font:inherit;font-size:.9rem;padding:8px 20px;border:1px solid var(--accent);border-radius:3px;background:var(--bg);color:var(--accent);cursor:pointer;transition:all .2s}
+  .scen .choices button:hover{background:var(--accent-soft)}
+  .scen .choices button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+  .scen .choices button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .scen .resp{margin-top:16px;padding:16px 18px;border-radius:3px;background:var(--accent-soft);font-size:.92rem;color:var(--sub);line-height:1.9}
+  .scen .resp[hidden]{display:none}
+  .scen .resp b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;color:var(--ink);margin-bottom:2px}
+  .tally{margin-top:14px;font-size:.84rem;color:var(--muted)}
+
+  .related{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
+  .related a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-decoration:none;transition:border-color .2s}
+  .related a:hover{border-color:var(--accent)}
+  .related small{display:block;font-size:.64rem;font-weight:700;letter-spacing:.2em;color:var(--muted)}
+  .related b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin:2px 0}
+  .related span{font-size:.82rem;color:var(--sub);line-height:1.7;display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 08</p>
+    <h1><span>「幸せになりたい」とき、</span><br><span>私たちは何を</span><span>望んでいるのか</span></h1>
+    <p class="lead">「意味」の記事で、楽しさと意味は別の軸かもしれないと考えた。「仏教」の記事では、苦しみの原因は渇愛にあると見た。「死」の記事では、終わりがあるからこそ、いまが「いま」になると考えた。では、「幸福」とは何なのか。誰もが望んでいるはずなのに、それが何かを説明しようとすると、言葉に詰まる。</p>
+    <p class="note">これは幸福になる方法のまとめではなく、「幸福とは何か」という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「理論・仮説」「未決定のこと」を区別して書いています。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味</a> ／ <a href="consciousness.html">02 意識</a> ／ <a href="self.html">03 「私」</a> ／ <a href="free-will.html">04 自由意志</a> ／ <a href="meaning.html">05 意味の成り立ち</a> ／ <a href="buddhism.html">06 仏教</a> ／ <a href="death.html">07 死</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#theories"><b>02</b>幸福の三つの理論</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#machine"><b>04</b>経験機械に入るか</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「幸福」を分解する</h2>
+    <p class="intro">「幸せ？」と聞かれて、すぐに答えられる人は少ない。いまの気分のことなのか、人生全体のことなのか。手に入れるものなのか、すでにあるものなのか。問いをほどいていく。</p>
+    <ol class="descent">
+      <li><span class="q">「幸福」とは、何を指しているのか</span><span class="d">気分、満足、よく生きること</span></li>
+      <li><span class="q">よい気分が続けば、それで幸福なのか</span><span class="d">三つの理論と、経験機械</span></li>
+      <li><span class="q">幸福は測れるのか</span><span class="d">経験する自己と、記憶する自己</span></li>
+      <li><span class="q">何が人を幸福にするのか</span><span class="d">お金、関係、自律</span></li>
+      <li><span class="q">なぜ幸福は、追いかけると逃げていくのか</span><span class="d">幸福のパラドックス</span></li>
+      <li><span class="q">幸福は、手に入れるものなのか、生き方なのか</span><span class="d">アリストテレスと仏教</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="theories">
+    <span class="h2-en">02 · THREE THEORIES</span>
+    <h2>「その人にとって良い人生」の<br>三つの説明</h2>
+    <p class="intro">哲学では、「ある人にとって人生がうまくいっているとはどういうことか」について、大きく三つの理論が区別されてきた。どれにも強い直観の裏づけがあり、どれにも反例がある。</p>
+    <div class="triad">
+      <div><span class="en">HEDONISM</span><b>快楽説</b><span class="q">「いい気分であること」</span><span>快い経験が多く、苦しい経験が少ないほど、人生はその人にとって良い。</span><span class="weak">反例：経験機械の中の偽りの人生も、良い人生になってしまう</span></div>
+      <div><span class="en">DESIRE SATISFACTION</span><b>欲求充足説</b><span class="q">「望みが叶うこと」</span><span>その人が望んでいることが実現するほど、人生はその人にとって良い。</span><span class="weak">反例：叶っても満たされない望みや、本人を傷つける望みもある</span></div>
+      <div><span class="en">OBJECTIVE LIST</span><b>客観的リスト説</b><span class="q">「良いものがあること」</span><span>友情、知識、健康、達成など、本人の感じ方に関わらず良いものを持つほど良い。</span><span class="weak">反例：本人がまったく喜んでいない「立派な人生」も良いことになる</span></div>
+    </div>
+    <p class="note">この三分類は、哲学者デレク・パーフィット『理由と人格』（1984）の付録による整理がよく知られている。現実には、複数を組み合わせた考え方も多い。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>「幸福」という言葉をほどく</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">「幸福」には、少なくとも三つの意味がある</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「いま幸せ」と言うときと、「幸せな人生だった」と言うときでは、指しているものが違う。</p>
+          <div class="compare">
+            <div><small>気分としての幸福</small>いま、楽しい・心地よい・満たされていると感じていること</div>
+            <div><small>満足としての幸福</small>自分の人生を振り返って、「これでいい」と評価できること</div>
+            <div><small>よく生きることとしての幸福</small>人として能力を発揮し、充実して生きていること</div>
+            <div><small>日本語の「しあわせ」</small>もともとは「仕合わせ」、つまり「めぐり合わせ」を意味する言葉だった</div>
+          </div>
+          <div class="insight">「幸せになりたい」と言うとき、私たちはこれらを混ぜて望んでいる。どの意味の幸福を求めているかで、目指す方向はかなり変わる。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">快楽と欲求と、良いもの</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>02章の三つの理論は、それぞれ私たちの直観の一部を代弁している。いい気分でいたい（快楽説）。望みが叶ってほしい（欲求充足説）。そして、ただ気分がいいだけではなく、本当に良いものに囲まれていたい（客観的リスト説）。</p>
+          <p>「意味」の記事で見たスーザン・ウルフの混合説——意味は「主観的な惹かれ」と「客観的な価値」が出会うところに生まれる——は、幸福についても似た形で考えられそうだ。</p>
+          <div class="insight">どの理論も単独では反例を抱えている。幸福は、「感じ」と「望み」と「本当に良いもの」が重なるところにあるのかもしれない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">経験機械：いい気分だけで、十分か</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>脳に電極をつなぐと、望むどおりの最高の経験を、本物とまったく区別できない形で一生味わえる機械があるとする。偉大な小説を書く経験、恋に落ちる経験、友人に囲まれる経験。ただし、実際には水槽の中に浮かんでいるだけだ。あなたは、この機械に一生つながれたいだろうか。</p>
+          <p>多くの人は「入りたくない」と答える。もしそうなら、私たちは「いい気分」以外の何か——実際に何かをすること、実際に誰かとつながっていること、現実と触れていること——を求めていることになる。</p>
+          <div class="insight">経験機械を拒むなら、幸福は「頭の中の感じ」だけでは尽くされない。それは、世界との本物の関係を含んでいる。（<a href="#machine">04章</a>で、自分ならどうするか試せます）</div>
+          <p class="aside"><b>出典：</b>ロバート・ノージック『アナーキー・国家・ユートピア』（1974）。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>幸福を測る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">「経験する自己」と「記憶する自己」</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>心理学では幸福を、大きく二つの方法で測ってきた。一日のさまざまな瞬間に「いまどんな気分か」を尋ねる方法と、「あなたの人生を0〜10で評価すると？」と全体を振り返ってもらう方法だ。</p>
+          <p>この二つは、必ずしも一致しない。ダニエル・カーネマンは、瞬間ごとに感じている「経験する自己」と、後から振り返って物語る「記憶する自己」を区別した。記憶する自己は、経験の長さをあまり気にせず、いちばん強かった瞬間と最後の瞬間で全体を評価しがちだという（ピーク・エンドの法則）。</p>
+          <div class="compare">
+            <div><small>経験する自己</small>いま、この瞬間を生きている。「今日は楽しかった」の実感</div>
+            <div><small>記憶する自己</small>振り返り、物語り、評価する。「いい人生だった」の判断</div>
+          </div>
+          <div class="insight">「私」の記事で考えた「物語としての私」が、ここにも現れる。私たちの人生の評価は、経験そのものではなく、経験についての物語によって大きく左右されている。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">お金で幸福は買えるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>もっとも有名な論争の一つ。2010年、カーネマンとアンガス・ディートンは、人生の評価は収入とともに上がり続けるが、日々の気分の良さは、ある程度の年収（当時の米国で約7万5千ドル）を超えると頭打ちになる、と報告した。</p>
+          <p>その後、より細かい測り方を使った研究では頭打ちが見られないという結果が出た。そこで、立場の異なる研究者が共同で同じデータを再分析したところ、多くの人では収入とともに気分の良さも上がり続けるが、もっとも不幸な層では、一定の収入以上で頭打ちになる、という結果になった（2023年）。</p>
+          <div class="insight">お金は、多くの人の幸福と確かに関係している。けれども、お金で解消できない種類の不幸もある。そして「意味」の記事で見たように、手に入れたものにはすぐ慣れてしまう。</div>
+          <p class="aside"><b>補足：</b>この共同研究は、対立する主張を持つ研究者どうしが協力して決着を目指す「敵対的共同研究」の例としても知られる。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">何が、幸福と結びついているのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>数十年にわたって同じ人々を追いかけた研究の中には、晩年の健康と幸福をもっともよく予測したのは、富や名声ではなく、温かい人間関係だった、と報告しているものがある。</p>
+          <p>心理学の自己決定理論では、人がいきいきと生きるために、三つの基本的な心理的欲求が満たされる必要がある、と考える。</p>
+          <div class="tags"><span>自律性：自分で選んでいる感覚</span><span>有能感：うまくできている感覚</span><span>関係性：人とつながっている感覚</span></div>
+          <div class="insight">ここでも、「自由意志」の記事の「自分で選ぶこと」、「意味」の記事の「他者とのつながり」が、幸福の柱として現れる。幸福・自由・意味は、別々の問いではないのかもしれない。</div>
+          <p class="aside"><b>関連する研究：</b>1938年に始まったハーバード成人発達研究（現在の責任者はロバート・ウォールディンガー）。自己決定理論は、エドワード・デシとリチャード・ライアンによる。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>追いかけると、逃げていく</h3></div>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">幸福のパラドックス</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>哲学者ジョン・スチュアート・ミルは、自伝の中で、幸福を直接の目的にせず、他人の幸福や人類の向上、何かの技芸や探求といった別のものに心を向けているとき、人は「ついでに」幸福を見出す、と書いた。自分に「いま幸せか」と問うたとたん、幸せではなくなる、とも。</p>
+          <p>現代の心理学にも、幸福を強く重視しすぎる人ほど、かえって幸福感が低い傾向がある、という研究がある。「もっと幸せでなければ」という期待が、いまの状態への失望を生むからだと考えられている。</p>
+          <div class="insight">仏教の記事で見た「意味を握りしめると苦しみになり、育てると力になる」は、幸福にもそのまま当てはまる。幸福を握りしめようとすると、それは渇愛になる。</div>
+          <p class="aside"><b>関連する研究：</b>アイリス・マウスらの研究（2011）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">心がさまようと、幸福度は下がる</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>スマートフォンで一日の中のランダムな瞬間に「いま何をしているか」「いま何を考えているか」「いまどんな気分か」を尋ねた大規模な研究がある。それによると、人は起きている時間のおよそ半分近く、いましていることとは別のことを考えていた。そして、心がさまよっているとき、人は平均して幸福度が低かった。</p>
+          <div class="flow"><span>いまここ</span><i>⇄</i><span>過去の後悔・未来の不安・他人との比較</span></div>
+          <div class="insight">幸福は、遠い未来の目標の中より、いま目の前のことに注意が向いているときに起きやすいのかもしれない。死の記事の結論——終わりがあるから、いまが「いま」になる——とも重なる。</div>
+          <p class="aside"><b>出典：</b>マシュー・キリングスワースとダニエル・ギルバート（2010）。ただし、心がさまようから不幸なのか、不幸だから心がさまようのか、因果の向きには議論の余地がある。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">比べると、幸福は目減りする</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>同じ収入でも、周りがもっと稼いでいれば満足は下がる。人間の幸福は、絶対的な状態よりも、他人や過去の自分、期待との「比較」に強く左右される。</p>
+          <p>そして、良いことが起きても、しばらくすると慣れて元の水準に戻っていく。走っても走っても同じ場所にとどまるランニングマシンのようなこの現象は、「快楽のトレッドミル」と呼ばれる。</p>
+          <div class="insight">「もっと」を追い続ける構造は、仏教の渇愛とまったく同じ形をしている。だから、幸福を「足し算」で増やそうとするだけでは、どこにもたどり着かない。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>幸福は、状態か、生き方か</h3></div>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">アリストテレス：幸福は「活動」である</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>アリストテレスは、人間が行うすべてのことは何らかの善を目指しており、その最終的な目的が「エウダイモニア」（幸福、よく生きること）だと考えた。ただしそれは、気分や手に入れる状態ではない。</p>
+          <p>彼にとって幸福とは、人間に固有の能力——とりわけ理性——を、徳に従って、生涯にわたって発揮し続ける「活動」だった。一羽のツバメが来ても春にならないように、一日の幸せが人を幸福にするわけではない、とも書いている。</p>
+          <div class="insight">幸福は、どこかに到着して手に入れるものではなく、日々どう生きているか、そのものの中にある。「私」がプロセスであるように、幸福もまたプロセスなのかもしれない。</div>
+          <p class="aside"><b>出典：</b>アリストテレス『ニコマコス倫理学』。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">仏教：渇きがおさまった、静かな安らぎ</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>仏教の記事で見たように、仏教は「もっと」を求める渇愛を苦しみの原因と考えた。だとすれば、仏教にとっての幸福は、何かを足すことではなく、渇きがおさまっていくことの中にある。</p>
+          <div class="compare">
+            <div><small>足し算の幸福</small>欲しいものを手に入れ、よい経験を増やしていく</div>
+            <div><small>引き算の幸福</small>求めすぎを手放し、すでにあるもので満ち足りる（少欲知足）</div>
+          </div>
+          <p>仏教は、他者の幸せを願う「慈」、苦しみを取り除きたいと願う「悲」、他者の喜びを共に喜ぶ「喜」、偏らない心の平静「捨」も大切にした。幸福は、自分一人の内側だけで完結するものではない。</p>
+          <div class="insight">現代の「幸福のパラドックス」や「快楽のトレッドミル」は、仏教が二千五百年前に見ていたものを、別の方法で再発見しているのかもしれない。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>これまでの記事へ戻る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">幸福と意味と死をつなぐ</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「意味」の記事で、楽しさと意味は別の軸だと考えた。子育てや困難な仕事は、楽しくはなくても意味がある。だとすれば、人生の良さは、楽しさだけでも、意味だけでも測れない。</p>
+          <p>「死」の記事で、終わりがあることが選択に重みを与えると考えた。有限であるからこそ、何を大切にして生きるかが問われる。</p>
+          <div class="flow"><span>楽しさ（いまの気分）</span><i>＋</i><span>意味（つながりと方向）</span><i>＋</i><span>平静（足るを知る）</span><i>→</i><span>よく生きる</span></div>
+          <div class="insight">幸福は、人生の「目的地」というより、意味のあることに心を向け、人とつながり、いまに注意を向けて生きているときに、ついでに訪れる「副産物」なのかもしれない。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="machine" class="machine">
+    <span class="h2-en">04 · THOUGHT EXPERIMENT</span>
+    <h2>経験機械に、入るか</h2>
+    <p class="intro">三つの状況で、自分ならどうするかを選んでみてください。選ぶと、その選択が何を示しているかが表示されます。正解はありません。</p>
+
+    <div class="scen-tabs" role="tablist" aria-label="状況を選ぶ"></div>
+    <div class="scen" role="tabpanel" aria-live="polite">
+      <div class="label"></div>
+      <p class="setup"></p>
+      <div class="question"></div>
+      <div class="choices"></div>
+      <div class="resp" hidden><b></b><span></span></div>
+    </div>
+    <p class="tally"></p>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>瞬間ごとの気分と、人生全体の評価は、関連しつつも別のものとして測られる。</li>
+          <li>収入は多くの人の幸福と関係しているが、それだけで幸福が決まるわけではない。</li>
+          <li>人は良い出来事にも悪い出来事にも、時間とともに慣れていく。</li>
+          <li>温かい人間関係は、幸福や健康と強く結びついている。</li>
+          <li>人は他人や期待との比較によって、満足の度合いを大きく変える。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>理論・仮説</h4>
+        <ul>
+          <li>多くの人は経験機械を拒む。幸福は「いい気分」だけでは尽くされないのかもしれない。</li>
+          <li>自律性・有能感・関係性が満たされることが、いきいきと生きる条件である。</li>
+          <li>幸福を直接追い求めすぎると、かえって遠ざかる。</li>
+          <li>幸福は状態ではなく、よく生きる「活動」である（アリストテレス）。</li>
+          <li>幸福は、意味あることへの関わりから生まれる「副産物」である。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>幸福の正体は、快楽か、欲求の充足か、客観的に良いものか。</li>
+          <li>経験する自己と記憶する自己、どちらの幸福を優先すべきか。</li>
+          <li>経験機械を拒む直観は、正しいのか、単なる現状維持の偏りなのか。</li>
+          <li>幸福と意味が対立するとき、どちらを選ぶべきか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">幸福は、欲しいものを手に入れて、いい気分が続くことだけではない。経験機械を拒みたくなる直観、幸福のパラドックス、快楽のトレッドミルが、そのことを示している。いまの自分の考えは、幸福は「目指して手に入れるもの」ではなく、「よく生きていることの、手ざわり」に近い、というものだ。</p>
+
+    <div class="formula">
+      <div class="no">欲しいものを手に入れ続ければ、いずれ幸福にたどり着く</div>
+      <div class="yes"><span>関係</span><i>×</i><span>意味</span><i>×</i><span>いま</span><i>×</i><span>足る</span></div>
+      <div class="cap">人とつながり、意味あることに関わり、いまに注意を向け、足るを知る中で、幸福はついでに訪れる</div>
+    </div>
+
+    <blockquote class="big">幸福は、遠くにある目的地ではなく、歩いている道の、足もとの感触なのかもしれない。「しあわせ」がもともと「めぐり合わせ」を意味したように、それは握りしめるものではなく、出会うものなのだと思う。</blockquote>
+    <p class="note">ただし、貧困や病気、孤立といった具体的な苦しみを「心の持ちよう」の問題にすり替えてはいけない。足るを知ることは、足りていない状況を我慢することとは違う。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>「幸福」には、気分・満足・よく生きることという、少なくとも三つの意味がある。</li>
+      <li>快楽説・欲求充足説・客観的リスト説は、どれも直観の一部を捉え、どれも反例を抱えている。</li>
+      <li>多くの人は経験機械を拒む。幸福は「頭の中の感じ」だけでは尽くされない。</li>
+      <li>お金は幸福と関係するが、関係・自律・有能感なども大きな柱である。</li>
+      <li>幸福は、追いかけすぎると逃げていく。比較と慣れが、その仕組みの一部。</li>
+      <li>アリストテレスにとって幸福は状態ではなく、よく生きる「活動」だった。</li>
+      <li>幸福は目的地ではなく、意味あることに関わる中で訪れる副産物なのかもしれない。</li>
+    </ol>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">m-note 内の関連ノート</h3>
+    <div class="related">
+      <a href="../mindfulness/"><small>MINDFULNESS</small><b>マインドフルネス</b><span>瞑想・ACT・セルフアクセプタンスの実践ノート。</span></a>
+      <a href="../emotions/"><small>EMOTIONS</small><b>人間の感情</b><span>8つの基本感情と、輪の外側にある「欲・渇愛・執着」を整理したノート。</span></a>
+      <a href="../health-habits/"><small>HEALTH &amp; HABITS</small><b>健康と習慣</b><span>頑張るためではなく、心身を長く整えていくためのノート。</span></a>
+      <a href="../cbt/"><small>CBT</small><b>認知行動療法</b><span>出来事の受け止め方を見直す、紙とペンで始める実践ノート。</span></a>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>幸福の正体は、快楽なのか、欲求の充足なのか、それとも別の何かなのか？</li>
+      <li>「いま」の幸福と「振り返ったとき」の幸福、どちらが本当の幸福なのか？</li>
+      <li>経験機械を拒むのは、正しい直観なのか、変化への恐れなのか？</li>
+      <li>幸福と意味がぶつかるとき、どちらを選べばよいのか？</li>
+      <li>他人を幸福にすることと、自分が幸福になることは、どう関係しているのか？</li>
+      <li>足るを知ることと、より良い社会を求めることは、両立するのか？</li>
+      <li>幸福を感じられるAIは、幸福なのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>善く生きるとは何か</b><p>自分の幸福と、他者への責任。倫理とは何か。</p></div>
+      <div><b>時間とは何か（哲学編）</b><p>過去・現在・未来は本当にあるのか。「いま」とは何か。</p></div>
+      <div><b>空とは何か</b><p>縁起を推し進めた大乗仏教の「空」と、生き方。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>幸福とは何かを考えていたら、<br>幸福を「手に入れる」という発想そのものが、<br>少しずつほどけていった。</p>
+    <p class="last">握りしめるのではなく、<br>めぐり合う。<br>今日のどこかで、もう出会っているのかもしれない。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="death.html">← 07 死とは何か</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const scenes = [
+    { k: "基本の経験機械",
+      setup: "脳に電極をつなぐと、望むどおりの最高の経験を、本物と区別できない形で一生味わえる機械がある。つながったら、それが機械だとは気づけない。現実のあなたは水槽の中に浮かんでいるだけだ。",
+      q: "この機械に、一生つながりますか？",
+      opts: [
+        { v: "in", label: "つながる", t: "いい気分こそが幸福だ、という直観",
+          d: "快楽説に近い選択です。本人が区別できないなら、本物かどうかは重要ではない、という考え方。筋が通っている一方で、多くの人がこの選択に抵抗を感じる理由も考えてみると面白いかもしれません。" },
+        { v: "out", label: "つながらない", t: "いい気分以外の何かを求めている",
+          d: "多くの人がこちらを選びます。実際に何かをすること、本物の人とつながること、現実に触れていること。幸福は「頭の中の感じ」だけでは尽くされない、という直観です。" }
+      ] },
+    { k: "逆転した経験機械",
+      setup: "ある朝、あなたは告げられる。「実はあなたは、何年も前から経験機械の中にいる。今の人生はすべて機械の経験だ。現実の世界に戻ることもできる。ただし、現実のあなたの人生がどんなものかは分からない」。",
+      q: "機械を出て、現実に戻りますか？",
+      opts: [
+        { v: "out", label: "現実に戻る", t: "本物であることを、いまの人生より優先する",
+          d: "基本の経験機械を拒んだ理由と一貫した選択です。たとえ今の人生を失っても、本物であることに価値を置いています。" },
+        { v: "in", label: "このまま留まる", t: "慣れ親しんだ人生を手放したくない",
+          d: "実は、この形で問われると「留まる」を選ぶ人がかなり増えることを示した研究があります。だとすると、経験機械を拒む直観の一部は「本物を求める心」ではなく、「いまの状態を変えたくない心（現状維持バイアス）」なのかもしれません。" }
+      ] },
+    { k: "期限つきの機械",
+      setup: "今度の機械は、1年だけ。その1年間、あなたは最高に幸福な経験を味わう。1年後には現実に戻り、機械の中の出来事はすべて記憶から消える。現実の1年間は、眠っているのと同じだ。",
+      q: "この1年間の機械に入りますか？",
+      opts: [
+        { v: "in", label: "入る", t: "記憶に残らなくても、経験した幸福には価値がある",
+          d: "「経験する自己」の幸福を重視する選択です。振り返ることができなくても、その瞬間に幸福だったのなら、それは良いことだ、という考え方です。" },
+        { v: "out", label: "入らない", t: "記憶に残らない幸福や、現実の1年を失うことに抵抗がある",
+          d: "「記憶する自己」や、現実の人生の連続性を重視する選択です。思い出として語れない幸福、誰とも共有されない幸福には、何かが欠けていると感じているのかもしれません。" }
+      ] }
+  ];
+  const picks = scenes.map(() => null);
+  const tabs = document.querySelector(".scen-tabs");
+  const box = document.querySelector(".scen");
+  const q = (s) => box.querySelector(s);
+  const tally = document.querySelector(".tally");
+  let cur = 0;
+  const renderTally = () => {
+    const n = picks.filter(p => p).length;
+    if (!n) { tally.textContent = ""; return; }
+    const outs = picks.filter(p => p === "out").length;
+    tally.textContent = "選んだ状況：" + n + " / 3（うち「機械の外」を選んだのは " + outs + " 回）";
+  };
+  const show = (i) => {
+    cur = i;
+    tabs.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-selected", String(i === j)));
+    const s = scenes[i];
+    q(".label").textContent = "状況 " + (i + 1) + " · " + s.k;
+    q(".setup").textContent = s.setup;
+    q(".question").textContent = s.q;
+    const ch = q(".choices"); ch.textContent = "";
+    s.opts.forEach(o => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = o.label;
+      b.setAttribute("aria-pressed", String(picks[i] === o.v));
+      b.addEventListener("click", () => { picks[i] = o.v; show(cur); renderTally(); });
+      ch.appendChild(b);
+    });
+    const r = q(".resp");
+    const o = s.opts.find(o => o.v === picks[i]);
+    if (o) { r.hidden = false; r.querySelector("b").textContent = o.t; r.querySelector("span").textContent = o.d; }
+    else { r.hidden = true; }
+  };
+  scenes.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.role = "tab"; b.textContent = (i + 1) + ". " + s.k;
+    b.addEventListener("click", () => show(i));
+    tabs.appendChild(b);
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
