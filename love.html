@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>愛とは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="誰かを大切に思うとは、どういうことか。四つの愛、恋と愛着の脳科学、プラトンの『饗宴』、愛に理由はあるのか、フロムの『愛するということ』、仏教の慈悲とアガペー、自己愛をたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* love page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted);line-height:2}
+  .series a{color:var(--accent)}
+  .quad{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:30px 0 10px}
+  .quad div{padding:22px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .quad .en{display:block;font-size:.64rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .quad b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.14rem;margin:6px 0 2px}
+  .quad .q{display:block;font-family:"Noto Serif JP",serif;font-size:.94rem;color:var(--ink);margin-bottom:8px}
+  .quad span{font-size:.86rem;color:var(--sub);line-height:1.8;display:block}
+  @media (max-width:620px){ .quad{grid-template-columns:1fr} }
+
+  .tri{margin-top:26px;padding:26px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .tri-grid{display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:center}
+  @media (max-width:640px){ .tri-grid{grid-template-columns:1fr} }
+  .tri svg{width:100%;height:auto;display:block}
+  .tri svg .edge{stroke:var(--line);stroke-width:2;fill:none}
+  .tri svg .fillp{fill:var(--accent-soft);transition:opacity .3s}
+  .tri svg .v{fill:var(--bg);stroke:var(--faint);stroke-width:2;transition:all .3s}
+  .tri svg .v.on{fill:var(--accent);stroke:var(--accent)}
+  .tri svg text{font-family:"Noto Sans JP",sans-serif;font-size:13px;fill:var(--sub)}
+  .tri svg text.on{fill:var(--accent);font-weight:700}
+  .tri .toggles{display:flex;flex-wrap:wrap;gap:8px}
+  .tri .toggles button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--accent);border-radius:999px;background:var(--bg);color:var(--accent);cursor:pointer;transition:all .2s}
+  .tri .toggles button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+  .tri .toggles button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .tri .toggles small{display:block;width:100%;font-size:.78rem;color:var(--muted);line-height:1.7}
+  .tri .type{margin-top:16px;padding:16px 18px;border-radius:3px;background:var(--accent-soft)}
+  .tri .type .tn{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem;color:var(--ink)}
+  .tri .type .te{display:block;font-size:.66rem;letter-spacing:.18em;color:var(--accent);font-weight:700}
+  .tri .type p{font-size:.9rem;color:var(--sub);margin-top:4px;line-height:1.85}
+
+  .related{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
+  .related a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-decoration:none;transition:border-color .2s}
+  .related a:hover{border-color:var(--accent)}
+  .related small{display:block;font-size:.64rem;font-weight:700;letter-spacing:.2em;color:var(--muted)}
+  .related b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin:2px 0}
+  .related span{font-size:.82rem;color:var(--sub);line-height:1.7;display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 11</p>
+    <h1><span>誰かを大切に思うとは、</span><br><span>どういうことか</span></h1>
+    <p class="lead">「他者」の記事で、他者とは分かりきれない存在であり、その分かりきれなさを前提にしてこそ出会えると考えた。では、その分かりきれない誰かを「愛する」とは、どういうことなのか。恋人を、家族を、友人を、見知らぬ誰かを、そして自分自身を。同じ「愛」という一語で呼ばれるものは、驚くほど多くの顔を持っている。</p>
+    <p class="note">これは恋愛の指南ではなく、「愛とは何か」という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「理論・仮説」「未決定のこと」を区別して書いています。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味</a> ／ <a href="consciousness.html">02 意識</a> ／ <a href="self.html">03 「私」</a> ／ <a href="free-will.html">04 自由意志</a> ／ <a href="meaning.html">05 意味の成り立ち</a> ／ <a href="buddhism.html">06 仏教</a> ／ <a href="death.html">07 死</a> ／ <a href="happiness.html">08 幸福</a> ／ <a href="ethics.html">09 善く生きる</a> ／ <a href="other.html">10 他者</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#four"><b>02</b>四つの愛</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#triangle"><b>04</b>愛の三角形</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「愛」を分解する</h2>
+    <p class="intro">「愛している」は、もっとも大切な言葉の一つなのに、もっとも曖昧な言葉の一つでもある。それは感情なのか、行為なのか、関係なのか。問いをほどいていく。</p>
+    <ol class="descent">
+      <li><span class="q">「愛」という一語は、何を指しているのか</span><span class="d">恋、友情、家族、無償の愛</span></li>
+      <li><span class="q">愛は、脳と身体で何が起きていることなのか</span><span class="d">恋の化学と、愛着</span></li>
+      <li><span class="q">私たちは、なぜその人を愛するのか</span><span class="d">プラトン、愛の理由、かけがえのなさ</span></li>
+      <li><span class="q">愛は「落ちる」ものか、「する」ものか</span><span class="d">フロムの『愛するということ』</span></li>
+      <li><span class="q">愛と執着は、どう違うのか</span><span class="d">仏教の慈悲、アガペー、自己愛</span></li>
+      <li><span class="q">愛は、意味や死とどうつながるのか</span><span class="d">これまでの記事とつなぐ</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="four">
+    <span class="h2-en">02 · FOUR LOVES</span>
+    <h2>一つの言葉に、<br>四つの愛</h2>
+    <p class="intro">古代ギリシア語には、日本語や英語なら一語で済ませてしまう「愛」を言い分ける言葉がいくつもあった。作家C・S・ルイスは、それをもとに四つの愛を描いた。</p>
+    <div class="quad">
+      <div><span class="en">STORGE</span><b>情愛（ストルゲー）</b><span class="q">「慣れ親しんだ愛」</span><span>家族や長年の知り合いへの、いつもそこにある温かな愛着。もっとも身近で、もっとも気づかれにくい愛。</span></div>
+      <div><span class="en">PHILIA</span><b>友愛（フィリア）</b><span class="q">「同じものを見つめる愛」</span><span>同じ関心や価値を分かち合う友への愛。恋人は向かい合うが、友は肩を並べて同じ方向を見る。</span></div>
+      <div><span class="en">EROS</span><b>恋愛（エロス）</b><span class="q">「その人に惹かれる愛」</span><span>特定の誰かに強く惹かれ、その人と一つになりたいと願う愛。身体的な欲求を含むが、それだけではない。</span></div>
+      <div><span class="en">AGAPE</span><b>無償の愛（アガペー）</b><span class="q">「見返りを求めない愛」</span><span>相手に何の価値や魅力がなくても、ただ与える愛。キリスト教では、神の人間への愛として語られる。</span></div>
+    </div>
+    <p class="note">C・S・ルイス『四つの愛』（1960）による整理。仏教の「慈悲」も、見返りを求めずに他者の幸せを願う点で、アガペーと響き合う部分がある（後述）。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>「愛」という言葉をほどく</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">「愛」という日本語は、意外に新しい</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>日本語の「愛」は、古くは仏教の文脈で、しばしば執着や欲望——手放すべきもの——を意味する言葉として使われてきた。「愛着」「愛欲」といった言葉に、その名残がある。</p>
+          <p>男女が互いを人格として尊重し合う「恋愛」という言葉は、明治時代に、英語の love などの翻訳語として広まったとされる。それ以前の日本語には「恋」や「色」「情」といった言葉があったが、それらは西洋の love とは少しずつ意味がずれていた。</p>
+          <div class="insight">私たちが「愛」と呼んでいるものは、時代や文化によって形を変えてきた。「愛とは何か」と問うことは、自分がどの「愛」の観念を受け継いでいるかを問うことでもある。</div>
+          <p class="aside"><b>関連する考え方：</b>翻訳語としての「恋愛」の成立については、柳父章『翻訳語成立事情』（1982）などで論じられている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">愛は、感情か、行為か、関係か</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「愛している」と言うとき、私たちは何を言っているのか。考えてみると、少なくとも三つの面がある。</p>
+          <div class="compare">
+            <div><small>感情としての愛</small>胸が高鳴る、会いたい、そばにいると安心する</div>
+            <div><small>行為としての愛</small>気づかう、支える、時間を差し出す、守る</div>
+            <div><small>関係としての愛</small>長い時間をかけて育まれる、互いへのコミットメント</div>
+            <div><small>まなざしとしての愛</small>相手を、かけがえのない一人として見る態度</div>
+          </div>
+          <div class="insight">感情はやってきては去っていく。けれども、行為や関係やまなざしとしての愛は、選び、育てることができる。どの面を「愛」と呼ぶかで、愛への向き合い方は大きく変わる。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>身体と脳から見る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">恋には、三つのシステムがある</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>人類学者ヘレン・フィッシャーは、恋愛に関わる脳の働きを、互いに関連しつつも区別できる三つのシステムとして整理した。</p>
+          <div class="tags"><span>性的欲求：相手を問わず求める衝動</span><span>恋愛的な惹かれ：特定の一人に夢中になる</span><span>愛着：長く一緒にいることでの安心と絆</span></div>
+          <p>恋に夢中になっている人の脳では、報酬や動機づけに関わる領域が強く活動しているという研究がある。「意味」の記事で見た、「欲しい（wanting）」に駆り立てる働きだ。一方、長い絆には、オキシトシンなど別の仕組みが関わっていると考えられている。</p>
+          <div class="insight">「恋に落ちる」ことと「愛し続ける」ことは、脳の中でも別の働きに支えられているのかもしれない。燃え上がる恋が落ち着いても、愛が終わったとは限らない。</div>
+          <p class="aside"><b>注意：</b>オキシトシンは「愛情ホルモン」と呼ばれることがあるが、その働きは状況によって複雑で、単純に「愛を生む物質」とは言えない。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">愛着：安心できる「基地」</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>精神科医ジョン・ボウルビィは、乳児が養育者にしがみつき、離れると泣くのは、生き延びるために進化した「愛着」の仕組みだと考えた。安心できる相手は、子どもにとって、そこから世界を探検し、怖くなったら戻ってこられる「安全基地」になる。</p>
+          <p>その後、心理学者メアリー・エインズワースらは、子どもの愛着にいくつかのパターンがあることを示した。さらに、大人の恋愛関係にも、子ども時代の愛着と似たパターンが見られるという研究も行われてきた。</p>
+          <div class="insight">愛されることは、贅沢品ではなく、人が世界へ踏み出すための土台なのかもしれない。そして、愛着のパターンは固定されたものではなく、新しい関係の中で変わっていくこともあるとされる。</div>
+          <p class="aside"><b>関連する研究：</b>ボウルビィの愛着理論、エインズワースの「ストレンジ・シチュエーション法」、大人の恋愛を愛着として捉えたハザンとシェーバー（1987）。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>なぜ、その人を愛するのか</h3></div>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">プラトン『饗宴』：失われた半身と、美のはしご</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>プラトンの『饗宴』では、愛（エロス）について何人もの人物が語る。喜劇作家アリストファネスは、こんな神話を語る。人間はもともと二人で一体の存在だったが、神々によって二つに切り分けられた。だから人は、失われた半身を探し求める。愛とは、「全体でありたい」という欲求なのだ、と。</p>
+          <p>一方ソクラテスは、ディオティマという女性から聞いた話として、愛を「はしご」として語る。一人の美しい人への愛から始まり、あらゆる美しい身体へ、美しい魂へ、美しい営みや知へ、そして最後には「美そのもの」へと、愛は高められていく。</p>
+          <div class="compare">
+            <div><small>アリストファネス</small>愛とは、欠けた自分を満たしてくれる、ただ一人の相手を求めること</div>
+            <div><small>ディオティマ</small>愛とは、目の前の一人を入口に、より普遍的な美と善へ向かうこと</div>
+          </div>
+          <div class="insight">愛は「この人でなければならない」という唯一性と、「この人を通して、より大きなものに触れる」という広がりの、両方の顔を持っている。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">愛に、理由はあるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「なぜ、その人が好きなの？」と聞かれれば、私たちは理由を挙げる。優しいから、面白いから、一緒にいると落ち着くから。けれども、もしその理由が愛のすべてなら、もっと優しくて面白い人が現れたら、愛は乗り換えられることになってしまう。</p>
+          <p>「私」の記事の思考実験を思い出す。もし、愛する人とまったく同じ性格と記憶を持つコピーが現れたら、私はそのコピーも同じように愛するだろうか。多くの人は、ためらうはずだ。</p>
+          <p>哲学者ハリー・フランクファートは、愛は、相手の価値を見つけたから生まれるのではなく、むしろ愛することが、その相手を自分にとって大切な存在にし、行為の理由を生み出すのだ、と論じた。</p>
+          <div class="insight">愛は、理由から生まれるだけではなく、理由を生み出すものでもある。だから、愛する人は「取り替えのきかない」存在になる。パスカルの言うように、心には、理性の知らない理由があるのかもしれない。</div>
+          <p class="aside"><b>出典：</b>フランクファート『愛の理由』（2004）。パスカル『パンセ』。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">フロム：愛は「落ちる」ものではなく「する」もの</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>精神分析家エーリッヒ・フロムは、多くの人が愛を「愛される」問題、あるいは適切な相手に「出会う」問題だと考えていると指摘した。けれども彼にとって、愛は落ちるものではなく、学び、練習する「技術」だった。</p>
+          <p>そして愛の本質は、受け取ることではなく、与えることにある。彼は、どんな形の愛にも共通する要素として、四つを挙げた。</p>
+          <div class="tags"><span>配慮：相手の生命と成長を気づかう</span><span>責任：相手の求めに応える用意がある</span><span>尊重：相手をありのままに見て、その人らしく成長することを願う</span><span>理解：相手を深く知ろうとする</span></div>
+          <div class="insight">愛を「感情」だけで捉えると、それは天気のように、来ては去るものになる。愛を「技術」や「実践」として捉えると、それは自分で育てていけるものになる。</div>
+          <p class="aside"><b>出典：</b>フロム『愛するということ』（1956）。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>愛と執着</h3></div>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">仏教：愛は苦しみの種か</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>仏教の記事で見た「四苦八苦」には、「愛する者と別れる苦しみ（愛別離苦）」が含まれていた。仏教では、相手を「私のもの」として握りしめる愛は、渇愛であり、苦しみの原因になる。</p>
+          <p>けれども仏教は、他者への思いやりを否定しているわけではない。むしろ、執着としての愛とは別に、すべての生きものの幸せを願う「慈」、苦しみを取り除きたいと願う「悲」を、大切な心の在り方として育てることを説いた。</p>
+          <div class="compare">
+            <div><small>執着としての愛</small>「私のもの」として握りしめる。失うことを恐れ、相手を思い通りにしたくなる</div>
+            <div><small>慈しみとしての愛</small>相手の幸せを、見返りなく願う。相手が自分のものでなくても、その願いは変わらない</div>
+          </div>
+          <div class="insight">愛と執着を分けるのは、相手の幸せを願っているのか、相手を通して自分の渇きを満たしたいのか、という違いなのかもしれない。現実の愛には、たいてい両方が混ざっている。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">アガペー：敵をも愛せ</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>キリスト教の福音書には、「隣人を愛せ」だけでなく、「敵を愛し、迫害する者のために祈れ」という言葉がある。ここでの愛（アガペー）は、相手に魅力があるから湧き上がる感情ではない。相手が誰であれ、その人の善を願う意志だ。</p>
+          <p>エロスが「相手の価値に惹かれる愛」だとすれば、アガペーは「相手に価値を与える愛」だと言われることがある。</p>
+          <div class="insight">敵を愛することは、私にはほとんど不可能に思える。けれども、「好きになれない人の幸せも、願うことはできる」と考えれば、愛は感情の外側にも広がりうる。それは、「善く生きる」の記事で考えた、思いやりの輪を広げることとつながっている。</div>
+          <p class="aside"><b>出典：</b>『マタイによる福音書』5章など。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">自分を愛するということ</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「自分を愛する」と聞くと、わがままやうぬぼれを思い浮かべるかもしれない。けれどもアリストテレスは、自分の中の最も善い部分を大切にする「正しい自己愛」と、富や快楽を独り占めしようとする「悪い自己愛」を区別した。フロムも、自分を愛せない人は他者を愛することも難しいと考えた。</p>
+          <p>心理学者クリスティン・ネフは、「セルフ・コンパッション（自分への思いやり）」を、三つの要素で説明している。</p>
+          <div class="tags"><span>自分へのやさしさ：失敗した自分を責めるより、いたわる</span><span>共通の人間性：苦しみは自分だけのものではないと知る</span><span>マインドフルネス：つらさを大げさにも、見ないふりもせず、ありのままに気づく</span></div>
+          <div class="insight">自分を愛するとは、自分を特別扱いすることではなく、自分にも、大切な友人に向けるのと同じやさしさを向けることなのかもしれない。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>これまでの記事とつなぐ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">愛することは、相手の「他者性」を尊重すること</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「他者」の記事で、他者を「分かった」と思うことは、他者を見失うことでもあると考えた。愛にも同じ危うさがある。「あなたのことは全部分かっている」「あなたは私のものだ」と思った瞬間、愛は相手を自分の枠組みに閉じ込める支配に変わりうる。</p>
+          <p>フロムは「尊重（respect）」の語源が「見る」ことにあると述べ、相手をありのままに見て、その人がその人らしく成長することを願うことだと説明した。ブーバーの言葉でいえば、愛とは相手を「それ」ではなく「汝」として迎え続けることだ。</p>
+          <div class="insight">愛することは、相手を自分のものにすることではなく、相手が自分とは別の、自由な存在であることを喜ぶことなのかもしれない。</div>
+          <p class="aside"><b>大切なこと：</b>束縛、監視、暴力、脅しは、どれほど「愛しているから」と言われても、愛ではない。そうした関係に苦しんでいるときは、身近な信頼できる人や、専門の相談窓口に相談してください。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">愛と、意味と、死</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「意味」の記事で、フランクルが意味を見出す道の一つとして「誰かを愛すること」を挙げていたことを見た。愛する人がいるとき、人生は自分を超えたものとつながり、意味を帯びる。</p>
+          <p>そして「死」の記事で見たように、愛する人の死は、もっとも深い悲しみをもたらす。愛が深いほど、失う痛みも深い。それでも、死は関係を終わらせるのではなく、関係のかたちを変える。</p>
+          <div class="flow"><span>出会い</span><i>→</i><span>惹かれ</span><i>→</i><span>気づかい・責任・尊重</span><i>→</i><span>意味</span><i>→</i><span>喪失と、続く絆</span></div>
+          <div class="insight">愛は、人生に意味を与え、同時に、失う苦しみを引き受けることでもある。その両方を知ったうえで、それでも愛することを選ぶ。それが、有限な存在である私たちの愛し方なのだと思う。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="triangle">
+    <span class="h2-en">04 · TRY IT</span>
+    <h2>愛の三角形</h2>
+    <p class="intro">心理学者ロバート・スターンバーグは、愛を「親密さ」「情熱」「コミットメント」という三つの要素の組み合わせとして捉えた。思い浮かべた関係に、どの要素があるかを選んでみてください。組み合わせによって、八つの形が現れます。</p>
+
+    <div class="tri">
+      <div class="tri-grid">
+        <svg viewBox="0 0 260 230" role="img" aria-label="親密さ・情熱・コミットメントの三角形">
+          <polygon class="fillp" points="130,26 30,196 230,196" opacity="0"></polygon>
+          <polygon class="edge" points="130,26 30,196 230,196"></polygon>
+          <circle class="v" data-k="int" cx="130" cy="26" r="11"></circle>
+          <circle class="v" data-k="pas" cx="30" cy="196" r="11"></circle>
+          <circle class="v" data-k="com" cx="230" cy="196" r="11"></circle>
+          <text data-k="int" x="130" y="10" text-anchor="middle">親密さ</text>
+          <text data-k="pas" x="4" y="224" text-anchor="start">情熱</text>
+          <text data-k="com" x="258" y="224" text-anchor="end">コミットメント</text>
+        </svg>
+        <div>
+          <div class="toggles">
+            <button type="button" data-k="int" aria-pressed="false">親密さ</button>
+            <button type="button" data-k="pas" aria-pressed="false">情熱</button>
+            <button type="button" data-k="com" aria-pressed="false">コミットメント</button>
+            <small>親密さ＝近さ・信頼・分かち合い ／ 情熱＝惹かれ・ときめき・身体的な欲求 ／ コミットメント＝この関係を続けようという決意</small>
+          </div>
+          <div class="type" aria-live="polite"><span class="te"></span><span class="tn"></span><p></p></div>
+        </div>
+      </div>
+    </div>
+    <p class="note">スターンバーグの「愛の三角理論」（1986）。主に恋愛関係を説明するための理論だが、友情や家族の関係を考える手がかりにもなる。現実の関係では、それぞれの要素は「ある／ない」ではなく、程度があり、時間とともに変化する。</p>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>「愛」と呼ばれるものには、恋愛、友愛、家族愛など、性質の異なる複数の形がある。</li>
+          <li>恋に夢中なとき、脳では報酬や動機づけに関わる領域が強く働いている。</li>
+          <li>乳幼児は養育者との愛着を形成し、それが安心して世界を探索する土台になる。</li>
+          <li>「愛」という言葉の意味や、それに結びつく観念は、時代や文化によって変化してきた。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>理論・仮説</h4>
+        <ul>
+          <li>愛は、親密さ・情熱・コミットメントの組み合わせとして捉えられる（スターンバーグ）。</li>
+          <li>愛は相手の価値を見出すだけでなく、相手を大切な存在にし、理由を生み出す（フランクファート）。</li>
+          <li>愛は落ちるものではなく、配慮・責任・尊重・理解からなる技術である（フロム）。</li>
+          <li>執着としての愛と、慈しみとしての愛は区別できる（仏教）。</li>
+          <li>自分への思いやりは、他者を愛する力と結びついている。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>愛は感情なのか、意志なのか、関係なのか。</li>
+          <li>執着をまったく含まない愛は、人間に可能なのか。</li>
+          <li>すべての人を等しく愛することと、特定の誰かを特別に愛することは両立するのか。</li>
+          <li>なぜ、ほかの誰でもない「その人」を愛するのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">愛は、感情として始まることが多い。けれども、感情だけでは愛は続かない。いまの自分の考えは、愛とは「落ちる」ものではなく、相手を気づかい、応え、尊重し、知ろうとし続ける「関わり方」であり、それは育てていくことができる、というものだ。</p>
+
+    <div class="formula">
+      <div class="no">愛とは、運命の相手に落ちて、その人を手に入れること</div>
+      <div class="yes"><span>配慮</span><i>×</i><span>責任</span><i>×</i><span>尊重</span><i>×</i><span>理解</span></div>
+      <div class="cap">相手の幸せを願い、相手が自分とは別の存在であることを喜びながら、関わり続ける</div>
+    </div>
+
+    <blockquote class="big">愛することは、相手を握りしめることではなく、相手が相手らしくあることを、そばで喜ぶことなのかもしれない。そして、いつか必ず別れが来ると知りながら、それでも今日、その人を大切にすることを選ぶこと。</blockquote>
+    <p class="note">ただし、これは「理想の愛」を誰かに求めるためのものではない。愛し方は人によって違い、うまく愛せないときも、愛されないと感じるときもある。それもまた、愛を学んでいく途中なのだと思う。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>「愛」には、情愛・友愛・恋愛・無償の愛など、性質の異なる複数の形がある。</li>
+      <li>恋に落ちることと、愛し続けることは、脳の中でも別の働きに支えられているらしい。</li>
+      <li>愛着は、人が安心して世界へ踏み出すための土台になる。</li>
+      <li>愛は理由から生まれるだけでなく、理由を生み出し、相手をかけがえのない存在にする。</li>
+      <li>愛は落ちるものではなく、配慮・責任・尊重・理解からなる技術である（フロム）。</li>
+      <li>執着としての愛と、相手の幸せを願う慈しみとしての愛は区別できる。</li>
+      <li>愛することは、相手を自分のものにすることではなく、相手の他者性を喜ぶこと。</li>
+    </ol>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">m-note 内の関連ノート</h3>
+    <div class="related">
+      <a href="../emotions/"><small>EMOTIONS</small><b>人間の感情</b><span>8つの基本感情と、輪の外側にある「欲・渇愛・執着」を整理したノート。</span></a>
+      <a href="../life-view/"><small>LIFE VIEW</small><b>人生観</b><span>どう生きるか、どう決めるか、人とどう関わるか。まとまったことと、まだ答えの出ていない問い。</span></a>
+      <a href="../mindfulness/"><small>MINDFULNESS</small><b>マインドフルネス</b><span>瞑想・ACT・セルフアクセプタンスの実践ノート。</span></a>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>愛は、感情なのか、意志なのか、関係なのか？</li>
+      <li>なぜ、ほかの誰でもない「その人」を愛するのか？</li>
+      <li>執着をまったく含まない愛は、可能なのか？</li>
+      <li>特定の誰かへの愛と、すべての人への愛は、両立するのか？</li>
+      <li>愛は、意志の力で育てることができるのか？</li>
+      <li>愛されたことのない人は、愛し方を学べるのか？</li>
+      <li>人間はAIを愛せるのか。AIは人を愛せるのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>美とは何か</b><p>なぜ私たちは、何かを「美しい」と感じるのか。プラトンの「美そのもの」へのはしごの先に。</p></div>
+      <div><b>時間とは何か（哲学編）</b><p>過去・現在・未来は本当にあるのか。「いま」とは何か。</p></div>
+      <div><b>空とは何か</b><p>縁起を推し進めた大乗仏教の「空」と、生き方。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>愛とは何かを考えていたら、<br>愛は「何か」という名詞よりも、<br>「愛する」という動詞に近いと思えてきた。</p>
+    <p class="last">握りしめるのではなく、<br>そばで喜ぶ。<br>今日、誰かを、少しだけ丁寧に。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="other.html">← 10 他者とは何か</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  const st = { int: false, pas: false, com: false };
+  const types = {
+    "000": ["NON-LOVE", "愛ではない関係", "三つの要素のどれもない関係。日常で出会う多くの人との関係がこれにあたる。悪いことではなく、私たちの関係の大部分はここにある。"],
+    "100": ["LIKING", "好意（友情）", "親密さだけがある関係。近さや信頼、分かち合いはあるが、ときめきや「続けよう」という決意は伴わない。多くの友情がこの形をしている。"],
+    "010": ["INFATUATION", "心酔（ひとめぼれ）", "情熱だけがある状態。相手をよく知らないまま、強く惹かれている。燃え上がるのも早いが、消えるのも早いことがある。"],
+    "001": ["EMPTY LOVE", "空虚な愛", "コミットメントだけが残っている関係。長い関係の終盤や、形だけ続いている関係に見られることがある。ここから親密さが育ち直すこともある。"],
+    "110": ["ROMANTIC LOVE", "ロマンティックな愛", "親密さと情熱がある関係。互いに惹かれ、深く分かち合っているが、関係を続けていく決意はまだ定まっていない。"],
+    "101": ["COMPANIONATE LOVE", "友愛的な愛", "親密さとコミットメントがある関係。ときめきは落ち着いても、深い信頼と絆で結ばれている。長年連れ添った夫婦や、生涯の親友の愛。"],
+    "011": ["FATUOUS LOVE", "愚かな愛（性急な愛）", "情熱とコミットメントがあるが、親密さが育っていない関係。出会ってすぐに強く惹かれ、急いで約束を交わすような関係。土台が弱く、揺らぎやすいとされる。"],
+    "111": ["CONSUMMATE LOVE", "完全な愛", "三つの要素がすべてそろった関係。スターンバーグはこれを理想の形としたが、手に入れることより、保ち続けることのほうが難しいとも述べている。"]
+  };
+  const svg = document.querySelector(".tri svg");
+  const fill = svg.querySelector(".fillp");
+  const box = document.querySelector(".tri .type");
+  const render = () => {
+    const key = ["int","pas","com"].map(k => st[k] ? "1" : "0").join("");
+    document.querySelectorAll(".tri .toggles button").forEach(b => b.setAttribute("aria-pressed", String(st[b.dataset.k])));
+    svg.querySelectorAll("[data-k]").forEach(el => el.classList.toggle("on", st[el.dataset.k]));
+    fill.setAttribute("opacity", key === "111" ? "1" : "0");
+    const t = types[key];
+    box.querySelector(".te").textContent = t[0];
+    box.querySelector(".tn").textContent = t[1];
+    box.querySelector("p").textContent = t[2];
+  };
+  document.querySelectorAll(".tri .toggles button").forEach(b => {
+    b.addEventListener("click", () => { st[b.dataset.k] = !st[b.dataset.k]; render(); });
+  });
+  render();
+})();
+</script>
+</body>
+</html>
