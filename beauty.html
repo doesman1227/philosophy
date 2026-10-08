@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>美とは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="なぜ私たちは、何かを「美しい」と感じるのか。美は対象の中にあるのか、見る人の中にあるのか。ヒュームとカント、神経美学と進化、崇高、もののあはれとわび・さび、美と善をたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* beauty page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted);line-height:2}
+  .series a{color:var(--accent)}
+  .where{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:30px 0 8px;position:relative}
+  .where div{padding:22px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .where .en{display:block;font-size:.64rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .where b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.1rem;margin:6px 0 4px}
+  .where span{font-size:.86rem;color:var(--sub);line-height:1.8;display:block}
+  .where span.who{margin-top:8px;font-size:.78rem;color:var(--muted)}
+  .where .mid{border-color:var(--accent);background:var(--accent-soft)}
+  .where-axis{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.12em;color:var(--muted);margin-top:4px}
+  @media (max-width:640px){ .where{grid-template-columns:1fr} .where-axis{display:none} }
+
+  .rects{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-items:end;margin-top:26px;padding:26px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  @media (max-width:640px){ .rects{grid-template-columns:repeat(3,1fr)} }
+  .rects button{display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:0;padding:6px;cursor:pointer;border-radius:4px;font:inherit;color:var(--sub)}
+  .rects button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .rects .shape{width:56px;background:var(--soft);border:1.5px solid var(--faint);border-radius:2px;transition:all .2s}
+  .rects button:hover .shape{border-color:var(--accent)}
+  .rects button[aria-pressed="true"] .shape{background:var(--accent);border-color:var(--accent)}
+  .rects .lab{font-size:.74rem;letter-spacing:.06em}
+  .rects .ratio{font-size:.72rem;color:var(--muted);visibility:hidden}
+  .rects.revealed .ratio{visibility:visible}
+  .rect-resp{margin-top:14px;padding:18px 22px;border-radius:4px;background:var(--accent-soft);font-size:.92rem;color:var(--sub);line-height:1.9}
+  .rect-resp[hidden]{display:none}
+  .rect-resp b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;color:var(--ink);margin-bottom:2px}
+
+  .related{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
+  .related a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-decoration:none;transition:border-color .2s}
+  .related a:hover{border-color:var(--accent)}
+  .related small{display:block;font-size:.64rem;font-weight:700;letter-spacing:.2em;color:var(--muted)}
+  .related b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin:2px 0}
+  .related span{font-size:.82rem;color:var(--sub);line-height:1.7;display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 12</p>
+    <h1><span>なぜ私たちは、</span><span>何かを</span><br><span>「美しい」と感じるのか</span></h1>
+    <p class="lead">夕焼けを見て、足が止まる。ある音楽の一節で、胸が締めつけられる。散っていく桜に、言葉にならないものを感じる。それは何の役にも立たないのに、なぜか人生でもっとも大切な瞬間の一つのように思える。「愛」の記事で、プラトンは一人を愛することから「美そのもの」へ向かうはしごを描いた。では、その「美」とは何なのか。</p>
+    <p class="note">これは美学の教科書ではなく、「美とは何か」という問題を自分なりに整理した思考の記録です。「科学的にほぼ確かなこと」「理論・仮説」「未決定のこと」を区別して書いています。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味</a> ／ <a href="consciousness.html">02 意識</a> ／ <a href="self.html">03 「私」</a> ／ <a href="free-will.html">04 自由意志</a> ／ <a href="meaning.html">05 意味の成り立ち</a> ／ <a href="buddhism.html">06 仏教</a> ／ <a href="death.html">07 死</a> ／ <a href="happiness.html">08 幸福</a> ／ <a href="ethics.html">09 善く生きる</a> ／ <a href="other.html">10 他者</a> ／ <a href="love.html">11 愛</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#where"><b>02</b>美はどこにあるのか</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#rects"><b>04</b>美しい長方形を選ぶ</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「美」を分解する</h2>
+    <p class="intro">「美しい」は、誰もが使う言葉だ。けれども、何が美しいかは人によって違うのに、なぜか「これは美しい」と言うとき、私たちは相手にも同意してほしいと思っている。この不思議から問いをほどいていく。</p>
+    <ol class="descent">
+      <li><span class="q">美は、対象の中にあるのか、見る人の中にあるのか</span><span class="d">比例と調和、趣味の基準、カント</span></li>
+      <li><span class="q">美しいと感じるとき、脳と心では何が起きているのか</span><span class="d">神経美学、進化、慣れ</span></li>
+      <li><span class="q">美しいだけでなく、圧倒されるものは何なのか</span><span class="d">崇高と畏怖</span></li>
+      <li><span class="q">美の基準は、誰が決めているのか</span><span class="d">文化、時代、そして醜さ</span></li>
+      <li><span class="q">移ろうもの、欠けたものは、なぜ美しいのか</span><span class="d">もののあはれ、わび・さび</span></li>
+      <li><span class="q">美は、善や意味とどうつながるのか</span><span class="d">これまでの記事とつなぐ</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="where">
+    <span class="h2-en">02 · WHERE IS BEAUTY?</span>
+    <h2>美は、どこにあるのか</h2>
+    <p class="intro">美をめぐる考え方は、大きく三つの場所に分けられる。対象の側か、見る人の側か、それともそのあいだか。</p>
+    <div class="where">
+      <div><span class="en">IN THE OBJECT</span><b>対象の中に</b><span>美は、比例や調和、秩序といった、ものそのものの性質である。誰が見ても、美しいものは美しい。</span><span class="who">ピタゴラス派、プラトンなど</span></div>
+      <div class="mid"><span class="en">IN BETWEEN</span><b>あいだに</b><span>美は、対象と、それを感じる心が出会うところに生まれる。主観的でありながら、他者と分かち合おうとする。</span><span class="who">カントなど</span></div>
+      <div><span class="en">IN THE EYE</span><b>見る人の中に</b><span>美は、見る人の心が感じる快さであり、ものの性質ではない。「美は見る人の目に宿る」。</span><span class="who">ヒュームなど</span></div>
+    </div>
+    <div class="where-axis"><span>← 客観</span><span>主観 →</span></div>
+    <p class="note">「誰にとっての意味か」と問うた最初の記事と同じように、美もまた、対象と主体の「関係」として考えるとき、もっとも見通しがよくなる——というのが、この記事でたどり着いた見方だ。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>美はどこにあるのか</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">美は、ものの中の比例と調和なのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>古代ギリシアのピタゴラス派は、弦の長さが簡単な整数の比になるとき、音が美しく調和することに気づいた。美とは、数学的な比例と調和なのではないか。この考えは、建築や彫刻の理想的なプロポーションの探求として、長く受け継がれていった。</p>
+          <p>プラトンはさらに、個々の美しいものを超えた「美そのもの（美のイデア）」があると考えた。美しい花も、美しい人も、それに「あずかる」ことで美しくなるのだ、と。</p>
+          <div class="insight">美が対象の性質なら、美しいものは誰にとっても美しいはずだ。けれども現実には、何を美しいと感じるかは、人によって、文化によって、驚くほど違う。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">美は、見る人の心の中にあるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>デイヴィッド・ヒュームは、美はものそれ自体の性質ではなく、それを見つめる心の中にのみ存在する、と論じた。同じ対象を、ある人は美しいと感じ、別の人は醜いと感じる。</p>
+          <p>けれどもヒュームは、だから「どんな好みも同じくらい正しい」とは考えなかった。繊細な感受性を持ち、多くの作品に触れて経験を積み、比較し、偏見から自由で、よく考える人——そうした「目利き」たちの判断が一致するところに、「趣味の基準」があるという。</p>
+          <div class="insight">美は主観的だが、でたらめではない。経験と訓練によって、美を感じる力は育てることができる。これは「善く生きる」の記事で考えた、徳や実践知が育つものだという話とよく似ている。</div>
+          <p class="aside"><b>出典：</b>ヒューム「趣味の基準について」（1757）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">カント：目的なき合目的性</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>イマヌエル・カントは、美の判断の不思議な性格に注目した。「このバラは美しい」と言うとき、それは私の快さの感覚に基づく主観的な判断だ。それなのに私は、それを「私にとって心地よい」ではなく、「誰もがそう感じるべきだ」という形で語っている。</p>
+          <p>そして美しいものへの喜びは、それを所有したい、利用したいといった関心から離れた喜び（無関心的な満足）だという。美しいものは、何かの目的のために作られたかのような調和を持ちながら、実際には何の目的も持たない。カントはこれを「目的なき合目的性」と呼んだ。</p>
+          <div class="insight">最初の記事で、「目的がない」ことと「意味がない」ことは同じではない、と考えた。カントの言う美は、まさにその見本だ。何の役にも立たないのに、それでも深く心を満たすもの。</div>
+          <p class="aside"><b>出典：</b>カント『判断力批判』（1790）。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>心と脳から見る</h3></div>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">美しいと感じるとき、脳では</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>美しいと感じる経験と脳の活動との関係を調べる研究分野は、「神経美学」と呼ばれる。神経科学者セミール・ゼキらの研究では、人が絵画を見て「美しい」と感じるときにも、音楽を聴いて「美しい」と感じるときにも、前頭葉の一部（内側眼窩前頭皮質）の活動が高まることが報告された。</p>
+          <p>目で見る美と、耳で聴く美。まったく違う感覚なのに、「美しい」という経験には、共通する脳の働きが関わっているのかもしれない。</p>
+          <div class="insight">これは興味深い発見だが、「意識」の記事で見たように、相関は説明ではない。脳のどこが光るかが分かっても、なぜその活動に「美しい」という感じがともなうのかは、まだ分からない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">美しさは、進化の中で生まれたのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>クジャクの雄の豪華な羽は、生き延びるためにはむしろ邪魔になる。ダーウィンは、それが雌に選ばれることで進化した（性選択）と考えた。だとすれば、美しさを感じる心そのものも、進化の中で形づくられてきたのかもしれない。</p>
+          <p>人間が、水や緑があり、見晴らしのよい風景を好む傾向を、祖先が暮らした環境と結びつけて説明しようとする研究者もいる。</p>
+          <div class="insight">美を感じる心の「根っこ」は、生き延びることと関係していたのかもしれない。けれども、その起源を説明することは、私がいま夕焼けに感じているものの価値を減らすわけではない。これも最初の記事と同じ構造だ。</div>
+          <p class="aside"><b>注意：</b>風景の好みを進化で説明する仮説などには、文化や経験の影響を軽視しているという批判もあり、どこまで説明できるかは議論が続いている。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">慣れ親しんだものと、新しいもののあいだ</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>同じものに何度も触れていると、それを好ましく感じるようになる傾向がある（単純接触効果）。また、すっと理解しやすいもの、処理しやすいものを、私たちは美しいと感じやすい、とする研究もある（処理の流暢性）。</p>
+          <p>けれども、慣れ親しんだものばかりでは、やがて退屈になる。私たちは、予想どおりのものと、予想を少し裏切る新しいもののあいだに、もっとも強く惹かれるのかもしれない。</p>
+          <div class="flow"><span>まったく見慣れない</span><i>—</i><span>なじみがあり、少し新しい</span><i>—</i><span>見慣れすぎて退屈</span></div>
+          <div class="insight">「意識」の記事で、脳はつねに予測していると考えた。美しさは、その予測が心地よく満たされ、ときに心地よく裏切られるところに生まれるのかもしれない。</div>
+          <p class="aside"><b>関連する研究：</b>ロバート・ザイアンスの単純接触効果（1968）、ロルフ・レーバーらの処理流暢性の研究（2004）。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>美の外側へ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">崇高：圧倒されることの喜び</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>荒れ狂う海、そびえ立つ山脈、満天の星空。それらは「美しい」というより、恐ろしいほどに大きく、私を圧倒する。けれども、安全な場所からそれを眺めるとき、私たちはそこに独特の喜びを感じる。エドマンド・バークやカントは、これを美とは区別して「崇高」と呼んだ。</p>
+          <p>現代の心理学では、自分の理解を超える広大なものに触れたときの感情を「畏怖（awe）」として研究している。畏怖を感じると、自分がちっぽけに感じられ、自己へのとらわれが薄れ、他者への思いやりが増える傾向がある、という報告もある。</p>
+          <div class="insight">「私」の記事で、固定した「私」は見つからないと考えた。崇高や畏怖の経験は、その「私」の輪郭が、一瞬ゆるむ経験なのかもしれない。</div>
+          <p class="aside"><b>出典：</b>バーク『崇高と美の観念の起源』（1757）。畏怖の研究は、ダッカー・ケルトナーとジョナサン・ハイト（2003）らによる。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">美の基準は、誰が決めているのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>理想とされる体型や顔立ちは、時代や地域によって大きく変わってきた。そして、ある時代の「美の基準」は、しばしばその社会で力を持つ人々の好みや価値観を反映してきた。</p>
+          <p>容姿の美しさによって、人の評価や扱いが変わってしまうこともある。美が人を喜ばせる力は、同時に、人を傷つけ、排除する力にもなりうる。</p>
+          <div class="insight">美を感じることそのものは尊い。けれども、特定の美の基準を「当たり前」として他者に当てはめるとき、それは「善く生きる」の記事で考えた公平さの問題になる。美を問うことは、ときに倫理を問うことでもある。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>日本の美意識</h3></div>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">もののあはれ：心が動くということ</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>江戸時代の国学者・本居宣長は、『源氏物語』の本質を「もののあはれ」に見た。それは、季節の移ろいや人の喜び悲しみに触れて、しみじみと心が動くこと、そしてその心の動きを知ることだという。</p>
+          <p>ここでの美は、対象の性質というより、対象に触れて心が震える、その経験そのものの中にある。</p>
+          <div class="insight">02章で、美は対象と心の「あいだ」に生まれると考えた。「もののあはれ」は、まさにその「あいだ」の震えに名前を与えた言葉なのかもしれない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">わび・さび：欠けたもの、移ろうものの美</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>兼好法師は『徒然草』で、桜は満開のときだけを、月は曇りのない満月だけを見るものだろうか、と問いかけた。散りかけた花、雲に隠れた月にこそ、心ひかれるものがある、と。</p>
+          <p>茶の湯の世界で育まれた「わび」「さび」は、質素さ、静けさ、古びたもの、不完全なものの中に美を見出す感覚だ。割れた器を漆と金で継ぐ「金継ぎ」は、壊れたことを隠すのではなく、その傷を器の歴史として美しく見せる。</p>
+          <div class="insight">仏教の記事の「無常」、死の記事の「終わりがあるから、いまが『いま』になる」が、ここでは美の感覚として現れている。移ろうから、欠けているから、美しい。完全で永遠なものより、はかないものに心が動く。</div>
+          <p class="aside"><b>出典：</b>『徒然草』第137段。わび・さびは、村田珠光や千利休らによる茶の湯の展開の中で深められたとされる。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>これまでの記事とつなぐ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">美は、私を私の外へ連れ出す</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>古代ギリシアでは、「美しい」と「善い」は深く結びついていた。哲学者アイリス・マードックは、こんな経験を書いている。不安と自己憐憫にとらわれて窓の外を眺めていると、ふと、空を舞うチョウゲンボウ（ハヤブサの仲間）が目に入る。その瞬間、くよくよしていた自分が消え、ただ鳥だけがそこにある。</p>
+          <p>彼女は、美に注意を向けることは、自己へのとらわれから抜け出す（自己を脱する）経験であり、それは他者をありのままに見るという、善の練習でもある、と考えた。</p>
+          <div class="insight">「他者」の記事で、他者を自分の枠組みに閉じ込めず、ありのままに見ることの大切さを考えた。美しいものに見入るとき、私たちはまさにその練習をしているのかもしれない。美と善は、「自分の外にあるものに、まっすぐ注意を向ける」という点で、同じ根を持っている。</div>
+          <p class="aside"><b>出典：</b>マードック『善の至高性』（1970）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">美と、意味と、幸福</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>最初の記事で、宇宙に客観的な目的がなくても、意味がないとは言えない、と考えた。美は、そのことをもっとも直接に教えてくれる経験かもしれない。夕焼けには何の目的もない。それでも、それを見る私の心は、確かに満たされている。</p>
+          <p>「幸福」の記事で、幸福はいまここに注意が向いているときに起きやすいと見た。美しいものに見入る瞬間、私たちは過去の後悔からも未来の不安からも離れて、ただ「いま」の中にいる。</p>
+          <div class="insight">美とは、目的も理由もないまま、「生きていてよかった」と感じさせる瞬間なのかもしれない。生きる意味の問いに、言葉ではなく経験で答えてくれるもの。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="rects">
+    <span class="h2-en">04 · TRY IT</span>
+    <h2>いちばん美しい長方形は？</h2>
+    <p class="intro">深く考えずに、直感で「いちばん美しい」と思う長方形を一つ選んでください。選ぶと、それぞれの比率が表示されます。</p>
+    <div class="rects" role="group" aria-label="長方形を選ぶ"></div>
+    <div class="rect-resp" hidden><b></b><span></span></div>
+    <p class="note">心理学の創始者の一人グスタフ・フェヒナーは1870年代に、人々が黄金比に近い長方形を好むという実験結果を報告した。けれども、その後の多くの研究では結果がまちまちで、「人は黄金比を特に美しいと感じる」という説は、いまでは慎重に扱われている。</p>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと</h4>
+        <ul>
+          <li>何を美しいと感じるかには、個人差や文化差、時代による違いが大きい。</li>
+          <li>同じものに繰り返し触れると、それを好ましく感じやすくなる傾向がある。</li>
+          <li>視覚的な美と音楽的な美の経験には、共通する脳の活動が関わっているという報告がある。</li>
+          <li>美の基準は、社会的な価値観や力関係の影響を受けてきた。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>理論・仮説</h4>
+        <ul>
+          <li>美は対象の性質ではなく、それを感じる心の中にある（ヒューム）。</li>
+          <li>美の判断は主観的でありながら、普遍的な同意を求める（カント）。</li>
+          <li>美を感じる心の一部は、進化の中で形づくられた。</li>
+          <li>畏怖の経験は、自己へのとらわれを和らげる。</li>
+          <li>美への注意は、自己を脱する経験であり、善の練習でもある（マードック）。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>文化を超えて、誰もが美しいと感じる普遍的な美はあるのか。</li>
+          <li>なぜ、何の役にも立たないものに、これほど心が動くのか。</li>
+          <li>美しいという判断に、正しい・間違っているはあるのか。</li>
+          <li>美と善は、本当に結びついているのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">美は、対象の中だけにあるのでも、見る人の中だけにあるのでもない。いまの自分の考えは、美とは、対象と、それに触れて動く心とが出会う「出来事」であり、その出会いは、感受性を育て、注意を向けることで深まっていく、というものだ。</p>
+
+    <div class="formula">
+      <div class="no">美は、ものの性質として決まっている／ただの個人の好みにすぎない</div>
+      <div class="yes"><span>対象</span><i>×</i><span>感覚</span><i>×</i><span>文化</span><i>×</i><span>注意</span></div>
+      <div class="cap">これらが重なる一瞬に、「美しい」という出来事が起きる</div>
+    </div>
+
+    <blockquote class="big">美は、目的も理由もないまま、心を満たしてくれる。散りゆく花や欠けた器のように、移ろい、不完全であることさえ、美しさになる。美しいものに見入るとき、私は少しだけ「私」から自由になり、ただ「いま」の中にいる。</blockquote>
+    <p class="note">ただし、美しいものに心を動かされる余裕がないときもある。それは感受性が足りないからではなく、心が疲れているからかもしれない。美は、取り戻すことのできる感覚でもある。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>美は、対象の中にあるのか、見る人の中にあるのか——その「あいだ」として考えると見通しがよい。</li>
+      <li>美は主観的だが、でたらめではない。経験と訓練で感受性は育つ（ヒューム）。</li>
+      <li>美しいものは、目的を持たないのに心を満たす（カントの「目的なき合目的性」）。</li>
+      <li>美を感じる心には、脳の働き、進化、慣れと新しさのバランスが関わっている。</li>
+      <li>崇高や畏怖は、「私」の輪郭を一瞬ゆるめる経験である。</li>
+      <li>日本の美意識は、移ろうもの、欠けたものの中に美を見出してきた。</li>
+      <li>美への注意は、自分の外にあるものをありのままに見る、善の練習でもある。</li>
+    </ol>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">m-note 内の関連ノート</h3>
+    <div class="related">
+      <a href="../ancient-texts/"><small>ANCIENT TEXTS</small><b>古いほん</b><span>ギルガメシュ叙事詩から、仏典、論語、古事記まで。人類が書き残してきた古い文献を年代順にたどるノート。</span></a>
+      <a href="../shinto/"><small>SHINTO</small><b>神道と神社</b><span>八百万の神の考え方と歴史、境内のしくみ、全国に広がる神社の系統までをたどるノート。</span></a>
+      <a href="../mindfulness/"><small>MINDFULNESS</small><b>マインドフルネス</b><span>瞑想・ACT・セルフアクセプタンスの実践ノート。</span></a>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>文化を超えて、誰もが美しいと感じる美はあるのか？</li>
+      <li>なぜ、何の役にも立たないものに、これほど心が動くのか？</li>
+      <li>「美しい」という判断に、正しさはあるのか？</li>
+      <li>数学の証明や、人の生き方が「美しい」と言うとき、それは同じ美なのか？</li>
+      <li>美と善は、本当に結びついているのか？</li>
+      <li>なぜ、移ろうもの、欠けたものに美を感じるのか？</li>
+      <li>AIが生み出したものに感じる美は、人が生み出したものへの美と同じなのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>時間とは何か（哲学編）</b><p>過去・現在・未来は本当にあるのか。移ろいを感じる「いま」とは何か。</p></div>
+      <div><b>空とは何か</b><p>縁起を推し進めた大乗仏教の「空」と、生き方。</p></div>
+      <div><b>言葉とは何か</b><p>言葉は世界を映すのか、つくるのか。美しさや意味は、言葉でどこまで語れるのか。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>美とは何かを考えていたら、<br>答えより先に、窓の外の空が<br>いつもより少しだけ、よく見えるようになった。</p>
+    <p class="last">目的も理由もないまま、<br>心が満たされる瞬間がある。<br>それだけで、生きている甲斐がある。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="love.html">← 11 愛とは何か</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  // 表示順はばらばらにして、比率の大小で並ばないようにしている
+  const rs = [
+    { id: "A", r: 1.5,   name: "1 : 1.5",   note: "3:2の比率。35mmフィルムや多くのデジタルカメラの写真と同じ比率で、見慣れている人が多い形です。" },
+    { id: "B", r: 1,     name: "1 : 1（正方形）", note: "安定感と静けさのある形。SNSの写真などでもおなじみです。" },
+    { id: "C", r: 1.618, name: "1 : 1.618（黄金比）", note: "古くから「もっとも美しい比率」と言われてきた黄金比です。ただし、人が特にこの比率を好むという証拠は、思われているほど強くありません。" },
+    { id: "D", r: 2,     name: "1 : 2",     note: "横長（縦長）の印象がはっきりした形。畳一枚の縦横の比もおおよそこれに近い比率です。" },
+    { id: "E", r: 1.414, name: "1 : 1.414（白銀比）", note: "1:√2の比率で、A4などA判・B判の紙と同じ形です。半分に折っても同じ比率が保たれます。私たちが毎日のように目にしている比率です。" },
+    { id: "F", r: 1.2,   name: "1 : 1.2",   note: "正方形に近い、やわらかい印象の形です。" }
+  ];
+  const wrap = document.querySelector(".rects");
+  const resp = document.querySelector(".rect-resp");
+  let picked = null;
+  const render = () => {
+    wrap.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.id === picked)));
+    wrap.classList.toggle("revealed", !!picked);
+    if (!picked) { resp.hidden = true; return; }
+    const r = rs.find(x => x.id === picked);
+    resp.hidden = false;
+    resp.querySelector("b").textContent = "あなたが選んだのは " + r.name;
+    resp.querySelector("span").textContent = r.note + " 好みが分かれるのは自然なことです。なぜその形に惹かれたのか、見慣れているからか、落ち着くからか、考えてみると面白いかもしれません。";
+  };
+  rs.forEach(r => {
+    const b = document.createElement("button");
+    b.type = "button"; b.dataset.id = r.id;
+    const s = document.createElement("span"); s.className = "shape"; s.style.height = Math.round(56 * r.r) + "px";
+    const l = document.createElement("span"); l.className = "lab"; l.textContent = r.id;
+    const t = document.createElement("span"); t.className = "ratio"; t.textContent = r.name.split("（")[0];
+    b.append(s, l, t);
+    b.setAttribute("aria-label", "長方形 " + r.id);
+    b.addEventListener("click", () => { picked = r.id; render(); });
+    wrap.appendChild(b);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
