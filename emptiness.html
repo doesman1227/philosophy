@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>空とは何か ｜ 哲学ノート ｜ m-note</title>
+<meta name="description" content="「空」は「何もない」ことではない。それだけで成り立っているものは何もない、ということだ。縁起から空へ、般若心経の「色即是空」、ナーガールジュナの二諦と「空の空」、インドラの網、関係としての世界をたどる思考の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfaf7; --paper:#ffffff; --ink:#1a1a1a; --sub:#4a4a4a; --muted:#8a8780; --faint:#bdb9b0;
+    --line:#e6e2da; --soft:#f3f0ea;
+    --accent:#3e4c78; --accent-soft:#e9ecf5;
+    --sure:#4f7d68; --sure-soft:#e7f0eb;
+    --hypo:#a07a3c; --hypo-soft:#f5eedf;
+    --open:#8a5a72; --open-soft:#f3e8ee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e0e10; --paper:#151518; --ink:#ecebe8; --sub:#c2c0bb; --muted:#8b8984; --faint:#55534f;
+      --line:#26262a; --soft:#1b1b1f;
+      --accent:#9aa8d6; --accent-soft:#1d2233;
+      --sure:#86b8a0; --sure-soft:#17241e;
+      --hypo:#d1ab6c; --hypo-soft:#2a2217;
+      --open:#c995b0; --open-soft:#2a1b23;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:"Noto Sans JP",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.95;letter-spacing:.02em;font-size:16px}
+  a{color:inherit}
+  .serif{font-family:"Noto Serif JP",serif}
+
+  /* header / footer */
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 20px 0}
+  .top a{font-size:.74rem;letter-spacing:.12em;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--ink)}
+  footer{max-width:760px;margin:0 auto;padding:56px 20px calc(env(safe-area-inset-bottom) + 48px);
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:18px}
+  footer nav a{text-decoration:none;letter-spacing:.08em}
+  footer nav a:hover{color:var(--ink)}
+
+  main{max-width:760px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{padding:88px 0 64px}
+  .kicker{font-size:.7rem;font-weight:700;letter-spacing:.3em;color:var(--muted)}
+  .hero h1{font-family:"Noto Serif JP",serif;font-weight:600;
+    font-size:clamp(1.6rem,5.4vw,2.6rem);line-height:1.6;margin:22px 0 26px;letter-spacing:.03em}
+  .hero h1 span{display:inline-block}
+  .hero .lead{color:var(--sub);max-width:34em}
+  .note{margin-top:30px;font-size:.82rem;color:var(--muted);border-left:2px solid var(--line);padding-left:14px}
+
+  /* toc */
+  .toc{margin:8px 0 72px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .toc p{font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:10px}
+  .toc ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+  .toc a{text-decoration:none;font-size:.88rem;color:var(--sub)}
+  .toc a:hover{color:var(--accent)}
+  .toc b{font-weight:500;color:var(--faint);margin-right:.6em;font-variant-numeric:tabular-nums}
+
+  section{margin-bottom:96px;scroll-margin-top:24px}
+  h2{font-family:"Noto Serif JP",serif;font-weight:600;font-size:clamp(1.3rem,3.8vw,1.7rem);
+    line-height:1.6;margin-bottom:8px}
+  .h2-en{font-size:.68rem;font-weight:700;letter-spacing:.28em;color:var(--accent);margin-bottom:6px;display:block}
+  .intro{color:var(--sub);margin:18px 0 32px}
+  p + p{margin-top:1em}
+
+  /* descent: the chain of questions */
+  .descent{list-style:none;position:relative;margin:36px 0 0;padding-left:34px}
+  .descent::before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:1px;
+    background:linear-gradient(var(--faint),var(--accent))}
+  .descent li{position:relative;padding:9px 0}
+  .descent li::before{content:"";position:absolute;left:-30px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--faint)}
+  .descent li:last-child::before{background:var(--accent);border-color:var(--accent)}
+  .descent .q{font-family:"Noto Serif JP",serif;font-size:1.06rem}
+  .descent .d{display:block;font-size:.8rem;color:var(--muted);line-height:1.7}
+  .descent li:nth-child(1) .q{opacity:.62}
+  .descent li:nth-child(2) .q{opacity:.68}
+  .descent li:nth-child(3) .q{opacity:.74}
+  .descent li:nth-child(4) .q{opacity:.8}
+  .descent li:nth-child(5) .q{opacity:.86}
+  .descent li:nth-child(6) .q{opacity:.93}
+
+  /* steps */
+  .chapter{margin-top:56px}
+  .chapter-title{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:8px}
+  .chapter-title .num{font-family:"Noto Serif JP",serif;color:var(--accent);font-size:1rem}
+  .chapter-title h3{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem}
+  details.step{border-bottom:1px solid var(--line)}
+  details.step summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em 1fr auto;
+    gap:8px;align-items:baseline;padding:18px 0}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .step .n{color:var(--faint);font-variant-numeric:tabular-nums;font-size:.86rem}
+  .step .t{font-family:"Noto Serif JP",serif;font-weight:500;font-size:1.04rem;line-height:1.7}
+  .step .chev{color:var(--faint);font-size:.8rem;transition:transform .25s}
+  details.step[open] .chev{transform:rotate(45deg)}
+  details.step summary:hover .t{color:var(--accent)}
+  .step .body{padding:0 0 26px 2.6em;color:var(--sub)}
+  @media (max-width:520px){ .step .body{padding-left:0} }
+  .insight{margin-top:18px;padding:14px 18px;background:var(--accent-soft);border-radius:3px;color:var(--ink)}
+  .insight::before{content:"気づき";display:block;font-size:.66rem;font-weight:700;letter-spacing:.24em;color:var(--accent);margin-bottom:2px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px;margin:14px 0;font-size:.86rem}
+  .flow span{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink)}
+  .flow i{font-style:normal;color:var(--faint)}
+  .aside{margin-top:16px;font-size:.84rem;color:var(--muted);padding-left:14px;border-left:2px solid var(--line)}
+  .aside b{color:var(--sub);font-weight:500}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .compare div{padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:3px;font-size:.9rem}
+  .compare small{display:block;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+  @media (max-width:520px){ .compare{grid-template-columns:1fr} }
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .tags span{font-size:.8rem;padding:2px 10px;background:var(--soft);border-radius:3px;color:var(--sub)}
+
+  /* who: interactive */
+  .who-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .who-tabs button{font:inherit;font-size:.86rem;padding:7px 16px;border:1px solid var(--line);border-radius:999px;
+    background:var(--paper);color:var(--sub);cursor:pointer;transition:all .2s}
+  .who-tabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .who-tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .who-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .who-panel{margin-top:16px;padding:24px 26px;background:var(--paper);border:1px solid var(--line);border-radius:4px;min-height:170px}
+  .who-panel .label{font-size:.7rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
+  .who-panel .ans{font-family:"Noto Serif JP",serif;font-size:1.14rem;margin:6px 0 10px;line-height:1.7}
+  .who-panel p{color:var(--sub);font-size:.94rem}
+
+  /* epistemic levels */
+  .levels{display:grid;gap:14px;margin-top:30px}
+  .level{padding:22px 24px;border-radius:4px;border:1px solid var(--line);background:var(--paper)}
+  .level h4{display:flex;align-items:center;gap:10px;font-size:.96rem;font-weight:700;margin-bottom:10px}
+  .level h4::before{content:"";width:10px;height:10px;border-radius:50%}
+  .level.sure h4::before{background:var(--sure)} .level.sure{background:var(--sure-soft)}
+  .level.hypo h4::before{background:var(--hypo)} .level.hypo{background:var(--hypo-soft)}
+  .level.open h4::before{background:var(--open)} .level.open{background:var(--open-soft)}
+  .level ul{padding-left:1.2em;color:var(--sub);font-size:.94rem}
+  .level li + li{margin-top:4px}
+
+  /* answer */
+  .formula{margin:34px 0;text-align:center}
+  .formula .no{font-size:.86rem;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .formula .yes{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;
+    font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.6vw,1.35rem)}
+  .formula .yes span{padding:6px 16px;border:1px solid var(--accent);border-radius:3px;color:var(--accent);background:var(--paper)}
+  .formula .yes i{font-style:normal;color:var(--faint);align-self:center}
+  .formula .cap{margin-top:14px;font-size:.84rem;color:var(--muted)}
+  blockquote.big{font-family:"Noto Serif JP",serif;font-size:clamp(1.08rem,3.4vw,1.3rem);line-height:2;
+    padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+
+  /* points */
+  .points{list-style:none;counter-reset:p;margin-top:26px}
+  .points li{counter-increment:p;display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line)}
+  .points li::before{content:counter(p,decimal-leading-zero);color:var(--accent);font-family:"Noto Serif JP",serif;font-size:.92rem}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:30px}
+  .ba > div{padding:22px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .ba small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.26em;color:var(--muted);margin-bottom:8px}
+  .ba .arrow{align-self:center;color:var(--faint);border:0;background:none;padding:0}
+  .ba .after{border-color:var(--accent)}
+  .ba .after small{color:var(--accent)}
+  .ba p{font-size:.94rem;color:var(--sub)}
+  @media (max-width:620px){ .ba{grid-template-columns:1fr} .ba .arrow{transform:rotate(90deg);justify-self:center} }
+
+  /* open questions */
+  .oq{list-style:none;counter-reset:q;columns:2 280px;column-gap:32px;margin-top:24px}
+  .oq li{counter-increment:q;break-inside:avoid;padding:10px 0 10px 2.4em;position:relative;border-bottom:1px dashed var(--line);font-size:.94rem}
+  .oq li::before{content:counter(q);position:absolute;left:0;top:10px;color:var(--open);font-variant-numeric:tabular-nums;font-size:.86rem}
+
+  /* next */
+  .next{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:26px}
+  .next div{padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .next b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin-bottom:4px}
+  .next p{font-size:.86rem;color:var(--muted);line-height:1.8}
+
+  .closing{text-align:center;padding:40px 0 20px}
+  .closing p{font-family:"Noto Serif JP",serif;font-size:clamp(1.05rem,3.4vw,1.28rem);line-height:2.1}
+  .closing .last{margin-top:28px;color:var(--accent)}
+</style>
+<style>
+  /* emptiness page */
+  .series{margin:0 0 56px;font-size:.82rem;color:var(--muted);line-height:2}
+  .series a{color:var(--accent)}
+  .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin:30px 0 10px}
+  .vs > div{padding:22px 20px;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+  .vs small{display:block;font-size:.66rem;font-weight:700;letter-spacing:.2em;color:var(--muted);margin-bottom:6px}
+  .vs b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.12rem;margin-bottom:6px}
+  .vs span{font-size:.88rem;color:var(--sub);line-height:1.85;display:block}
+  .vs .no{opacity:.75}
+  .vs .no b{text-decoration:line-through;text-decoration-color:var(--faint)}
+  .vs .yes{border-color:var(--accent);background:var(--accent-soft)}
+  .vs .yes small{color:var(--accent)}
+  .vs .arr{align-self:center;border:0;background:none;padding:0;color:var(--faint);font-size:1.2rem}
+  @media (max-width:620px){ .vs{grid-template-columns:1fr} .vs .arr{transform:rotate(90deg);justify-self:center} }
+
+  .web{margin-top:26px;padding:26px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+  .crumbs{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center;font-size:.82rem;color:var(--muted);min-height:1.8em}
+  .crumbs button{font:inherit;font-size:.82rem;background:none;border:0;color:var(--accent);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+  .crumbs i{font-style:normal;color:var(--faint)}
+  .web .focus{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.3rem;margin:12px 0 4px}
+  .web .fdesc{font-size:.92rem;color:var(--sub);line-height:1.9}
+  .web .lead2{font-size:.72rem;font-weight:700;letter-spacing:.2em;color:var(--muted);margin:16px 0 8px}
+  .web .nodes{display:flex;flex-wrap:wrap;gap:8px}
+  .web .nodes button{font:inherit;font-size:.88rem;padding:7px 14px;border:1px solid var(--accent);border-radius:999px;background:var(--bg);color:var(--accent);cursor:pointer;transition:all .2s}
+  .web .nodes button:hover{background:var(--accent-soft)}
+  .web .nodes button.loop{border-style:dashed}
+  .web .nodes button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .web .count{margin-top:16px;font-size:.84rem;color:var(--muted)}
+  .web .reflect{margin-top:12px;padding:14px 18px;border-radius:3px;background:var(--accent-soft);font-size:.9rem;color:var(--sub);line-height:1.9}
+  .web .reflect[hidden]{display:none}
+  .web .reset-w{font:inherit;font-size:.78rem;background:none;border:0;color:var(--muted);cursor:pointer;text-decoration:underline;margin-top:10px}
+
+  .related{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:22px}
+  .related a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:4px;background:var(--paper);text-decoration:none;transition:border-color .2s}
+  .related a:hover{border-color:var(--accent)}
+  .related small{display:block;font-size:.64rem;font-weight:700;letter-spacing:.2em;color:var(--muted)}
+  .related b{display:block;font-family:"Noto Serif JP",serif;font-weight:600;margin:2px 0}
+  .related span{font-size:.82rem;color:var(--sub);line-height:1.7;display:block}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="../">← m-note トップ</a>
+  <a href="./">哲学ノート</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="kicker">PHILOSOPHY NOTE · 14</p>
+    <h1><span>「何もない」のではなく、</span><br><span>「それだけで在るものは</span><span>何もない」</span></h1>
+    <p class="lead">「仏教」の記事で、すべては関係の中で生じるという「縁起」に触れた。そのとき、後の大乗仏教がそれを「空」という考え方へと推し進めたことにも少しだけ触れた。「空」と聞くと、「むなしい」「何もない」という印象を持つかもしれない。けれども、考えていくうちに、それはむしろ逆で、世界がどこまでもつながり合い、開かれているということを言い表した言葉なのだと思えてきた。</p>
+    <p class="note">これは仏教学の解説ではなく、「空」という考え方を、ここまでの記事と照らし合わせながら自分なりに整理した思考の記録です。空の解釈は、学派や時代によって大きく異なります。</p>
+  </div>
+
+  <p class="series">これまでの記事：<a href="meaning-of-life.html">01 生きる意味</a> ／ <a href="consciousness.html">02 意識</a> ／ <a href="self.html">03 「私」</a> ／ <a href="free-will.html">04 自由意志</a> ／ <a href="meaning.html">05 意味の成り立ち</a> ／ <a href="buddhism.html">06 仏教</a> ／ <a href="death.html">07 死</a> ／ <a href="happiness.html">08 幸福</a> ／ <a href="ethics.html">09 善く生きる</a> ／ <a href="other.html">10 他者</a> ／ <a href="love.html">11 愛</a> ／ <a href="beauty.html">12 美</a> ／ <a href="time.html">13 時間</a></p>
+
+  <nav class="toc" aria-label="目次">
+    <p>CONTENTS</p>
+    <ol>
+      <li><a href="#map"><b>01</b>問いの地図</a></li>
+      <li><a href="#vs"><b>02</b>空は「無」ではない</a></li>
+      <li><a href="#process"><b>03</b>思考のプロセス</a></li>
+      <li><a href="#web"><b>04</b>一杯のお茶から縁起をたどる</a></li>
+      <li><a href="#levels"><b>05</b>確かなこと・仮説・未決定</a></li>
+      <li><a href="#answer"><b>06</b>現時点の最適解</a></li>
+      <li><a href="#open"><b>07</b>未解決の問い</a></li>
+      <li><a href="#next"><b>08</b>次に考えること</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section id="map">
+    <span class="h2-en">01 · MAP OF QUESTIONS</span>
+    <h2>「空」を分解する</h2>
+    <p class="intro">「空」は、仏教の中でももっとも誤解されやすい言葉の一つだ。何が「空」なのか。何について「空」と言っているのか。問いをほどいていく。</p>
+    <ol class="descent">
+      <li><span class="q">「空」とは、「何もない」ということなのか</span><span class="d">空と無の違い</span></li>
+      <li><span class="q">縁起と空は、どうつながっているのか</span><span class="d">ナーガールジュナと「自性」</span></li>
+      <li><span class="q">「色即是空、空即是色」とは何を言っているのか</span><span class="d">般若心経</span></li>
+      <li><span class="q">すべてが空なら、空そのものも空なのか</span><span class="d">二つの真理と「空の空」</span></li>
+      <li><span class="q">空は、現代の世界観とどう響き合うのか</span><span class="d">インドラの網、関係としての世界</span></li>
+      <li><span class="q">空を知ることは、生き方をどう変えるのか</span><span class="d">執着、慈悲、そしてこれまでの記事</span></li>
+    </ol>
+  </section>
+
+  <!-- 02 -->
+  <section id="vs">
+    <span class="h2-en">02 · NOT NOTHINGNESS</span>
+    <h2>空は「無」ではない</h2>
+    <p class="intro">「空」を理解するうえで、最初に外しておきたい誤解がある。</p>
+    <div class="vs">
+      <div class="no"><small>よくある誤解</small><b>空 ＝ 何もない</b><span>世界は幻であり、何も存在しない。だから、何をしても意味がない。</span></div>
+      <div class="arr">→</div>
+      <div class="yes"><small>空のもう一つの読み方</small><b>空 ＝ それだけで在るものはない</b><span>あらゆるものは、他との関係の中でのみ成り立っており、それ自体で独立して存在する固定した本質（自性）を持たない。</span></div>
+    </div>
+    <p class="note">サンスクリット語の「シューニャ（空）」は、インドの数学で「ゼロ」を表す言葉でもあった。ゼロは「何もない」ことを表しながら、位取りの中で他の数字との関係によって大きな働きをする。</p>
+  </section>
+
+  <!-- 03 -->
+  <section id="process">
+    <span class="h2-en">03 · PROCESS</span>
+    <h2>思考のプロセス</h2>
+    <p class="intro">12の段階に分けて、考えたことと気づいたことを記録した。各項目を開くと詳細が読めます。</p>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">I</span><h3>縁起から空へ</h3></div>
+
+      <details class="step" open>
+        <summary><span class="n">01</span><span class="t">何が「空っぽ」なのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>「空」は「空っぽ」という意味の言葉だ。では、何が空っぽなのか。大乗仏教の答えは、「自性（じしょう）」——それ自体だけで成り立ち、他に依存せず、変わることのない固有の本質——が空っぽだ、というものだった。</p>
+          <p>コップは、ガラスという材料、それを作った人、「コップ」という言葉と使い方、それを手に取る私との関係の中で、初めて「コップ」として在る。それらすべてを取り去ったあとに残る、「コップそのもの」という芯のようなものは、どこにも見つからない。</p>
+          <div class="insight">空とは、ものが存在しないということではなく、ものが「それだけで」存在しているわけではない、ということだ。存在の否定ではなく、独立した存在の否定。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">02</span><span class="t">ナーガールジュナ：縁起こそが空である</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>2〜3世紀ごろのインドの思想家ナーガールジュナ（龍樹）は、大乗仏教の「空」の思想を論理的に体系づけた人物とされる。彼は主著『中論』の中で、縁起しているもの、それを空と説く、という趣旨のことを述べた。</p>
+          <div class="flow"><span>すべては条件によって生じる（縁起）</span><i>→</i><span>だから、それ自体で成り立つ本質はない（無自性）</span><i>→</i><span>それを「空」と呼ぶ</span></div>
+          <p>つまり、空は縁起の別の言い方なのだ。仏教の記事で見た「これがあるとき、かれがある」という縁起を、とことん突き詰めると、空にたどり着く。</p>
+          <div class="insight">最初の記事で、「私」と「世界」は完全には切り離せず、「私」は世界との相互作用の中で成り立っていると考えた。それは、「私」が空である、ということと同じことを言っていたのかもしれない。</div>
+          <p class="aside"><b>出典：</b>ナーガールジュナ『中論』第24章。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">03</span><span class="t">車はどこにあるのか</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>初期仏教の経典『ミリンダ王の問い』には、こんな対話がある。比丘ナーガセーナは王に尋ねる。「あなたが乗ってきた車とは何ですか。車輪が車ですか。車軸が車ですか。車体が車ですか」。王は、どれも違うと答える。では、部品のほかに車があるのか。それも違う。</p>
+          <p>「車」とは、部品が特定の関係で組み合わさったものに付けられた「名前」なのだ。そしてナーガセーナは、「ナーガセーナ」という自分の名前もまた、同じように、身体や心の要素の集まりに付けられた呼び名にすぎない、と説いた。</p>
+          <div class="insight">「私」の記事で考えた「テセウスの船」と同じ問いだ。車にも、船にも、「私」にも、部品を超えた固定した芯はない。けれども、だからといって車が走らないわけではない。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">II</span><h3>般若心経</h3></div>
+
+      <details class="step">
+        <summary><span class="n">04</span><span class="t">色即是空、空即是色</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>日本でもっともよく知られたお経の一つ『般若心経』は、わずか三百字ほどの中に空の思想を凝縮している。その中心にあるのが、「色即是空、空即是色」という一節だ。</p>
+          <div class="compare">
+            <div><small>色即是空</small>形あるもの（色）は、それ自体で成り立つ本質を持たない（空）</div>
+            <div><small>空即是色</small>その空は、形あるものから離れたどこか別の場所にあるのではない。空であることが、そのまま形あるものとして現れている</div>
+          </div>
+          <p>前半だけを読むと、「形あるものはむなしい」という厭世的な言葉に聞こえる。けれども後半が、それを反転させる。空は、この世界の向こう側にある「無」ではなく、目の前のこの世界のあり方そのものだ。</p>
+          <div class="insight">空は、世界から目を背けることではなく、目の前の世界を、つながりと変化の中にあるものとして、ありのままに見ることなのかもしれない。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">05</span><span class="t">教えそのものも、空である</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>般若心経は、さらに驚くべきことを言う。「無眼耳鼻舌身意（目も耳も鼻も舌も身体も心もない）」と感覚を否定していくだけでなく、仏教の根本である四つの真理さえ、「無苦集滅道（苦も、その原因も、その消滅も、そこへの道もない）」と言い切るのだ。</p>
+          <p>そして「無智亦無得（知ることもなく、得ることもない）」と続く。悟りの智慧さえ、つかむべき固定したものではない。</p>
+          <div class="insight">仏教は、自分自身の教えさえ、握りしめるべき「もの」にしなかった。「仏教」の記事で見た「意味を握りしめると苦しみになる」は、教えや真理そのものにも当てはまる。</div>
+          <p class="aside"><b>補足：</b>これは四つの真理が「間違っている」という意味ではなく、それらもまた、実体として固定してとらえるべきものではない、という意味として理解されることが多い。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">III</span><h3>ナーガールジュナの論理</h3></div>
+
+      <details class="step">
+        <summary><span class="n">06</span><span class="t">二つの真理：世俗の真理と、究極の真理</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>すべてが空なら、「私」も「あなた」も「コップ」も、言葉の上の約束にすぎないことになる。では、日常の言葉や区別はすべて間違っているのか。</p>
+          <p>ナーガールジュナは、二つの真理（二諦）を区別した。日常の言葉や約束事の中で成り立つ「世俗の真理」と、あらゆるものが空であるという「究極の真理」だ。そして、世俗の真理に依らなければ、究極の真理を説くことはできない、と述べた。</p>
+          <div class="compare">
+            <div><small>世俗の真理</small>コップは在る。私はここにいる。約束は守るべきだ</div>
+            <div><small>究極の真理</small>それらはすべて、関係の中で成り立ち、固定した本質を持たない</div>
+          </div>
+          <div class="insight">空を知ることは、日常の世界を否定することではない。日常の世界の中で生きながら、それが固定したものではないと知っていること。二つの見方を同時に持つことだ。</div>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">07</span><span class="t">空もまた、空である</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>すべてが空だとすれば、「空」という考えそのものも空でなければならない。空は、ものの奥に隠れた「究極の実体」ではない。空を新たな「真理という名のもの」として握りしめれば、それはまた別の執着になる。</p>
+          <p>ナーガールジュナは、空をひとつの「見解（主義主張）」として固執する者は救いようがない、とまで書いている。初期仏教の経典にも、教えは川を渡るための「筏（いかだ）」のようなもので、渡り終えたら担いで歩くものではない、というたとえがある。</p>
+          <div class="insight">空は、世界を説明する「答え」ではなく、あらゆる答えへの執着をほどく「はたらき」なのかもしれない。だからこそ、どんな立場にも閉じない。</div>
+          <p class="aside"><b>出典：</b>『中論』第13章。筏のたとえは、パーリ経典『中部』の「蛇喩経」など。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">08</span><span class="t">空は、「在る」と「無い」のあいだの道</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>仏教の記事で、「中道」とは、「変わらない本当の私がいる（常見）」と「私も意味もまったく何もない（断見）」の両極端を避けることだと見た。ナーガールジュナの思想が「中観」と呼ばれるのは、空がまさにこの中道だからだ。</p>
+          <div class="flow"><span>常見：固定した実体がある</span><i>—</i><span>空（中道）</span><i>—</i><span>断見：何もない</span></div>
+          <div class="insight">空は「無い」の側に寄った考えではない。「固定して在る」でも「まったく無い」でもなく、「関係の中で、変わりながら在る」。これは、「私」をプロセスとして捉えた記事の結論と、ほとんど同じ形をしている。</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">IV</span><h3>現代との響き合い</h3></div>
+
+      <details class="step">
+        <summary><span class="n">09</span><span class="t">インドラの網：一つの中にすべてが映る</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>中国で発展した華厳の思想は、空と縁起を、壮大なイメージで表した。帝釈天（インドラ）の宮殿には、果てしなく広がる網がかけられていて、その結び目の一つ一つに宝珠が付いている。どの宝珠にも、ほかのすべての宝珠が映り込み、その映り込んだ宝珠の中にも、またすべての宝珠が映っている。</p>
+          <p>一つのものの中に、世界のすべてとの関係が映し込まれている。一つを取り出そうとすると、世界のすべてがついてくる。</p>
+          <div class="insight">「他者」の記事で、和辻哲郎は人間を「人と人とのあいだ」としてとらえた。インドラの網は、それを宇宙全体にまで広げたイメージなのかもしれない。</div>
+          <p class="aside"><b>出典：</b>『華厳経』にもとづき、中国華厳宗で展開されたたとえ。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">10</span><span class="t">関係としての世界</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>物理学者カルロ・ロヴェッリは、量子力学の解釈の一つとして、物の性質は、それ単独で決まっているのではなく、他の物との関係においてのみ現れる、という「関係的解釈」を提唱している。彼は著書の中で、この見方がナーガールジュナの空の思想と響き合うことに触れている。</p>
+          <p>「時間」の記事で見たように、相対性理論では、宇宙全体に共通する「いま」はなく、同時性は観測者との関係で決まる。現代の物理学は、世界を「独立した物の集まり」としてではなく、「関係の網の目」として描く方向に進んでいるようにも見える。</p>
+          <div class="insight">二千年前の仏教思想と、現代の物理学が、同じ方向を指しているように見えるのは興味深い。ただし、それは「仏教が物理学を先取りしていた」という意味ではない。異なる問いから出発した二つの思考が、似た形に行き着いた、というところまでだ。</div>
+          <p class="aside"><b>注意：</b>量子力学の解釈は複数あり、関係的解釈はその一つにすぎない。仏教と物理学を安易に同一視することは、どちらの理解も歪めてしまう。ロヴェッリ『世界は「関係」でできている（Helgoland）』（2020）。</p>
+        </div>
+      </details>
+
+      <details class="step">
+        <summary><span class="n">11</span><span class="t">一枚の紙の中に、雲が見える</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>ベトナム出身の禅僧ティク・ナット・ハンは、空を「相互存在（インタービーイング）」という言葉で語り直した。一枚の紙をよく見ると、その中に雲が見える、と彼は言う。雲がなければ雨は降らず、雨がなければ木は育たず、木がなければ紙はできない。紙の中には、太陽も、木こりも、木こりが食べたパンも、その小麦を育てた農家も見える。</p>
+          <p>紙は、紙でないものだけでできている。紙からそれらすべてを取り去れば、紙は存在できない。</p>
+          <div class="insight">空とは、「何もない」ことではなく、「すべてが入っている」ことでもあるのかもしれない。一枚の紙が空であるとは、一枚の紙が、宇宙のすべてと「共に在る」ということだ。（<a href="#web">04章</a>で、一杯のお茶からこのつながりをたどれます）</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-title"><span class="num">V</span><h3>これまでの記事とつなぐ</h3></div>
+
+      <details class="step">
+        <summary><span class="n">12</span><span class="t">空と、生き方</span><span class="chev">＋</span></summary>
+        <div class="body">
+          <p>空を知ることは、世界を冷たく突き放すことではない。大乗仏教では、空の智慧と、すべての生きものへの慈悲は、鳥の両翼のように切り離せないものとされた。すべてがつながり合っているなら、他者の苦しみは、まったくの他人事ではありえない。</p>
+          <ul class="tags" style="list-style:none">
+            <li><span><a href="self.html">「私」</a>：固定した私はなく、関係の中のプロセスとして在る</span></li>
+            <li><span><a href="meaning.html">意味</a>：意味は、関係の中で生まれ、育つ</span></li>
+            <li><span><a href="love.html">愛</a>：握りしめるのではなく、相手の自由を喜ぶ</span></li>
+            <li><span><a href="time.html">時間</a>：時間は存在そのもの（有時）</span></li>
+          </ul>
+          <div class="insight">空は、これまでの記事でくり返したどり着いた「固定したものはない。すべては関係の中で、変わりながら在る」という見方に、一つの名前を与えたものなのかもしれない。そしてそれは、虚無ではなく、開かれと、つながりと、やさしさへの入口になる。</div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section id="web">
+    <span class="h2-en">04 · TRY IT</span>
+    <h2>一杯のお茶から、<br>縁起をたどる</h2>
+    <p class="intro">目の前の一杯のお茶は、何によって成り立っているのでしょう。気になるものを選んで、つながりをたどってみてください。どこまで行っても、「それだけで在るもの」にはたどり着きません。</p>
+
+    <div class="web" aria-live="polite">
+      <div class="crumbs"></div>
+      <div class="focus"></div>
+      <p class="fdesc"></p>
+      <div class="lead2">これは、何によって成り立っている？</div>
+      <div class="nodes"></div>
+      <div class="count"></div>
+      <p class="reflect" hidden></p>
+      <button type="button" class="reset-w">一杯のお茶に戻る</button>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section id="levels">
+    <span class="h2-en">05 · WHAT WE KNOW</span>
+    <h2>確かなこと・仮説・未決定</h2>
+    <div class="levels">
+      <div class="level sure">
+        <h4>確定に近いこと（文献・歴史として）</h4>
+        <ul>
+          <li>「空」は大乗仏教の中心的な概念であり、ナーガールジュナによって論理的に体系づけられた。</li>
+          <li>ナーガールジュナは、縁起と空を結びつけ、二つの真理（二諦）を区別した。</li>
+          <li>『般若心経』は、空の思想を凝縮した経典として、東アジアで広く読誦されてきた。</li>
+          <li>サンスクリット語の「シューニャ」は、数学のゼロを表す言葉でもあった。</li>
+        </ul>
+      </div>
+      <div class="level hypo">
+        <h4>解釈・個人的な見方</h4>
+        <ul>
+          <li>空は「何もない」ではなく、「それだけで成り立つ本質はない」という意味である。</li>
+          <li>空は縁起を突き詰めた見方であり、「在る」と「無い」の両極端を避ける中道である。</li>
+          <li>空は世界を説明する答えではなく、答えへの執着をほどく働きである。</li>
+          <li>空の見方は、現代物理学の関係的な世界観と、似た形を持っている。</li>
+          <li>空の智慧は、慈悲と結びついている。</li>
+        </ul>
+      </div>
+      <div class="level open">
+        <h4>未決定のこと</h4>
+        <ul>
+          <li>世界の究極のあり方は、本当に「空」なのか。</li>
+          <li>関係だけがあって、関係し合う「もの」はないということは、ありうるのか。</li>
+          <li>空を論理的に理解することと、体験として実感することは、どう違うのか。</li>
+          <li>空の思想と現代科学の類似は、どこまで意味のあるものなのか。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section id="answer">
+    <span class="h2-en">06 · CURRENT BEST ANSWER</span>
+    <h2>現時点の最適解</h2>
+    <p class="intro">空は、世界がむなしく、無意味だということではない。いまの自分の理解は、空とは、あらゆるものが関係の中でのみ成り立ち、固定した芯を持たないということであり、それを知ることは、執着をゆるめ、世界のつながりに開かれていくことだ、というものだ。</p>
+
+    <div class="formula">
+      <div class="no">空 ＝ 何もない。だから、すべては無意味だ</div>
+      <div class="yes"><span>縁起</span><i>×</i><span>無自性</span><i>×</i><span>中道</span><i>×</i><span>慈悲</span></div>
+      <div class="cap">すべてはつながりの中で、変わりながら在る。だから、握りしめず、開かれていられる</div>
+    </div>
+
+    <blockquote class="big">空とは、何もないことではなく、何ひとつ「それだけで」在るものはない、ということ。一杯のお茶の中に雨と太陽と誰かの手があるように、私の中にも、数えきれないものが流れ込んでいる。私は、世界から切り離された一点ではなく、世界が結び合う、一つの結び目なのかもしれない。</blockquote>
+    <p class="note">ただし、これは空の思想のごく一部を、自分の問いに引き寄せて読んだものにすぎない。空の理解は、仏教の中でも学派によって大きく異なり、実践を通じてしか分からないとも言われる。</p>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">重要なポイント</h3>
+    <ol class="points">
+      <li>空は「何もない」ではなく、「それ自体で成り立つ固定した本質（自性）がない」ということ。</li>
+      <li>空は縁起を突き詰めた見方である（ナーガールジュナ）。</li>
+      <li>「色即是空、空即是色」——空は世界の向こう側ではなく、目の前の世界のあり方そのもの。</li>
+      <li>世俗の真理と究極の真理を、同時に持つ（二諦）。</li>
+      <li>空もまた空。空を新たな「答え」として握りしめない。</li>
+      <li>一つの中にすべてが映る（インドラの網）。紙の中に雲が見える（相互存在）。</li>
+      <li>空の智慧は、虚無ではなく、慈悲とつながりへの入口になる。</li>
+    </ol>
+
+    <h3 class="serif" style="margin-top:56px;font-weight:600;font-size:1.1rem">m-note 内の関連ノート</h3>
+    <div class="related">
+      <a href="../buddhism/"><small>BUDDHISM</small><b>仏教の思想史</b><span>ブッダから大乗、日本の各宗派まで。「人はどうすれば救われるのか」への答えとして読むノート。</span></a>
+      <a href="../early-buddhism/"><small>EARLY BUDDHISM</small><b>原始仏教</b><span>釈迦が説いた最初の教えを、苦・執着からメタ認知まで現代の視点で捉え直すノート。</span></a>
+      <a href="../quantum/"><small>QUANTUM</small><b>量子力学</b><span>常識が通じない“ミクロの世界のルール”を、やさしく学べるノート。</span></a>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section id="open">
+    <span class="h2-en">07 · OPEN QUESTIONS</span>
+    <h2>未解決の問い</h2>
+    <ol class="oq">
+      <li>関係だけがあって、関係し合う「もの」がないということは、ありうるのか？</li>
+      <li>すべてが空なら、なぜ世界はこれほど確かなものに感じられるのか？</li>
+      <li>空を「理解する」ことと「実感する」ことは、何が違うのか？</li>
+      <li>空の見方に立つと、善悪や責任はどうなるのか？</li>
+      <li>空と、最初の記事の「なぜ何かが存在するのか」という問いは、どう関わるのか？</li>
+      <li>空の思想と現代科学の類似は、偶然なのか、必然なのか？</li>
+      <li>空を知った人は、本当に苦しみから自由になれるのか？</li>
+    </ol>
+  </section>
+
+  <!-- 08 -->
+  <section id="next">
+    <span class="h2-en">08 · NEXT</span>
+    <h2>次に考えること</h2>
+    <div class="next">
+      <div><b>言葉とは何か</b><p>「車」が名前にすぎないなら、言葉は世界を映すのか、つくるのか。</p></div>
+      <div><b>知るとは何か</b><p>確かに「知っている」と言えるのは、どんなときか。真理とは何か。</p></div>
+      <div><b>神とは何か</b><p>創造主、究極の実在、そして空。人は「超えたもの」をどう考えてきたのか。</p></div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>空とは何かを考えていたら、<br>手の中の湯のみが、<br>急に、果てしなく広いものに思えてきた。</p>
+    <p class="last">何もないのではない。<br>すべてが、ここに流れ込んでいる。<br>私もまた、その結び目の一つとして。</p>
+  </div>
+
+</main>
+
+<footer>
+  <nav>
+    <a href="./">← 哲学ノート</a>
+    <a href="time.html">← 13 時間とは何か（哲学編）</a>
+    <a href="../">← m-note トップ</a>
+  </nav>
+  <p>専門家ではない個人が、自分の思考を整理するためにつくった個人的なまとめです。内容の正確性を保証するものではありません。</p>
+</footer>
+
+<script>
+(() => {
+  // 縁起の網：各ノードは、それを成り立たせているものへつながる。いくつかは出発点に戻ってくる。
+  const N = {
+    tea:    { n: "一杯のお茶", d: "いま、目の前にある、湯気の立つ一杯のお茶。", c: ["leaf", "water", "cup", "me"] },
+    leaf:   { n: "茶葉", d: "摘まれ、蒸され、揉まれ、乾かされた葉。", c: ["sun", "rain", "soil", "farmer"] },
+    water:  { n: "お湯", d: "蛇口から出て、火にかけられた水。", c: ["rain", "fire", "pipe"] },
+    cup:    { n: "湯のみ", d: "手になじむ、焼き物の器。", c: ["soil", "fire", "potter"] },
+    me:     { n: "飲む私", d: "お茶を「おいしい」と感じる、この私。", c: ["body", "lang", "parents", "tea"] },
+    sun:    { n: "太陽", d: "約1億5千万km先から届く光と熱。", c: ["stars", "rain"] },
+    rain:   { n: "雨", d: "海から立ちのぼり、雲になり、降ってきた水。", c: ["sun", "sea"] },
+    soil:   { n: "土", d: "岩が砕け、生きものの亡骸が分解されてできたもの。", c: ["life", "time"] },
+    farmer: { n: "茶農家の人", d: "朝早くから茶畑に立つ、名前も知らない誰か。", c: ["body", "parents", "society"] },
+    fire:   { n: "火", d: "ガスや電気から得られる熱。", c: ["life", "society"] },
+    pipe:   { n: "水道", d: "誰かが計画し、掘り、つなぎ、守っている管。", c: ["society"] },
+    potter: { n: "陶工", d: "土をこね、ろくろを回し、窯で焼いた誰か。", c: ["body", "parents", "lang"] },
+    body:   { n: "身体", d: "食べたものや飲んだもの、吸った空気でできている。", c: ["tea", "life", "sun"] },
+    lang:   { n: "言葉", d: "「お茶」「おいしい」という言葉。誰かから教わった。", c: ["society", "parents"] },
+    parents:{ n: "親や祖先", d: "途切れることなく続いてきた、数えきれない命のつながり。", c: ["life", "time"] },
+    society:{ n: "社会", d: "道、市場、ルール、言葉を共有する、無数の人々のつながり。", c: ["lang", "farmer", "me"] },
+    stars:  { n: "かつての星々", d: "体や土に含まれる元素の多くは、昔の星の中でつくられたと考えられている。", c: ["time"] },
+    sea:    { n: "海", d: "地球の表面の7割を覆う水。生命が生まれた場所とも言われる。", c: ["life", "time"] },
+    life:   { n: "生命の歴史", d: "約40億年続いてきた、生きものの営み。", c: ["sea", "time"] },
+    time:   { n: "宇宙の時間", d: "約138億年前から続く、変化の連なり。その先は、まだ誰にも分からない。", c: [] }
+  };
+  const box = document.querySelector(".web");
+  const crumbs = box.querySelector(".crumbs");
+  const focus = box.querySelector(".focus");
+  const fdesc = box.querySelector(".fdesc");
+  const nodes = box.querySelector(".nodes");
+  const count = box.querySelector(".count");
+  const reflect = box.querySelector(".reflect");
+  const lead2 = box.querySelector(".lead2");
+  let path = ["tea"];
+  const seen = new Set(["tea"]);
+  const render = () => {
+    const id = path[path.length - 1];
+    const node = N[id];
+    crumbs.textContent = "";
+    path.forEach((p, i) => {
+      if (i > 0) { const s = document.createElement("i"); s.textContent = "←"; crumbs.appendChild(s); }
+      if (i < path.length - 1) {
+        const b = document.createElement("button"); b.type = "button"; b.textContent = N[p].n;
+        b.addEventListener("click", () => { path = path.slice(0, i + 1); render(); });
+        crumbs.appendChild(b);
+      } else {
+        const s = document.createElement("span"); s.textContent = N[p].n; crumbs.appendChild(s);
+      }
+    });
+    focus.textContent = node.n;
+    fdesc.textContent = node.d;
+    nodes.textContent = "";
+    lead2.hidden = node.c.length === 0;
+    node.c.forEach(c => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = N[c].n;
+      if (path.includes(c)) { b.classList.add("loop"); b.title = "すでにたどってきたものに戻ります"; }
+      b.addEventListener("click", () => {
+        const at = path.indexOf(c);
+        path = at >= 0 ? path.slice(0, at + 1) : path.concat(c);
+        seen.add(c);
+        render();
+      });
+      nodes.appendChild(b);
+    });
+    count.textContent = "たどったもの：" + seen.size + " / " + Object.keys(N).length;
+    let msg = "";
+    if (id === "time") msg = "ここで終わりではありません。宇宙の時間がなぜ始まったのかは、まだ分かっていません。最初の記事の「なぜ何かが存在するのか」という問いに、ここでつながります。そして、この長い時間のすべてが、いまの一杯のお茶の中に流れ込んでいます。";
+    else if (path.length > 1 && node.c.includes("tea")) msg = "点線のボタンは、すでにたどってきたものです。つながりをたどっていくと、出発点の一杯のお茶に戻ってきます。網の目には、始まりも終わりもありません。";
+    else if (seen.size >= 12) msg = "一杯のお茶の中に、太陽も、雨も、土も、名前も知らない誰かの手も、言葉も、宇宙の時間も入っていました。お茶は、お茶でないものだけでできている。これが、「空」と「縁起」の一つの見え方です。";
+    reflect.hidden = !msg;
+    reflect.textContent = msg;
+  };
+  box.querySelector(".reset-w").addEventListener("click", () => { path = ["tea"]; render(); });
+  render();
+})();
+</script>
+</body>
+</html>
